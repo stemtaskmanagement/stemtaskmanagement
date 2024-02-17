@@ -7,6 +7,12 @@ Gabriel Eli B. Mañacap,
 David Charles F. De Guzman,
 Andrei I. Zantua
 
+# Note for Developers:
+### on your local repository,
+### - git add . 
+### - git commit -m "your message"
+### - git push origin main 
+
 <!--
 **stemtaskmanagement/stemtaskmanagement** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
