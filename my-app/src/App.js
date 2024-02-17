@@ -196,7 +196,9 @@ function App() {
               );
             })
           ) : (
-            <h3 className="text-center">You currently have no task</h3>
+            <h3 className="text-center">
+              Congrats! You currently have no task
+            </h3>
           )}
         </div>
       </div>
