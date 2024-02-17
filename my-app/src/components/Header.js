@@ -5,7 +5,7 @@ export default function Header() {
         STEMTask
       </h1>
       <hr />
-      <h4>Developed by Wion M. Quintela</h4>
+      {/* <h4>Developed by Wion M. Quintela</h4> */}
       <p>
         STEMTask is a web-based task management application designed to help
         Senior High School STEM students in CCBHS organize their daily tasks

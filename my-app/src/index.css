@@ -3,7 +3,7 @@
   src: url('./fonts/Montserrat-Medium.otf');
 }
 
-body {
+* {
   margin: 0;
   font-family: myFont;
   -webkit-font-smoothing: antialiased;
@@ -13,4 +13,31 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.formContainer {
+  max-width: 500px;
+  /* Adjust as needed */
+  margin: 0 auto;
+  /* Center the container */
+  padding: 20px;
+  /* Add padding for spacing */
+}
+
+#taskForm {
+  width: 100%;
+  /* Full width within the container */
+}
+
+.card {
+  max-width: 300px;
+  /* Adjust as needed */
+  margin: 0 auto;
+  /* Center the container */
+  padding: 20px;
+}
+
+.custom-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

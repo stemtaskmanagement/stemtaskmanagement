@@ -119,7 +119,7 @@ function App() {
       <Navbar />
       <Header />
       {/**/}
-      <div className="container text-center">
+      <div className="formContainer text-center">
         {/*SUBJECT SELECTOR*/}
         <div className="mb-3">
           {/* <label for="exampleFormControlInput1" className="form-label">
@@ -175,7 +175,7 @@ function App() {
         <h1 className="container text-center">My task :</h1>
         {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
         <div
-          className="row row-cols-1 row-cols-md-2 g-1"
+          className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
           style={{ overflow: "hidden" }}
         >
           {" "}
@@ -183,7 +183,7 @@ function App() {
             task.map((items) => {
               return (
                 <div
-                  className="col"
+                  className="col mb-5"
                   // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
                 >
                   <Tasks
