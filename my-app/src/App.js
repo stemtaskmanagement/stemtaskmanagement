@@ -115,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="">
+    <div className="" style={{ fontSmooth: "always" }}>
       <Navbar />
       <Header />
       {/**/}
@@ -164,7 +164,7 @@ function App() {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            style={{ border: "1px solid gray", margin: "10px" }}
+            style={{ margin: "10px" }}
           />
         </div>
         <Button name="Add New Task" onClick={handleSubmit} href="#Task" />
@@ -197,7 +197,11 @@ function App() {
             })
           ) : (
             <h3 className="text-center">
-              Congrats! You currently have no task
+              Congrats! You currently have no task <br />
+              <img
+                src={require("./components/assets/notask.gif")}
+                style={{ maxWidth: "150px" }}
+              />
             </h3>
           )}
         </div>

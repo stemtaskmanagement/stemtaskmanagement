@@ -1,6 +1,6 @@
 @font-face {
   font-family: myFont;
-  src: url('./fonts/Montserrat-Medium.otf');
+  src: url('./fonts/Poppins-Regular.otf');
 }
 
 * {
@@ -41,3 +41,5 @@ code {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+/*date picker design*/

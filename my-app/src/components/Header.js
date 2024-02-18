@@ -1,8 +1,12 @@
 export default function Header() {
   return (
-    <div className="container text-center">
-      <h1 style={{ color: "blue", fontSize: "70px", fontWeight: "bold" }}>
-        STEMTask
+    <div className="container text-center" style={{ marginTop: "80px" }}>
+      <img src={require("./assets/robot.png")} style={{ maxWidth: "200px" }} />
+      <h1
+        style={{ fontSize: "70px", fontWeight: "bold" }}
+        className="text-primary"
+      >
+        STEMTask{" "}
       </h1>
       <hr />
       {/* <h4>Developed by Wion M. Quintela</h4> */}

@@ -10,7 +10,7 @@ export default function Tasks({
   onEdit,
 }) {
   return (
-    <div className="card">
+    <div className="card shadow">
       <div className="card-header bg-info-subtle">Subject: {subject}</div>
       <div className="card-body">
         <h5 className="card-title">
