@@ -115,7 +115,7 @@ function App() {
   }
 
   return (
-    <div className="" style={{ fontSmooth: "always" }}>
+    <div className="" style={{ fontSmooth: "always", overflow: "hidden" }}>
       <Navbar />
       <Header />
       {/**/}
