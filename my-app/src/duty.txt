@@ -1,0 +1,7 @@
+List of Duty or Reminders:
+
+Reminders:
+-<marquee></marquee> tag can be used to create a moving text like in the news
+
+Duty:
+-learn html, css
