@@ -42,6 +42,9 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    document
+      .getElementById("taskSection")
+      .scrollIntoView({ behavior: "smooth" });
     if (!description || !subject) {
       alert("Please fill in all fields.");
     } else if (description && toggleSubmit) {
@@ -167,11 +170,15 @@ function App() {
             style={{ margin: "10px" }}
           />
         </div>
-        <Button name="Add New Task" onClick={handleSubmit} href="#Task" />
+        <Button
+          name="Add New Task"
+          onClick={handleSubmit}
+          href="#taskSection"
+        />
       </div>
 
       {/*ito yung mga task cards*/}
-      <div style={{ marginTop: "100px" }} id="#Task">
+      <div style={{ marginTop: "100px" }} id="taskSection">
         <h1 className="container text-center">My task :</h1>
         {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
         <div

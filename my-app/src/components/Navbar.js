@@ -5,7 +5,9 @@ export default function Navbar() {
         className={`navbar bg-body-tertiary className="text-primary" shadow`}
       >
         <div className="container-fluid">
-          <a className="navbar-brand text-primary">STEMTask</a>
+          <a className="navbar-brand text-primary" href="#taskSection">
+            STEMTask
+          </a>
         </div>
       </nav>
     </div>
