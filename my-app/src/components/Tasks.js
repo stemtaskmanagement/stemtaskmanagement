@@ -16,8 +16,8 @@ export default function Tasks({
         <h5 className="card-title">
           Deadline: {date === "Invalid Date" ? "Undated" : date}
         </h5>
-        <p className="card-text">
-          Description: {description}
+        <p className="card-text" id="cardDescription">
+          {description}
         </p>
         <div className="row">
           <div className="col">

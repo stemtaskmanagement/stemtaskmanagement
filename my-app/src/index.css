@@ -42,4 +42,8 @@ code {
   padding-right: 0 !important;
 }
 
-/*date picker design*/
+/*scrollable description*/
+#cardDescription {
+  height: 200px;
+  overflow-y: scroll;
+}
