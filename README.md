@@ -5,7 +5,7 @@
 other members:
 Gabriel Eli B. Mañacap,
 David Charles F. De Guzman,
-Andrei I. Zantua
+
 
 # Note for Developers:
 ### on your local repository,
