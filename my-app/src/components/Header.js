@@ -6,7 +6,7 @@ export default function Header() {
         style={{ fontSize: "70px", fontWeight: "bold" }}
         className="text-primary"
       >
-        nigga{" "}
+        STEMTask{" "}
       </h1>
       <h3>A Task Management Web App</h3>
       <hr /> 
