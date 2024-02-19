@@ -9,3 +9,4 @@ Duty:
 -creata a file input
 -create a dark mode button
 -implement React Router
+-create a Meet the Members component
