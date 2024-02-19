@@ -183,7 +183,7 @@ function App() {
 
       {/*ito yung mga task cards*/}
       <div style={{ marginTop: "100px" }} id="taskSection">
-        <h1 className="container text-center">My task :</h1>
+        <h1 className="container text-center">my task :</h1>
         {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
         <div
           className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
