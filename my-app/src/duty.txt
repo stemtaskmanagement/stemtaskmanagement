@@ -6,6 +6,5 @@ Reminders:
 Duty:
 -learn html, css
 -create a user authentication
--create a color picker on forms
 -creata a file input
 -create a dark mode button
