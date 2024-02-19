@@ -10,41 +10,26 @@ function App() {
   //naglalagay tayo ng default state ng inputs
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
+  const [color, setColor] = useState("#04a4b0");
   const [date, setDate] = useState("");
   const [isEditTask, setIsEditTask] = useState(null);
   const [toggleSubmit, setToggleSubmit] = useState(true);
   const [showList, setShowList] = useState(true);
+
   //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
 
   const [task, setTask] = useState([
     //display empty as a default
   ]);
 
-  //function kung saan sinesave yung nilagay sa input
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   if (!description || !subject) {
-  //     alert("Please fill in all fields.");
-  //   } else {
-  //     const allInputData = {
-  //       id: new Date().getTime().toString(),
-  //       description: description,
-  //       subject: subject,
-  //       date: formatDate(date),
-  //     };
-  //     setTask([allInputData, ...task]);
-  //     // Clear input fields after submission
-  //     setDescription("");
-  //     setSubject("");
-  //     setDate("");
-  //   }
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
+
+    //scroll down to task after clicking add new task
     document
       .getElementById("taskSection")
       .scrollIntoView({ behavior: "smooth" });
+
     if (!description || !subject) {
       alert("Please fill in all fields.");
     } else if (description && toggleSubmit) {
@@ -54,11 +39,13 @@ function App() {
         description: description,
         subject: subject,
         date: formatDate(date),
+        color: color,
       };
       setTask([allInputData, ...task]); // Add new task to the list
       setDescription(""); // Clear input fields after submission
       setSubject("");
       setDate("");
+      setColor("#04a4b0");
     } else if (description && !toggleSubmit) {
       // Check if it's an edited task
       setTask(
@@ -69,6 +56,7 @@ function App() {
               subject: subject,
               description: description,
               date: formatDate(date),
+              color: color,
             };
           }
           return item;
@@ -79,6 +67,7 @@ function App() {
       setDescription(""); // Clear input fields after submission
       setSubject("");
       setDate("");
+      setColor("#04a4b0");
     }
   }
 
@@ -113,6 +102,7 @@ function App() {
     setSubject(newEditTask.subject);
     setDescription(newEditTask.description);
     setDate(newEditTask.date);
+    setColor(newEditTask.color);
     setIsEditTask(id);
     console.log(newEditTask);
   }
@@ -142,13 +132,29 @@ function App() {
           </select>
         </div>
 
+        {/*Color Picker for Subject Background*/}
+        <div className="mb-3">
+          <label
+            for="exampleFormControlTextarea1"
+            className="form-label"
+            style={{ marginRight: "10px" }}
+          >
+            Label Color:
+          </label>
+          <input
+            type="color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+          />
+        </div>
+
         {/*DESCRIPTION INPUT*/}
         <div className="mb-3">
           {/* <label for="exampleFormControlTextarea1" className="form-label">
             Your Task:
           </label> */}
-         
-         <textarea
+
+          <textarea
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
@@ -157,14 +163,13 @@ function App() {
             onChange={(e) => setDescription(e.target.value)}
             // style={{ border: "1px solid gray" }}
           ></textarea>
-         
         </div>
 
         {/*DATE PICKER*/}
         <div className="mb-3">
-          {/* <label for="exampleFormControlTextarea1" className="form-label">
+          <label for="exampleFormControlTextarea1" className="form-label">
             Deadline:
-          </label> */}
+          </label>
           <input
             type="date"
             value={date}
@@ -183,7 +188,7 @@ function App() {
 
       {/*ito yung mga task cards*/}
       <div style={{ marginTop: "100px" }} id="taskSection">
-        <h1 className="container text-center">my task :</h1>
+        <h1 className="container text-center">My task: </h1>
         {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
         <div
           className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"

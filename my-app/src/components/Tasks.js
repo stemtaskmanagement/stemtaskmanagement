@@ -8,10 +8,17 @@ export default function Tasks({
   date,
   onDelete,
   onEdit,
+  color,
 }) {
   return (
     <div className="card shadow">
-      <div className="card-header bg-info-subtle">Subject: {subject}</div>
+      <div
+        className={`card-header`}
+        style={{ backgroundColor: color, color: "white" }}
+      >
+        {" "}
+        Subject: {subject}
+      </div>
       <div className="card-body">
         <h5 className="card-title">
           Deadline: {date === "Invalid Date" ? "Undated" : date}
