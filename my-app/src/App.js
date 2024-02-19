@@ -2,8 +2,6 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Forms from "./components/Forms";
 import Tasks from "./components/Tasks";
-import Button from "./components/Button";
-import Data from "./components/Data";
 import { useState } from "react";
 
 function App() {
@@ -102,8 +100,8 @@ function App() {
     <div className="" style={{ fontSmooth: "always", overflow: "hidden" }}>
       <Navbar />
       <Header />
-      {/**/}
 
+      {/*the form input*/}
       <Forms
         subject={subject}
         color={color}
@@ -117,8 +115,12 @@ function App() {
       />
 
       {/*ito yung mga task cards*/}
-      <div style={{ marginTop: "100px" }} id="taskSection">
-        <h1 className="container text-center">My task: </h1>
+      <div
+        style={{ marginTop: "100px" }}
+        className="container text-center"
+        id="taskSection"
+      >
+        <h1>My task: </h1>
         {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
         <div
           className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
