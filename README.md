@@ -8,10 +8,16 @@ David Charles F. De Guzman,
 
 
 # Note for Developers:
-### on your local repository,
-### - git add . 
-### - git commit -m "your message"
-### - git push origin main 
+## on your local repository,
+### git pull
+### git add . 
+### git commit -m "your message"
+### git push origin main 
+
+## How to run the local repository on your Browser
+### cd stemtaskmanagement
+### cd my-app
+### npm start
 
 <!--
 **stemtaskmanagement/stemtaskmanagement** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
