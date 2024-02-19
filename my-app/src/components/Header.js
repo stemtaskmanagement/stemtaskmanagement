@@ -8,6 +8,7 @@ export default function Header() {
       >
         STEMTask{" "}
       </h1>
+      <h3>A Task Management Web App</h3>
       <hr />
       {/* <h4>Developed by Wion M. Quintela</h4> */}
       <p>
