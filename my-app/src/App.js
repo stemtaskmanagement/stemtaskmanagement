@@ -46,7 +46,7 @@ function App() {
       setSubject("");
       setDate("");
       setColor("#04a4b0");
-    } else if (description && !toggleSubmit) {
+    } else if (description && subject && !toggleSubmit) {
       // Check if it's an edited task
       setTask(
         task.map((item) => {
@@ -125,7 +125,8 @@ function App() {
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
           >
-            <option selected>select subject</option>
+            {/* default select subject cannot be taken as a value when edited*/}
+            {!subject && <option selected>select subject</option>}
             {subjects.map((chosenSubject, index) => {
               return <option key={index}>{chosenSubject}</option>;
             })}
