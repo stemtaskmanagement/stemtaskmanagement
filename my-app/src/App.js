@@ -147,7 +147,8 @@ function App() {
           {/* <label for="exampleFormControlTextarea1" className="form-label">
             Your Task:
           </label> */}
-          <textarea
+         
+         <textarea
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
@@ -156,6 +157,7 @@ function App() {
             onChange={(e) => setDescription(e.target.value)}
             // style={{ border: "1px solid gray" }}
           ></textarea>
+         
         </div>
 
         {/*DATE PICKER*/}
@@ -170,6 +172,8 @@ function App() {
             style={{ margin: "10px" }}
           />
         </div>
+
+        {/*TIME*/}
         <Button
           name="Add New Task"
           onClick={handleSubmit}
