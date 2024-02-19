@@ -71,15 +71,6 @@ function App() {
     }
   }
 
-  //stores the list of subjects
-  const subjects = [
-    "General Chemistry",
-    "General Biology",
-    "Calculus",
-    "PreCalculus",
-    "FPL",
-  ];
-
   //date formatter
   function formatDate(dateString) {
     const dateObj = new Date(dateString);
@@ -112,80 +103,18 @@ function App() {
       <Navbar />
       <Header />
       {/**/}
-      <div className="formContainer text-center">
-        {/*SUBJECT SELECTOR*/}
-        <div className="mb-3">
-          {/* <label for="exampleFormControlInput1" className="form-label">
-            Select the subject:
-          </label> */}
-          <select
-            className="form-select"
-            aria-label="Default select example"
-            // style={{ border: "1px solid gray" }}
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-          >
-            {/* default select subject cannot be taken as a value when edited*/}
-            {!subject && <option selected>select subject</option>}
-            {subjects.map((chosenSubject, index) => {
-              return <option key={index}>{chosenSubject}</option>;
-            })}
-          </select>
-        </div>
 
-        {/*Color Picker for Subject Background*/}
-        <div className="mb-3">
-          <label
-            for="exampleFormControlTextarea1"
-            className="form-label"
-            style={{ marginRight: "10px" }}
-          >
-            Label Color:
-          </label>
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
-
-        {/*DESCRIPTION INPUT*/}
-        <div className="mb-3">
-          {/* <label for="exampleFormControlTextarea1" className="form-label">
-            Your Task:
-          </label> */}
-
-          <textarea
-            className="form-control"
-            id="exampleFormControlTextarea1"
-            rows="3"
-            placeholder="enter the description of your task."
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            // style={{ border: "1px solid gray" }}
-          ></textarea>
-        </div>
-
-        {/*DATE PICKER*/}
-        <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
-            Deadline:
-          </label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            style={{ margin: "10px" }}
-          />
-        </div>
-
-        {/*TIME*/}
-        <Button
-          name="Add New Task"
-          onClick={handleSubmit}
-          href="#taskSection"
-        />
-      </div>
+      <Forms
+        subject={subject}
+        color={color}
+        description={description}
+        date={date}
+        setSubject={setSubject}
+        setColor={setColor}
+        setDescription={setDescription}
+        setDate={setDate}
+        handleSubmit={handleSubmit}
+      />
 
       {/*ito yung mga task cards*/}
       <div style={{ marginTop: "100px" }} id="taskSection">

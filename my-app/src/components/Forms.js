@@ -1,47 +1,70 @@
 import Button from "./Button";
 import { useState } from "react";
 
-export default function Forms() {
-  //ito yung functionalities ng mga buttons
-  const addButtonClicked = () => {
-    alert("Added new task.");
-  };
-  const deleteButtonClicked = () => {
-    alert("deleted new task.");
-  };
-
-  //naglalagay tayo ng default state ng inputs
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  //function kung saan sinesave yung nilagay sa input
-  function handleSubmit(e) {
-    e.preventDefault();
-    alert("The title of your task is: " + name);
-    alert("Your description is: " + description);
-    
-  }
+export default function Forms({
+  subject,
+  color,
+  description,
+  date,
+  setSubject,
+  setColor,
+  setDescription,
+  setDate,
+  handleSubmit,
+}) {
+  //stores the list of subjects
+  const subjects = [
+    "General Chemistry",
+    "General Biology",
+    "Calculus",
+    "PreCalculus",
+    "FPL",
+  ];
 
   return (
-    <div className="container text-center">
+    <div className="formContainer text-center">
+      {/*SUBJECT SELECTOR*/}
       <div className="mb-3">
-        <label for="exampleFormControlInput1" className="form-label">
-          Title of your Task:
+        {/* <label for="exampleFormControlInput1" className="form-label">
+            Select the subject:
+          </label> */}
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          // style={{ border: "1px solid gray" }}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+        >
+          {/* default select subject cannot be taken as a value when edited*/}
+          {!subject && <option selected>select subject</option>}
+          {subjects.map((chosenSubject, index) => {
+            return <option key={index}>{chosenSubject}</option>;
+          })}
+        </select>
+      </div>
+
+      {/*Color Picker for Subject Background*/}
+      <div className="mb-3">
+        <label
+          for="exampleFormControlTextarea1"
+          className="form-label"
+          style={{ marginRight: "10px" }}
+        >
+          Label Color:
         </label>
         <input
-          type="email"
-          className="form-control"
-          id="exampleFormControlInput1"
-          placeholder="enter the title of your task."
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          style={{ border: "2px solid blue" }}
+          type="color"
+          value={color}
+          onChange={(e) => setColor(e.target.value)}
         />
       </div>
+
+      {/*DESCRIPTION INPUT*/}
       <div className="mb-3">
-        <label for="exampleFormControlTextarea1" className="form-label">
-          Your Task:
-        </label>
+        {/* <label for="exampleFormControlTextarea1" className="form-label">
+            Your Task:
+          </label> */}
+
         <textarea
           className="form-control"
           id="exampleFormControlTextarea1"
@@ -49,11 +72,25 @@ export default function Forms() {
           placeholder="enter the description of your task."
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          style={{ border: "2px solid blue" }}
+          // style={{ border: "1px solid gray" }}
         ></textarea>
       </div>
-      <Button name="Save" onClick={handleSubmit} />
-      <Button name="Delete" onClick={deleteButtonClicked} />
+
+      {/*DATE PICKER*/}
+      <div className="mb-3">
+        <label for="exampleFormControlTextarea1" className="form-label">
+          Deadline:
+        </label>
+        <input
+          type="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          style={{ margin: "10px" }}
+        />
+      </div>
+
+      {/*TIME*/}
+      <Button name="Add New Task" onClick={handleSubmit} href="#taskSection" />
     </div>
   );
 }
