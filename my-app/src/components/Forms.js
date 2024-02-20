@@ -16,11 +16,14 @@ export default function Forms({
   const subjects = [
     "General Chemistry",
     "General Biology",
-    "Calculus",
-    "PreCalculus",
+    "Basic Calculus",
+    "Pre Calculus",
     "FPL",
+    "HOPE",
+    "Earth Science",
   ];
 
+  //
   return (
     <div className="formContainer text-center">
       {/*SUBJECT SELECTOR*/}
@@ -88,8 +91,12 @@ export default function Forms({
           style={{ margin: "10px" }}
         />
       </div>
+      {/*input file */}
+      <div className="mb-3">
+        <input type="file" />
+      </div>
 
-      {/*TIME*/}
+      {/*Add  button */}
       <Button name="Add New Task" onClick={handleSubmit} href="#taskSection" />
     </div>
   );
