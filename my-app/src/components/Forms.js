@@ -37,9 +37,9 @@ export default function Forms({
           className="form-select"
           aria-label="Default select example"
           style={{
-            backgroundColor: lightMode ? "white" : "black",
-            border: lightMode ? "2px solid white" : "2px solid black",
-            color: lightMode ? "black" : "white",
+            backgroundColor: lightMode ? "white" : "#353935",
+            border: lightMode ? "2px solid white" : "2px solid #353935",
+            color: lightMode ? "#353935" : "white",
           }}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
@@ -65,10 +65,10 @@ export default function Forms({
           type="color"
           value={color}
           style={{
-            backgroundColor: lightMode ? "white" : "black",
+            backgroundColor: lightMode ? "white" : "#353935",
             borderRadius: "9px",
-            border: lightMode ? "2px solid white" : "2px solid black",
-            color: lightMode ? "black" : "white",
+            border: lightMode ? "2px solid white" : "2px solid #353935",
+            color: lightMode ? "#353935" : "white",
           }}
           onChange={(e) => setColor(e.target.value)}
         />
@@ -86,9 +86,9 @@ export default function Forms({
           rows="3"
           placeholder="enter the description of your task."
           style={{
-            backgroundColor: lightMode ? "white" : "black",
-            color: lightMode ? "black" : "white",
-            border: lightMode ? "2px solid white" : "2px solid black",
+            backgroundColor: lightMode ? "white" : "#353935",
+            color: lightMode ? "#353935" : "white",
+            border: lightMode ? "2px solid white" : "2px solid #353935",
           }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -106,10 +106,10 @@ export default function Forms({
           value={date}
           onChange={(e) => setDate(e.target.value)}
           style={{
-            backgroundColor: lightMode ? "white" : "black",
-            color: lightMode ? "black" : "white",
+            backgroundColor: lightMode ? "white" : "#353935",
+            color: lightMode ? "#353935" : "white",
             margin: "10px",
-            border: lightMode ? "2px solid white" : "2px solid black",
+            border: lightMode ? "2px solid white" : "2px solid #353935",
           }}
         />
       </div>

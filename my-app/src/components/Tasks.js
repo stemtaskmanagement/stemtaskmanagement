@@ -9,12 +9,24 @@ export default function Tasks({
   onDelete,
   onEdit,
   color,
+  lightMode,
 }) {
   return (
-    <div className="card shadow">
+    <div
+      className="card shadow"
+      style={{
+        backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+        color: lightMode ? "black" : "white",
+      }}
+    >
       <div
         className={`card-header`}
-        style={{ backgroundColor: color, color: "white" }}
+        style={{
+          backgroundColor: color,
+          color: "white",
+          // WebkitTextStroke: "0.01px black", // for Safari
+          // textStroke: "0.01px black", // for other browsers
+        }}
       >
         {" "}
         Subject: {subject}

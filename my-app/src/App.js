@@ -155,6 +155,7 @@ function App() {
                     {...items}
                     onDelete={() => handleDelete(items.id)}
                     onEdit={() => handleEdit(items.id)}
+                    lightMode={lightMode}
                   />
                 </div>
               );
@@ -170,7 +171,7 @@ function App() {
           )}
         </div>
       </div>
-      <AboutUs />
+      <AboutUs lightMode={lightMode}/>
     </div>
   );
 }

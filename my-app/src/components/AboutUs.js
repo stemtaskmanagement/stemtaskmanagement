@@ -1,9 +1,16 @@
-export default function AboutUs() {
+export default function AboutUs({ lightMode }) {
   return (
     <div>
       <h1>About Us</h1>
       {/*Card */}
-      <div className="card mb-3" style={{ maxWidth: "540px" }}>
+      <div
+        className="card mb-3"
+        style={{
+          maxWidth: "540px",
+          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          color: lightMode ? "black" : "white",
+        }}
+      >
         <div className="row g-0">
           <div className="col-md-4">
             <img src="..." className="img-fluid rounded-start" alt="..." />
@@ -26,7 +33,14 @@ export default function AboutUs() {
         </div>
       </div>{" "}
       {/*Card */}
-      <div className="card mb-3" style={{ maxWidth: "540px" }}>
+      <div
+        className="card mb-3"
+        style={{
+          maxWidth: "540px",
+          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          color: lightMode ? "black" : "white",
+        }}
+      >
         <div className="row g-0">
           <div className="col-md-4">
             <img src="..." className="img-fluid rounded-start" alt="..." />
@@ -49,7 +63,14 @@ export default function AboutUs() {
         </div>
       </div>{" "}
       {/*Card */}
-      <div className="card mb-3" style={{ maxWidth: "540px" }}>
+      <div
+        className="card mb-3"
+        style={{
+          maxWidth: "540px",
+          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          color: lightMode ? "black" : "white",
+        }}
+      >
         <div className="row g-0">
           <div className="col-md-4">
             <img src="..." className="img-fluid rounded-start" alt="..." />
