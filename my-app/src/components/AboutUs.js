@@ -1,6 +1,6 @@
 export default function AboutUs({ lightMode }) {
   return (
-    <div>
+    <div className="container">
       <h1>About Us</h1>
       {/*Card */}
       <div

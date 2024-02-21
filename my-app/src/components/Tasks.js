@@ -49,7 +49,7 @@ export default function Tasks({
             <Button
               icon={<i className="fa-solid fa-pen-to-square"></i>}
               onClick={onEdit}
-              href="#"
+              href="#formsSection"
             />
           </div>
         </div>

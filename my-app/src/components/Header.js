@@ -1,6 +1,8 @@
+import Button from "./Button";
+
 export default function Header() {
   return (
-    <div className="container text-center" style={{ marginTop: "80px" }}>
+    <div className="container text-center">
       <img
         src={require("./assets/cartoon.png")}
         style={{ maxWidth: "200px" }}
@@ -11,14 +13,14 @@ export default function Header() {
       >
         STEMTask{" "}
       </h1>
-      <h3>A Task Management Web App</h3>
-      <hr />
-      {/* <h4>Developed by Wion M. Quintela</h4> */}
+      <h3 style={{ paddingBottom: "25px" }}>A Task Management Web App</h3>
+      {/* <hr />
       <p>
         STEMTask is a web-based task management application designed to help
         Senior High School STEM students in CCBHS organize their daily tasks
         efficiently.
-      </p>
+      </p> */}
+      <Button name="Start" href="#formsSection" />
     </div>
   );
 }

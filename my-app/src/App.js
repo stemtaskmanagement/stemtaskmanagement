@@ -108,70 +108,83 @@ function App() {
       style={{
         fontSmooth: "always",
         overflow: "hidden",
-        backgroundColor: lightMode ? "#F9F6EE" : "#28282B",
-        color: lightMode ? "#28282B" : "#F9F6EE",
+        backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+        color: lightMode ? "#28282B" : "#EEEEEE",
       }}
     >
       <Navbar onClick={setTheme} lightMode={lightMode} />
-      <Header />
+      <div className="section">
+        <Header />
+      </div>
+      <hr />
 
       {/*the form input*/}
-      <Forms
-        subject={subject}
-        color={color}
-        description={description}
-        date={date}
-        setSubject={setSubject}
-        setColor={setColor}
-        setDescription={setDescription}
-        setDate={setDate}
-        handleSubmit={handleSubmit}
-        toggleSubmit={toggleSubmit}
-        lightMode={lightMode}
-      />
+      <div className="section">
+        <Forms
+          subject={subject}
+          color={color}
+          description={description}
+          date={date}
+          setSubject={setSubject}
+          setColor={setColor}
+          setDescription={setDescription}
+          setDate={setDate}
+          handleSubmit={handleSubmit}
+          toggleSubmit={toggleSubmit}
+          lightMode={lightMode}
+        />
+      </div>
+      <hr />
 
       {/*ito yung mga task cards*/}
-      <div
-        style={{ marginTop: "100px" }}
-        className="container text-center"
-        id="taskSection"
-      >
-        <h1>My task: </h1>
-        {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
+      <div className="section">
         <div
-          className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
-          style={{ overflow: "hidden" }}
+          // style={{ paddingTop: "100px" }}
+          className="container text-center"
+          id="taskSection"
         >
-          {" "}
-          {task.length > 0 ? (
-            task.map((items) => {
-              return (
-                <div
-                  className="col mb-5"
-                  // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
-                >
-                  <Tasks
-                    id={items.id}
-                    {...items}
-                    onDelete={() => handleDelete(items.id)}
-                    onEdit={() => handleEdit(items.id)}
-                    lightMode={lightMode}
-                  />
-                </div>
-              );
-            })
-          ) : (
-            <h3 className="text-center">
-              Congrats! You currently have no task <br />
-              <img
-                src={require("./components/assets/notask.gif")}
-                style={{ maxWidth: "150px" }}
-              />
-            </h3>
-          )}
+          <h1>My task: </h1>
+          {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
+          <div
+            className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
+            style={{ overflow: "hidden" }}
+          >
+            {" "}
+            {task.length > 0 ? (
+              task.map((items) => {
+                return (
+                  <div
+                    className="col mb-5"
+                    // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
+                  >
+                    <Tasks
+                      id={items.id}
+                      {...items}
+                      onDelete={() => handleDelete(items.id)}
+                      onEdit={() => handleEdit(items.id)}
+                      lightMode={lightMode}
+                    />
+                  </div>
+                );
+              })
+            ) : (
+              <h3 className="text-center">
+                Congrats! You currently have no task <br />
+                <img
+                  src={require("./components/assets/notask.gif")}
+                  style={{ maxWidth: "150px" }}
+                />
+              </h3>
+            )}
+          </div>
         </div>
       </div>
-      <AboutUs lightMode={lightMode}/>
+      <hr />
+
+      {/* About the Devs*/}
+      <div className="section">
+        <AboutUs lightMode={lightMode} />
+      </div>
     </div>
   );
 }

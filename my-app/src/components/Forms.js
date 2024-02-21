@@ -27,51 +27,63 @@ export default function Forms({
 
   //
   return (
-    <div className="formContainer text-center">
-      {/*SUBJECT SELECTOR*/}
-      <div className="mb-3">
-        {/* <label for="exampleFormControlInput1" className="form-label">
+    <div className="formContainer text-center container" id="formsSection">
+      {/* <h3>
+        STEMTask is a web-based task management application designed to help
+        Senior High School STEM students in CCBHS organize their daily tasks
+        efficiently.
+      </h3> */}
+
+      <div className="row">
+        <div className="col col-sm-6 col-md-8 col-lg-5">
+          {/*SUBJECT SELECTOR*/}
+          <div className="mb-3">
+            {/* <label for="exampleFormControlInput1" className="form-label">
             Select the subject:
           </label> */}
-        <select
-          className="form-select"
-          aria-label="Default select example"
-          style={{
-            backgroundColor: lightMode ? "white" : "#353935",
-            border: lightMode ? "2px solid white" : "2px solid #353935",
-            color: lightMode ? "#353935" : "white",
-          }}
-          value={subject}
-          onChange={(e) => setSubject(e.target.value)}
-        >
-          {/* default select subject cannot be taken as a value when edited*/}
-          {!subject && <option selected>select subject</option>}
-          {subjects.map((chosenSubject, index) => {
-            return <option key={index}>{chosenSubject}</option>;
-          })}
-        </select>
-      </div>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              style={{
+                backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+                color: lightMode ? "#313638" : "#F9F6EE",
+              }}
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+            >
+              {/* default select subject cannot be taken as a value when edited*/}
+              {!subject && <option selected>select subject</option>}
+              {subjects.map((chosenSubject, index) => {
+                return <option key={index}>{chosenSubject}</option>;
+              })}
+            </select>
+          </div>
+        </div>
+        <div className="col">
+          {/*Color Picker for Subject Background*/}
 
-      {/*Color Picker for Subject Background*/}
-      <div className="mb-3">
-        <label
-          for="exampleFormControlTextarea1"
-          className="form-label"
-          style={{ marginRight: "10px" }}
-        >
-          Label Color:
-        </label>
-        <input
-          type="color"
-          value={color}
-          style={{
-            backgroundColor: lightMode ? "white" : "#353935",
-            borderRadius: "9px",
-            border: lightMode ? "2px solid white" : "2px solid #353935",
-            color: lightMode ? "#353935" : "white",
-          }}
-          onChange={(e) => setColor(e.target.value)}
-        />
+          <div className="mb-3">
+            <label
+              for="exampleFormControlTextarea1"
+              className="form-label"
+              style={{ marginRight: "10px" }}
+            >
+              Label Color:
+            </label>
+            <input
+              type="color"
+              value={color}
+              style={{
+                backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+                borderRadius: "9px",
+                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+                color: lightMode ? "#313638" : "#F9F6EE",
+              }}
+              onChange={(e) => setColor(e.target.value)}
+            />
+          </div>
+        </div>
       </div>
 
       {/*DESCRIPTION INPUT*/}
@@ -86,9 +98,9 @@ export default function Forms({
           rows="3"
           placeholder="enter the description of your task."
           style={{
-            backgroundColor: lightMode ? "white" : "#353935",
-            color: lightMode ? "#353935" : "white",
-            border: lightMode ? "2px solid white" : "2px solid #353935",
+            backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+            color: lightMode ? "#313638" : "#F9F6EE",
+            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
           }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -106,10 +118,10 @@ export default function Forms({
           value={date}
           onChange={(e) => setDate(e.target.value)}
           style={{
-            backgroundColor: lightMode ? "white" : "#353935",
-            color: lightMode ? "#353935" : "white",
+            backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+            color: lightMode ? "#313638" : "white",
             margin: "10px",
-            border: lightMode ? "2px solid white" : "2px solid #353935",
+            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
           }}
         />
       </div>
