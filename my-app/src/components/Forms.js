@@ -11,7 +11,8 @@ export default function Forms({
   setDescription,
   setDate,
   handleSubmit,
-  toggleSubmit
+  toggleSubmit,
+  lightMode,
 }) {
   //stores the list of subjects
   const subjects = [
@@ -35,7 +36,11 @@ export default function Forms({
         <select
           className="form-select"
           aria-label="Default select example"
-          // style={{ border: "1px solid gray" }}
+          style={{
+            backgroundColor: lightMode ? "white" : "black",
+            border: lightMode ? "2px solid white" : "2px solid black",
+            color: lightMode ? "black" : "white",
+          }}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
         >
@@ -59,6 +64,12 @@ export default function Forms({
         <input
           type="color"
           value={color}
+          style={{
+            backgroundColor: lightMode ? "white" : "black",
+            borderRadius: "9px",
+            border: lightMode ? "2px solid white" : "2px solid black",
+            color: lightMode ? "black" : "white",
+          }}
           onChange={(e) => setColor(e.target.value)}
         />
       </div>
@@ -74,6 +85,11 @@ export default function Forms({
           id="exampleFormControlTextarea1"
           rows="3"
           placeholder="enter the description of your task."
+          style={{
+            backgroundColor: lightMode ? "white" : "black",
+            color: lightMode ? "black" : "white",
+            border: lightMode ? "2px solid white" : "2px solid black",
+          }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           // style={{ border: "1px solid gray" }}
@@ -89,7 +105,12 @@ export default function Forms({
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          style={{ margin: "10px" }}
+          style={{
+            backgroundColor: lightMode ? "white" : "black",
+            color: lightMode ? "black" : "white",
+            margin: "10px",
+            border: lightMode ? "2px solid white" : "2px solid black",
+          }}
         />
       </div>
 

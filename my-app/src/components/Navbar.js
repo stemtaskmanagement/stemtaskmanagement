@@ -5,7 +5,7 @@ export default function Navbar({ onClick, lightMode }) {
     <div>
       <nav
         className={`navbar shadow`}
-        style={{ backgroundColor: lightMode ? "white" : "#313638" }}
+        style={{ backgroundColor: lightMode ? "#F9F6EE" : "#313638" }}
       >
         <div className="container-fluid">
           <a className="navbar-brand text-primary" href="#taskSection">

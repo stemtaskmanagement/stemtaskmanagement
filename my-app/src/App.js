@@ -108,8 +108,8 @@ function App() {
       style={{
         fontSmooth: "always",
         overflow: "hidden",
-        backgroundColor: lightMode ? "white" : "#313638",
-        color: lightMode ? "black" : "white",
+        backgroundColor: lightMode ? "#F9F6EE" : "#28282B",
+        color: lightMode ? "#28282B" : "#F9F6EE",
       }}
     >
       <Navbar onClick={setTheme} lightMode={lightMode} />
@@ -127,6 +127,7 @@ function App() {
         setDate={setDate}
         handleSubmit={handleSubmit}
         toggleSubmit={toggleSubmit}
+        lightMode={lightMode}
       />
 
       {/*ito yung mga task cards*/}
@@ -169,7 +170,7 @@ function App() {
           )}
         </div>
       </div>
-      <AboutUs /> 
+      <AboutUs />
     </div>
   );
 }
