@@ -11,6 +11,7 @@ export default function Forms({
   setDescription,
   setDate,
   handleSubmit,
+  toggleSubmit
 }) {
   //stores the list of subjects
   const subjects = [
@@ -91,13 +92,18 @@ export default function Forms({
           style={{ margin: "10px" }}
         />
       </div>
+
       {/*input file */}
       <div className="mb-3">
         <input type="file" />
       </div>
 
       {/*Add  button */}
-      <Button name="Add New Task" onClick={handleSubmit} href="#taskSection" />
+      <Button
+        name={toggleSubmit ? "Add new Task" : "Save Task"}
+        onClick={handleSubmit}
+        href="#taskSection"
+      />
     </div>
   );
 }

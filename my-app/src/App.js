@@ -13,6 +13,7 @@ function App() {
   const [isEditTask, setIsEditTask] = useState(null);
   const [toggleSubmit, setToggleSubmit] = useState(true);
   const [showList, setShowList] = useState(true);
+  const [lightMode, setLightMode] = useState(true);
 
   //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
 
@@ -96,9 +97,21 @@ function App() {
     console.log(newEditTask);
   }
 
+  function setTheme() {
+    setLightMode(!lightMode);
+  }
+
   return (
-    <div className="" style={{ fontSmooth: "always", overflow: "hidden" }}>
-      <Navbar />
+    <div
+      className=""
+      style={{
+        fontSmooth: "always",
+        overflow: "hidden",
+        backgroundColor: lightMode ? "white" : "#313638",
+        color: lightMode ? "black" : "white",
+      }}
+    >
+      <Navbar onClick={setTheme} lightMode={lightMode} />
       <Header />
 
       {/*the form input*/}
@@ -112,6 +125,7 @@ function App() {
         setDescription={setDescription}
         setDate={setDate}
         handleSubmit={handleSubmit}
+        toggleSubmit={toggleSubmit}
       />
 
       {/*ito yung mga task cards*/}
