@@ -143,7 +143,7 @@ function App() {
           className="container text-center"
           id="taskSection"
         >
-          <h1>My task: </h1>
+          <h1 style={{ fontSize: "70px", fontWeight: "bold" }}>My task: </h1>
           {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
           <div
             className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"

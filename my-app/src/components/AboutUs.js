@@ -1,7 +1,12 @@
 export default function AboutUs({ lightMode }) {
   return (
     <div className="container">
-      <h1>About Us</h1>
+      <h1
+        style={{ fontSize: "70px", fontWeight: "bold" }}
+        className="text-center"
+      >
+        About Us
+      </h1>
       {/*Card */}
       <div
         className="card mb-3"
