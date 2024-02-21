@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Forms from "./components/Forms";
 import Tasks from "./components/Tasks";
 import { useState } from "react";
+import AboutUs from "./components/AboutUs";
 
 function App() {
   //naglalagay tayo ng default state ng inputs
@@ -168,6 +169,7 @@ function App() {
           )}
         </div>
       </div>
+      <AboutUs /> 
     </div>
   );
 }
