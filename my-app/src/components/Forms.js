@@ -16,13 +16,14 @@ export default function Forms({
 }) {
   //stores the list of subjects
   const subjects = [
-    "General Chemistry",
-    "General Biology",
-    "Basic Calculus",
-    "Pre Calculus",
-    "FPL",
-    "HOPE",
-    "Earth Science",
+    "General Physics 2",
+    "General Biology 2",
+    "Disaster Readiness and Risk Reduction (DRRR)",
+    "Inquiries, Investigation and Immersion (III)",
+    "Capstone Research",
+    "HOPE 4",
+    "Entrepreneurship",
+    "Contemporary Philippine Arts from the Regions (CPAR)"
   ];
 
   //
