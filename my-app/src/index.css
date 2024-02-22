@@ -1,6 +1,6 @@
 @font-face {
   font-family: myFont;
-  src: url('./fonts/Poppins-Regular.otf');
+  src: url("./fonts/ProductSans-Regular.ttf");
 }
 
 * {
@@ -11,7 +11,7 @@
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
