@@ -17,7 +17,7 @@ export default function Header() {
         Senior High School STEM students in CCBHS organize their daily tasks
         efficiently.
       </p> */}
-      <Button name="Start" href="#formsSection" />
+      <Button name="Start" href="#formsSection" color="btn-primary" />
     </div>
   );
 }

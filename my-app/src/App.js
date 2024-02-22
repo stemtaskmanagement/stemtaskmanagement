@@ -119,7 +119,17 @@ function App() {
       <hr />
 
       {/*the form input*/}
-      <div className="section">
+      <div className="section" id="formsSection">
+        <h1
+          style={{
+            fontSize: "65px",
+            fontWeight: "bold",
+            paddingBottom: "40px",
+          }}
+          className="text-center"
+        >
+          You can create Tasks:
+        </h1>
         <Forms
           subject={subject}
           color={color}
@@ -137,13 +147,20 @@ function App() {
       <hr />
 
       {/*ito yung mga task cards*/}
-      <div className="section">
+      <div className="section" id="taskSection">
         <div
           // style={{ paddingTop: "100px" }}
           className="container text-center"
-          id="taskSection"
         >
-          <h1 style={{ fontSize: "70px", fontWeight: "bold" }}>My task: </h1>
+          <h1
+            style={{
+              fontSize: "65px",
+              fontWeight: "bold",
+              paddingBottom: "40px",
+            }}
+          >
+            My task:{" "}
+          </h1>
           {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
           <div
             className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
@@ -183,6 +200,16 @@ function App() {
 
       {/* About the Devs*/}
       <div className="section">
+        <h1
+          style={{
+            fontSize: "65px",
+            fontWeight: "bold",
+            paddingBottom: "40px",
+          }}
+          className="text-center"
+        >
+          About Us
+        </h1>
         <AboutUs lightMode={lightMode} />
       </div>
     </div>

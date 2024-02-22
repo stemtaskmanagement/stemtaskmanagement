@@ -23,12 +23,12 @@ export default function Forms({
     "Capstone Research",
     "HOPE 4",
     "Entrepreneurship",
-    "Contemporary Philippine Arts from the Regions (CPAR)"
+    "Contemporary Philippine Arts from the Regions (CPAR)",
   ];
 
   //
   return (
-    <div className="formContainer text-center container" id="formsSection">
+    <div className="formContainer text-center container">
       {/* <h3>
         STEMTask is a web-based task management application designed to help
         Senior High School STEM students in CCBHS organize their daily tasks
@@ -137,6 +137,7 @@ export default function Forms({
         name={toggleSubmit ? "Add new Task" : "Save Task"}
         onClick={handleSubmit}
         href="#taskSection"
+        color="btn-primary"
       />
     </div>
   );

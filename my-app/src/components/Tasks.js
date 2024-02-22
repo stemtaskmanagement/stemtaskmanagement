@@ -43,6 +43,7 @@ export default function Tasks({
             <Button
               icon={<i className="fa-solid fa-check"></i>}
               onClick={onDelete}
+              color="btn-primary"
             />
           </div>
           <div className="col" style={{ marginLeft: "10px" }}>
@@ -50,6 +51,7 @@ export default function Tasks({
               icon={<i className="fa-solid fa-pen-to-square"></i>}
               onClick={onEdit}
               href="#formsSection"
+              color="btn-danger"
             />
           </div>
         </div>
