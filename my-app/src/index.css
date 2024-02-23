@@ -58,16 +58,6 @@ code {
   padding-left: 20px;
 }
 
-/*toggler icon color*/
-/* Custom CSS */
-.navbar-toggler .btn-secondary {
-  display: block;
-  width: 20px;
-  height: 2px;
-  background-color: #6c757d;
-  /* Change to desired color */
-  margin-bottom: 3px;
-}
 .footer {
   left: 0;
   bottom: 0;

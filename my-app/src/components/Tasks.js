@@ -45,7 +45,7 @@ export default function Tasks({
       className="card shadow"
       style={{
         backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-        color: lightMode ? "black" : "white",
+        color: lightMode ? "#313638" : "white",
       }}
     >
       <div

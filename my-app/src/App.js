@@ -5,6 +5,7 @@ import Tasks from "./components/Tasks";
 import { useState } from "react";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   //naglalagay tayo ng default state ng inputs
@@ -114,119 +115,144 @@ function App() {
   }
 
   return (
-    <div
-      className=""
-      style={{
-        fontSmooth: "always",
-        overflow: "hidden",
-        backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
-        color: lightMode ? "#28282B" : "#EEEEEE",
-      }}
-    >
-      <Navbar onClick={setTheme} lightMode={lightMode} />
-      <div className="section">
-        <Header />
-      </div>
-      <hr />
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <div className="section">
+                <Header />
+              </div>
+              <hr />
 
-      {/*the form input*/}
-      <div className="section" id="formsSection">
-        <h1
-          style={{
-            fontSize: "65px",
-            fontWeight: "bold",
-            paddingBottom: "40px",
-          }}
-          className="text-center"
-        >
-          You can create Tasks:
-        </h1>
-        <Forms
-          subject={subject}
-          color={color}
-          description={description}
-          date={date}
-          setSubject={setSubject}
-          setColor={setColor}
-          setDescription={setDescription}
-          setDate={setDate}
-          handleSubmit={handleSubmit}
-          toggleSubmit={toggleSubmit}
-          lightMode={lightMode}
-          link={link}
-          setLink={setLink}
-        />
-      </div>
-      <hr />
-
-      {/*ito yung mga task cards*/}
-      <div className="section" id="taskSection">
-        <div
-          // style={{ paddingTop: "100px" }}
-          className="container text-center"
-        >
-          <h1
-            style={{
-              fontSize: "65px",
-              fontWeight: "bold",
-              paddingBottom: "40px",
-            }}
-          >
-            Manage your own workload:{" "}
-          </h1>
-          {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
-          <div
-            className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
-            style={{ overflow: "hidden" }}
-          >
-            {" "}
-            {task.length > 0 ? (
-              task.map((items) => {
-                return (
-                  <div
-                    className="col mb-5"
-                    // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
-                  >
-                    <Tasks
-                      id={items.id}
-                      {...items}
-                      onDelete={() => handleDelete(items.id)}
-                      onEdit={() => handleEdit(items.id)}
-                      lightMode={lightMode}
-                    />
-                  </div>
-                );
-              })
-            ) : (
-              <h3 className="text-center">
-                Congrats! You currently have no task <br />
-                <img
-                  src={require("./components/assets/notask.gif")}
-                  style={{ maxWidth: "150px" }}
+              {/*the form input*/}
+              <div className="section" id="formsSection">
+                <h1
+                  style={{
+                    fontSize: "65px",
+                    fontWeight: "bold",
+                    paddingBottom: "40px",
+                  }}
+                  className="text-center"
+                >
+                  You can create Tasks:
+                </h1>
+                <Forms
+                  subject={subject}
+                  color={color}
+                  description={description}
+                  date={date}
+                  setSubject={setSubject}
+                  setColor={setColor}
+                  setDescription={setDescription}
+                  setDate={setDate}
+                  handleSubmit={handleSubmit}
+                  toggleSubmit={toggleSubmit}
+                  lightMode={lightMode}
+                  link={link}
+                  setLink={setLink}
                 />
-              </h3>
-            )}
-          </div>
-        </div>
-      </div>
-      <hr />
+              </div>
+              <hr />
 
-      {/* About the Devs*/}
-      <div className="section">
-        <h1
-          style={{
-            fontSize: "65px",
-            fontWeight: "bold",
-            paddingBottom: "40px",
-          }}
-          className="text-center"
-        >
-          About Us
-        </h1>
-      </div>
-      <AboutUs lightMode={lightMode} />
-      <Footer lightMode={lightMode} />
-    </div>
+              {/*ito yung mga task cards*/}
+              <div className="section" id="taskSection">
+                <div
+                  // style={{ paddingTop: "100px" }}
+                  className="container text-center"
+                >
+                  <h1
+                    style={{
+                      fontSize: "65px",
+                      fontWeight: "bold",
+                      paddingBottom: "40px",
+                    }}
+                  >
+                    Manage your own workload:{" "}
+                  </h1>
+                  {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
+                  <div
+                    className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
+                    style={{ overflow: "hidden" }}
+                  >
+                    {" "}
+                    {task.length > 0 ? (
+                      task.map((items) => {
+                        return (
+                          <div
+                            className="col mb-5"
+                            // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
+                          >
+                            <Tasks
+                              id={items.id}
+                              {...items}
+                              onDelete={() => handleDelete(items.id)}
+                              onEdit={() => handleEdit(items.id)}
+                              lightMode={lightMode}
+                            />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <h3 className="text-center">
+                        Congrats! You currently have no task <br />
+                        <img
+                          src={require("./components/assets/notask.gif")}
+                          style={{ maxWidth: "150px" }}
+                        />
+                      </h3>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar onClick={setTheme} lightMode={lightMode} />
+              {/* About the Devs*/}
+              <div className="section">
+                <h1
+                  style={{
+                    fontSize: "65px",
+                    fontWeight: "bold",
+                    paddingBottom: "40px",
+                  }}
+                  className="text-center"
+                >
+                  About the Developers
+                </h1>
+                <AboutUs lightMode={lightMode} />
+              </div>
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
