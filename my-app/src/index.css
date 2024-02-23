@@ -68,3 +68,9 @@ code {
   /* Change to desired color */
   margin-bottom: 3px;
 }
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}

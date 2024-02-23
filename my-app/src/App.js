@@ -4,6 +4,7 @@ import Forms from "./components/Forms";
 import Tasks from "./components/Tasks";
 import { useState } from "react";
 import AboutUs from "./components/AboutUs";
+import Footer from "./components/Footer";
 
 function App() {
   //naglalagay tayo ng default state ng inputs
@@ -216,8 +217,9 @@ function App() {
         >
           About Us
         </h1>
-        <AboutUs lightMode={lightMode} />
       </div>
+      <AboutUs lightMode={lightMode} />
+      <Footer lightMode={lightMode} />
     </div>
   );
 }
