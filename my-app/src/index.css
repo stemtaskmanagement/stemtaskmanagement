@@ -74,3 +74,17 @@ code {
   width: 100%;
   text-align: center;
 }
+.masterDev {
+  color: #fff;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 6px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e600c0, 0 0 50px #e600d3, 0 0 60px #cb00e6, 0 0 70px #e60073;
+  }
+
+  to {
+    text-shadow: 0 0 10px #fff, 0 0 30px #ff4da6, 0 0 40px #b84dff, 0 0 50px #c74dff, 0 0 60px #7c4dff, 0 0 70px #8b4dff, 0 0 80px #be4dff;
+  }
+}

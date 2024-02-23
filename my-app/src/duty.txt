@@ -6,8 +6,6 @@ Reminders:
 Duty:
 
 -create a user authentication
--creata a file input
-
 -implement React Router
-
+-learn database
 -add the token for messenger for communication
