@@ -8,7 +8,7 @@ export default function Header() {
         style={{ fontSize: "70px", fontWeight: "bold" }}
         className="text-primary"
       >
-        STEMTask{" "}
+        STEMTask
       </h1>
       <h3 style={{ paddingBottom: "25px" }}>A Task Management Web App</h3>
       {/* <hr />

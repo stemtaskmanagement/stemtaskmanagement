@@ -23,7 +23,7 @@ export default function Navbar({ onClick, lightMode }) {
             color="btn-primary"
           />
           {/*offcanvas */}
-          <button
+          {/* <button
             class="navbar-toggler"
             type="button"
             data-bs-toggle="offcanvas"
@@ -58,7 +58,7 @@ export default function Navbar({ onClick, lightMode }) {
                 Try scrolling the rest of the page to see this option in action.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </nav>
     </div>

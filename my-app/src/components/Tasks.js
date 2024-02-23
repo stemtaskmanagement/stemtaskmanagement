@@ -10,7 +10,38 @@ export default function Tasks({
   onEdit,
   color,
   lightMode,
+  file,
 }) {
+  const renderFileContent = () => {
+    // Assuming 'file' is a URL or data representing the file
+    if (file) {
+      // Check the file type and conditionally render content
+      // Here, we are assuming it's an image, you can adjust accordingly
+
+      if (
+        file.endsWith(".png") ||
+        file.endsWith(".jpg") ||
+        file.endsWith(".jpeg")
+      ) {
+        return <img src={file} alt="File" width="100%" />;
+      } else if (file.endsWith(".pdf")) {
+        return (
+          <embed
+            src={file}
+            type="application/pdf"
+            width="100%"
+            height="600px"
+          />
+        );
+      } else {
+        // You can handle other file types here
+        return <p>Unsupported file type</p>;
+      }
+    } else {
+      return null; // No file to display
+    }
+  };
+
   return (
     <div
       className="card shadow"
@@ -38,6 +69,9 @@ export default function Tasks({
         <p className="card-text" id="cardDescription">
           {description}
         </p>
+        {/* FILE */}
+        <div>{renderFileContent()}</div>
+
         <div className="row">
           <div className="col">
             <Button

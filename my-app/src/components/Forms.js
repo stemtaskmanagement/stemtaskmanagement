@@ -13,6 +13,8 @@ export default function Forms({
   handleSubmit,
   toggleSubmit,
   lightMode,
+  file,
+  setFile,
 }) {
   //stores the list of subjects
   const subjects = [
@@ -129,7 +131,11 @@ export default function Forms({
 
       {/*input file */}
       <div className="mb-3">
-        <input type="file" />
+        <input
+          type="file"
+          value={file}
+          onChange={(e) => setFile(e.target.value)}
+        />
       </div>
 
       {/*Add  button */}
