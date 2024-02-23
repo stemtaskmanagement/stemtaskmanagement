@@ -16,7 +16,8 @@ function App() {
   const [toggleSubmit, setToggleSubmit] = useState(true);
   const [showList, setShowList] = useState(true);
   const [lightMode, setLightMode] = useState(true);
-  const [file, setFile] = useState("");
+  const [link, setLink] = useState("");
+
   //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
 
   const [task, setTask] = useState([
@@ -26,14 +27,13 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    //scroll down to task after clicking add new task
-    document
-      .getElementById("taskSection")
-      .scrollIntoView({ behavior: "smooth" });
-
     if (!description || !subject) {
       alert("Please fill in all fields.");
     } else if (description && toggleSubmit) {
+      //scroll down to task after clicking add new task
+      document
+        .getElementById("taskSection")
+        .scrollIntoView({ behavior: "smooth" });
       // Check if it's a new task
       const allInputData = {
         id: new Date().getTime().toString(),
@@ -41,15 +41,20 @@ function App() {
         subject: subject,
         date: formatDate(date),
         color: color,
-        file: file,
+        link: link,
       };
       setTask([allInputData, ...task]); // Add new task to the list
       setDescription(""); // Clear input fields after submission
       setSubject("");
       setDate("");
       setColor("#04a4b0");
-      setFile("");
+      setLink("");
+      // setFile("");
     } else if (description && subject && !toggleSubmit) {
+      //scroll down to task after clicking add new task
+      document
+        .getElementById("taskSection")
+        .scrollIntoView({ behavior: "smooth" });
       // Check if it's an edited task
       setTask(
         task.map((item) => {
@@ -60,7 +65,7 @@ function App() {
               description: description,
               date: formatDate(date),
               color: color,
-              file: file,
+              link: link,
             };
           }
           return item;
@@ -72,7 +77,7 @@ function App() {
       setSubject("");
       setDate("");
       setColor("#04a4b0");
-      setFile("");
+      setLink("");
     }
   }
 
@@ -98,6 +103,7 @@ function App() {
     setSubject(newEditTask.subject);
     setDescription(newEditTask.description);
     setDate(newEditTask.date);
+    setLink(newEditTask.link);
     setColor(newEditTask.color);
     setIsEditTask(id);
     console.log(newEditTask);
@@ -147,8 +153,8 @@ function App() {
           handleSubmit={handleSubmit}
           toggleSubmit={toggleSubmit}
           lightMode={lightMode}
-          file={file}
-          setFile={setFile}
+          link={link}
+          setLink={setLink}
         />
       </div>
       <hr />
@@ -166,7 +172,7 @@ function App() {
               paddingBottom: "40px",
             }}
           >
-            My task:{" "}
+            Manage your own workload:{" "}
           </h1>
           {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
           <div

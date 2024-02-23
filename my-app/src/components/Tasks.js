@@ -10,37 +10,35 @@ export default function Tasks({
   onEdit,
   color,
   lightMode,
-  file,
+  link,
 }) {
-  const renderFileContent = () => {
-    // Assuming 'file' is a URL or data representing the file
-    if (file) {
-      // Check the file type and conditionally render content
-      // Here, we are assuming it's an image, you can adjust accordingly
+  // const renderFileContent = () => {
 
-      if (
-        file.endsWith(".png") ||
-        file.endsWith(".jpg") ||
-        file.endsWith(".jpeg")
-      ) {
-        return <img src={file} alt="File" width="100%" />;
-      } else if (file.endsWith(".pdf")) {
-        return (
-          <embed
-            src={file}
-            type="application/pdf"
-            width="100%"
-            height="600px"
-          />
-        );
-      } else {
-        // You can handle other file types here
-        return <p>Unsupported file type</p>;
-      }
-    } else {
-      return null; // No file to display
-    }
-  };
+  //   if (file) {
+
+  //     if (
+  //       file.endsWith(".png") ||
+  //       file.endsWith(".jpg") ||
+  //       file.endsWith(".jpeg")
+  //     ) {
+  //       return <img src={file} alt="File" width="100%" />;
+  //     } else if (file.endsWith(".pdf")) {
+  //       return (
+  //         <embed
+  //           src={file}
+  //           type="application/pdf"
+  //           width="100%"
+  //           height="600px"
+  //         />
+  //       );
+  //     } else {
+  //       // You can handle other file types here
+  //       return <p>Unsupported file type</p>;
+  //     }
+  //   } else {
+  //     return null; // No file to display
+  //   }
+  // };
 
   return (
     <div
@@ -69,17 +67,24 @@ export default function Tasks({
         <p className="card-text" id="cardDescription">
           {description}
         </p>
-        {/* FILE */}
-        <div>{renderFileContent()}</div>
 
         <div className="row">
-          <div className="col">
+          <div className="col" style={{ marginLeft: "10px" }}>
             <Button
               icon={<i className="fa-solid fa-check"></i>}
               onClick={onDelete}
               color="btn-primary"
             />
           </div>
+          {link && (
+            <div className="col" style={{ marginLeft: "10px" }}>
+              <Button
+                link={link}
+                icon={<i class="fa-solid fa-link"></i>}
+                color="btn-success"
+              />
+            </div>
+          )}
           <div className="col" style={{ marginLeft: "10px" }}>
             <Button
               icon={<i className="fa-solid fa-pen-to-square"></i>}

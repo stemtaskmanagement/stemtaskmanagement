@@ -13,8 +13,8 @@ export default function Forms({
   handleSubmit,
   toggleSubmit,
   lightMode,
-  file,
-  setFile,
+  link,
+  setLink,
 }) {
   //stores the list of subjects
   const subjects = [
@@ -38,7 +38,7 @@ export default function Forms({
       </h3> */}
 
       <div className="row">
-        <div className="col col-sm-6 col-md-8 col-lg-5">
+        <div className="col col-sm-6 col-md-8 col-lg-8">
           {/*SUBJECT SELECTOR*/}
           <div className="mb-3">
             {/* <label for="exampleFormControlInput1" className="form-label">
@@ -67,15 +67,10 @@ export default function Forms({
           {/*Color Picker for Subject Background*/}
 
           <div className="mb-3">
-            <label
-              for="exampleFormControlTextarea1"
-              className="form-label"
-              style={{ marginRight: "10px" }}
-            >
-              Label Color:
-            </label>
             <input
               type="color"
+              className="form-control form-control-color"
+              id="exampleColorInput"
               value={color}
               style={{
                 backgroundColor: lightMode ? "#F9F6EE" : "#313638",
@@ -107,35 +102,45 @@ export default function Forms({
           }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          autoCorrect="on"
           // style={{ border: "1px solid gray" }}
         ></textarea>
       </div>
+      <div className="row">
+        <div className="col col-sm-6 col-md-8 col-lg-5">
+          {/*input file */}
+          <div className="mb-3">
+            <input
+              type="url"
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder="enter your link"
+              style={{
+                backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+                color: lightMode ? "#313638" : "white",
+                margin: "10px",
+                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+              }}
+            />
+          </div>
+        </div>
+        <div className="col">
+          {/*DATE PICKER*/}
 
-      {/*DATE PICKER*/}
-      <div className="mb-3">
-        <label for="exampleFormControlTextarea1" className="form-label">
-          Deadline:
-        </label>
-        <input
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          style={{
-            backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-            color: lightMode ? "#313638" : "white",
-            margin: "10px",
-            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-          }}
-        />
-      </div>
-
-      {/*input file */}
-      <div className="mb-3">
-        <input
-          type="file"
-          value={file}
-          onChange={(e) => setFile(e.target.value)}
-        />
+          <div className="mb-3">
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              style={{
+                backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+                color: lightMode ? "#313638" : "white",
+                margin: "10px",
+                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+              }}
+            />
+          </div>
+        </div>
       </div>
 
       {/*Add  button */}
