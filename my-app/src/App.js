@@ -6,6 +6,7 @@ import { useState } from "react";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Button from "./components/Button";
 
 function App() {
   //naglalagay tayo ng default state ng inputs
@@ -110,13 +111,30 @@ function App() {
     console.log(newEditTask);
   }
 
+  //toggle the theme
   function setTheme() {
     setLightMode(!lightMode);
+  }
+
+  //handle the sorting mode
+  function sortBySubject() {
+    const sortedTask = task.map((item) => {
+      return;
+    });
   }
 
   return (
     <Router>
       <Routes>
+        <Route
+          path="/login"
+          element={
+            <div>
+              <h1>Create an account</h1>
+              <input type="text" />
+            </div>
+          }
+        />
         <Route
           path="/"
           element={
@@ -166,10 +184,9 @@ function App() {
               <hr />
 
               {/*ito yung mga task cards*/}
-              <div className="section" id="taskSection">
+              <div className="section container" id="taskSection">
                 <div
-                  // style={{ paddingTop: "100px" }}
-                  className="container text-center"
+                // style={{ paddingTop: "100px" }}
                 >
                   <h1
                     style={{
@@ -177,6 +194,7 @@ function App() {
                       fontWeight: "bold",
                       paddingBottom: "40px",
                     }}
+                    className="container text-center"
                   >
                     Manage your own workload:{" "}
                   </h1>

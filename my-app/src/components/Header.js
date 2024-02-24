@@ -5,12 +5,14 @@ export default function Header() {
     <div className="container text-center">
       <img src={require("./assets/robot.png")} style={{ maxWidth: "300px" }} />
       <h1
-        style={{ fontSize: "70px", fontWeight: "bold" }}
+        style={{ fontSize: "75px", fontWeight: "bold" }}
         className="text-primary"
       >
         STEMTask
       </h1>
-      <h3 style={{ paddingBottom: "25px" }}>A Task Management Web App</h3>
+      <h3 style={{ paddingBottom: "25px" }}>
+        A Task Management Web App for Grade 12 STEM Students
+      </h3>
       {/* <hr />
       <p>
         STEMTask is a web-based task management application designed to help

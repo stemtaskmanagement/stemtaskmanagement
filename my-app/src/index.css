@@ -78,3 +78,6 @@ code {
     text-shadow: 0 0 10px #fff, 0 0 30px #ff4da6, 0 0 40px #b84dff, 0 0 50px #c74dff, 0 0 60px #7c4dff, 0 0 70px #8b4dff, 0 0 80px #be4dff;
   }
 }
+.nav-link:hover {
+  color: rgb(34, 88, 236)
+}

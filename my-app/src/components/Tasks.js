@@ -42,7 +42,7 @@ export default function Tasks({
 
   return (
     <div
-      className="card shadow"
+      className="card shadow text-center"
       style={{
         backgroundColor: lightMode ? "#F9F6EE" : "#313638",
         color: lightMode ? "#313638" : "white",
@@ -53,12 +53,14 @@ export default function Tasks({
         style={{
           backgroundColor: color,
           color: "white",
-          // WebkitTextStroke: "0.01px black", // for Safari
-          // textStroke: "0.01px black", // for other browsers
+          borderRadius: "7px",
+          height: "60px",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         {" "}
-        Subject: {subject}
+        <h6>{subject}</h6>
       </div>
       <div className="card-body">
         <h5 className="card-title">

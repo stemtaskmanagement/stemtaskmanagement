@@ -23,7 +23,7 @@ export default function Forms({
     "Disaster Readiness and Risk Reduction (DRRR)",
     "Inquiries, Investigation and Immersion (III)",
     "Capstone Research",
-    "HOPE 4",
+    "Health Optimizing Physical Education (HOPE 4)",
     "Entrepreneurship",
     "Contemporary Philippine Arts from the Regions (CPAR)",
   ];

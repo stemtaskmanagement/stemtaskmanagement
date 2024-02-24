@@ -11,9 +11,6 @@ export default function Navbar({ onClick, lightMode }) {
         }}
       >
         <div className="container-fluid">
-          <a className="navbar-brand text-primary" href="/">
-            STEMTask
-          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -26,16 +23,45 @@ export default function Navbar({ onClick, lightMode }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
+            <a className="navbar-brand text-primary" href="/">
+              STEMTask
+            </a>
             <ul
+              className="navbar-nav ms-auto"
               style={{
-                color: lightMode ? "#313638" : "white",
                 listStyleType: "none",
                 display: "flex",
-                justifyContent: "flex-end", // Align items on the right side
-                alignItems: "center",
               }}
             >
+              {" "}
+              <li>
+                <a
+                  className="nav-link"
+                  style={{ color: lightMode ? "#313638" : "white" }}
+                  href="/login"
+                >
+                  Notifications
+                </a>
+              </li>
+              <li>
+                <a
+                  className="nav-link"
+                  href="/login"
+                  style={{ color: lightMode ? "#313638" : "white" }}
+                >
+                  Log In
+                </a>
+              </li>
               <li style={{ marginRight: "15px" }}>
+                <a
+                  className="nav-link"
+                  href="/about"
+                  style={{ color: lightMode ? "#313638" : "white" }}
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
                 <Button
                   icon={
                     lightMode ? (
@@ -47,11 +73,6 @@ export default function Navbar({ onClick, lightMode }) {
                   onClick={onClick}
                   color="btn-primary"
                 />
-              </li>
-              <li style={{ marginRight: "15px" }}>
-                <a className="nav-link" href="/about">
-                  About Us
-                </a>
               </li>
             </ul>
           </div>
