@@ -6,6 +6,6 @@ Reminders:
 Duty:
 
 -create a user authentication
--implement React Router
 -learn database
 -add the token for messenger for communication
+-add a separate component like Bookmark for storing resources links of their study 
