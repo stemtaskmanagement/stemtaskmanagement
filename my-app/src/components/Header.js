@@ -3,7 +3,11 @@ import Button from "./Button";
 export default function Header() {
   return (
     <div className="container text-center">
-      <img src={require("./assets/robot.png")} style={{ maxWidth: "300px" }} />
+      <img
+        src={require("./assets/robot.png")}
+        style={{ maxWidth: "300px" }}
+        draggable="false"
+      />
       <h1
         style={{ fontSize: "75px", fontWeight: "bold" }}
         className="text-primary"

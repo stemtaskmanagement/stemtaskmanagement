@@ -64,7 +64,8 @@ export default function Tasks({
       </div>
       <div className="card-body">
         <h5 className="card-title">
-          Deadline: {date === "Invalid Date" ? "Undated" : date}
+          <i class="fa-regular fa-calendar-days"></i>:{" "}
+          {date === "Invalid Date" ? "Undated" : date}
         </h5>
         <p className="card-text" id="cardDescription">
           {description}

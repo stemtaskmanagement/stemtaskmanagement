@@ -7,8 +7,24 @@ import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Button from "./components/Button";
+import Login from "./components/Login";
+import Notifications from "./components/Notifications";
+//firebase
+import { auth } from "./firebase/config";
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+//firebase rt database
+import { writeUserData } from "./firebase/config";
 
 function App() {
+  //user states
+  const [logInType, setIsLogInType] = useState("login");
+  const [userCredentials, setUserCredentials] = useState([]);
+  const [error, setError] = useState("");
+
   //naglalagay tayo ng default state ng inputs
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
@@ -28,7 +44,6 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-
     if (!description || !subject) {
       alert("Please fill in all fields.");
     } else if (description && toggleSubmit) {
@@ -45,6 +60,13 @@ function App() {
         color: color,
         link: link,
       };
+      // writeUserData(
+      //   new Date().getTime().toString(),
+      //   subject,
+      //   color,
+      //   description,
+      //   date
+      // );
       setTask([allInputData, ...task]); // Add new task to the list
       setDescription(""); // Clear input fields after submission
       setSubject("");
@@ -116,25 +138,54 @@ function App() {
     setLightMode(!lightMode);
   }
 
-  //handle the sorting mode
-  function sortBySubject() {
-    const sortedTask = task.map((item) => {
-      return;
-    });
-  }
-
   return (
     <Router>
       <Routes>
+        {/* LOGIN PAGE*/}
         <Route
           path="/login"
           element={
             <div>
-              <h1>Create an account</h1>
-              <input type="text" />
+              <Login
+                logInType={logInType}
+                setIsLogInType={setIsLogInType}
+                userCredentials={userCredentials}
+                setUserCredentials={setUserCredentials}
+                error={error}
+                setError={setError}
+                auth={auth}
+                createUserWithEmailAndPassword={createUserWithEmailAndPassword}
+                sendPasswordResetEmail={sendPasswordResetEmail}
+                signInWithEmailAndPassword={signInWithEmailAndPassword}
+              />
             </div>
           }
         />
+        {/* NOTIFICATION PAGE*/}
+        <Route
+          path="/notifications"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <div className="section container">
+                <div style={{ paddingBottom: "300px" }}>
+                  <Notifications />
+                </div>
+              </div>
+
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
+        {/* HOME PAGE*/}
         <Route
           path="/"
           element={
@@ -238,6 +289,7 @@ function App() {
             </div>
           }
         />
+        {/* ABOUT PAGE*/}
         <Route
           path="/about"
           element={

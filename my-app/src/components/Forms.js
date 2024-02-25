@@ -56,7 +56,8 @@ export default function Forms({
               onChange={(e) => setSubject(e.target.value)}
             >
               {/* default select subject cannot be taken as a value when edited*/}
-              {!subject && <option selected>select subject</option>}
+              {!subject && <option value //selected
+              >select subject</option>}
               {subjects.map((chosenSubject, index) => {
                 return <option key={index}>{chosenSubject}</option>;
               })}
