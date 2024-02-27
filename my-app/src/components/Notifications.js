@@ -1,7 +1,7 @@
 export default function Notifications() {
   return (
     <div>
-      <h1>Notifications</h1>
+      <h1>Notification  </h1>
     </div>
   );
 }

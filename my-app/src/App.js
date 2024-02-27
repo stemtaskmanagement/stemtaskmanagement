@@ -54,6 +54,7 @@ function App() {
         .scrollIntoView({ behavior: "smooth" });
       // Check if it's a new task
       const allInputData = {
+        userCredentials,
         id: new Date().getTime().toString(),
         description: description,
         subject: subject,

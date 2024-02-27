@@ -70,7 +70,7 @@ export default function Login({
       .then((userCredentials) => {
         // Signed in
         const user = userCredentials.user;
-        console.log("successful login: " + user.uid);
+        console.log("successful login: " + user.email);
         navigate("/"); // Redirect to home after successful signup
       })
       .catch((error) => {
