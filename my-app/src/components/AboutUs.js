@@ -27,9 +27,7 @@ export default function AboutUs({ lightMode }) {
                 longer.
               </p>
               <p className="card-text">
-                <small className="text-body-secondary">
-                  Last updated 3 mins ago
-                </small>
+                <small className="text-body-secondary"></small>
               </p>
             </div>
           </div>

@@ -47,20 +47,18 @@ export const auth = getAuth(app);
 //     });
 // }
 
-// export function writeUserData(
-//   userId,
-//   subject,
-//   subjectColor,
-//   description,
-//   deadline
-// ) {
-//   const db = getDatabase(app);
-//   const reference = ref(db, "users/" + userId);
-//   set(reference, {
-//     taskSubject: subject,
-//     taskSubjectColor: subjectColor,
-//     taskDescription: description,
-//     taskDeadline: deadline,
-//   });
-// }
+// writeUserData("fehre", "wion", "wion@mail.com", "myimage");
+
+export function writeUserData(user, id, subject, color, description, date) {
+  const db = getDatabase(app);
+  const reference = ref(db, "users/" + user.uid);
+  set(reference, {
+    taskId: id,
+    taskSubject: subject,
+    taskColor: color,
+    taskDesc: description,
+    taskDate: date,
+  });
+}
+
 // learn how to database

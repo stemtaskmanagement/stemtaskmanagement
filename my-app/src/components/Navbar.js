@@ -38,9 +38,9 @@ export default function Navbar({ onClick, lightMode }) {
                 <a
                   className="nav-link"
                   style={{ color: lightMode ? "#313638" : "white" }}
-                  href="/notifications"
+                  href="/user"
                 >
-                  Notifications
+                  User
                 </a>
               </li>
               <li>

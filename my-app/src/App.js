@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Forms from "./components/Forms";
 import Tasks from "./components/Tasks";
 import { useState } from "react";
+import { useEffect } from "react";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -60,13 +61,14 @@ function App() {
         color: color,
         link: link,
       };
-      // writeUserData(
-      //   new Date().getTime().toString(),
-      //   subject,
-      //   color,
-      //   description,
-      //   date
-      // );
+      writeUserData(
+        userCredentials,
+        new Date().getTime().toString(),
+        subject,
+        color,
+        description,
+        date
+      );
       setTask([allInputData, ...task]); // Add new task to the list
       setDescription(""); // Clear input fields after submission
       setSubject("");
@@ -133,10 +135,22 @@ function App() {
     console.log(newEditTask);
   }
 
-  //toggle the theme
   function setTheme() {
-    setLightMode(!lightMode);
+    const newLightMode = !lightMode; // Calculate the new lightMode value
+    setLightMode(newLightMode); // Update the state
+
+    // Save the new lightMode value to local storage
+    localStorage.setItem("lightMode", JSON.stringify(newLightMode));
   }
+
+  // When the component mounts, check if lightMode is stored in local storage
+  // If it is, set the lightMode state accordingly
+  useEffect(() => {
+    const storedLightMode = JSON.parse(localStorage.getItem("lightMode"));
+    if (storedLightMode !== null) {
+      setLightMode(storedLightMode);
+    }
+  }, []);
 
   return (
     <Router>

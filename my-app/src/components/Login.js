@@ -1,3 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
+import { writeUserData } from "../firebase/config";
+import { useState, useEffect } from "react";
+
 export default function Login({
   logInType,
   setIsLogInType,
@@ -9,36 +13,49 @@ export default function Login({
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  lightMode,
 }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // useEffect(() => {
+  //   // Reset input fields when logInType changes
+  //   setEmail("");
+  //   setPassword("");
+  // }, [logInType]);
+
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   //changes the UI to sign up page
   function changeToSignUp() {
     setIsLogInType("signup");
+    setEmail("");
+    setPassword("");
   }
   //changes the UI to log in page
   function changeToLogIn() {
     setIsLogInType("login");
+    setEmail("");
+    setPassword("");
   }
 
   //add the state of users
-  function handleCredentials(e) {
-    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-    // console.log(userCredentials);
-  }
+  // function handleCredentials(e) {
+  //   setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
+  //   // console.log(userCredentials);
+  // }
 
   //handles the sign up and create user data
   function handleSignUp(e) {
     e.preventDefault();
     setError("");
-    createUserWithEmailAndPassword(
-      auth,
-      userCredentials.email,
-      userCredentials.password
-    )
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         // Signed up
         const user = userCredentials.user;
         console.log(user);
-        console.log("successful signup");
+        console.log("successful signup: " + user.uid);
+        navigate("/"); // Redirect to home after successful signup
       })
       .catch((error) => {
         setError(error.message);
@@ -49,15 +66,12 @@ export default function Login({
   function handleLogIn(e) {
     e.preventDefault();
     setError("");
-    signInWithEmailAndPassword(
-      auth,
-      userCredentials.email,
-      userCredentials.password
-    )
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         // Signed in
         const user = userCredentials.user;
-        console.log("successful login");
+        console.log("successful login: " + user.uid);
+        navigate("/"); // Redirect to home after successful signup
       })
       .catch((error) => {
         setError(error.message);
@@ -72,7 +86,16 @@ export default function Login({
   }
 
   return (
-    <div className="text-center container" style={{ paddingTop: "100px" }}>
+    <div
+      className="text-center"
+      style={{
+        backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+        border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+        color: lightMode ? "#313638" : "#F9F6EE",
+        paddingTop: "100px",
+        paddingBottom: "200px",
+      }}
+    >
       <h3>Welcome to</h3>
       <h1
         style={{ fontSize: "75px", fontWeight: "bold" }}
@@ -80,8 +103,14 @@ export default function Login({
       >
         STEMTask
       </h1>
-      <form className="card">
-        <h1> {logInType == "login" ? "Log In" : "Sign Up"}</h1>
+      <form
+        className="card"
+        style={{
+          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          color: lightMode ? "#313638" : "white",
+        }}
+      >
+        <h1> {logInType === "login" ? "Log In" : "Sign Up"}</h1>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -89,11 +118,12 @@ export default function Login({
           <input
             type="email"
             name="email"
+            value={email}
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
             onChange={(e) => {
-              handleCredentials(e);
+              setEmail(e.target.value);
             }}
           />
           <div id="emailHelp" className="form-text">
@@ -120,39 +150,34 @@ export default function Login({
           <input
             name="password"
             type="password"
+            value={password}
             className="form-control"
             id="exampleInputPassword1"
             onChange={(e) => {
-              handleCredentials(e);
+              setPassword(e.target.value);
             }}
           />
         </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
-          </label>
-        </div>
         {/*submit the forms */}
-        {logInType == "login" ? (
+        {logInType === "login" ? (
           <button
+            className="btn-primary"
             onClick={(e) => {
               handleLogIn(e);
             }}
           >
-            Log In
+            {/* <Link to={link}>Login</Link> */}
+            Login
           </button>
         ) : (
           <button
+            className="btn-primary"
             onClick={(e) => {
               handleSignUp(e);
             }}
           >
-            Sign Up
+            {/* <Link to={link}>Sign up</Link> */}
+            Signup
           </button>
         )}
         {error && (
@@ -162,7 +187,7 @@ export default function Login({
         )}
       </form>
       {/*change the form type */}
-      {logInType == "login" ? (
+      {logInType === "login" ? (
         <button onClick={changeToSignUp}>Sign Up</button>
       ) : (
         <button onClick={changeToLogIn}>Log In</button>
