@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export default function Navbar({ onClick, lightMode }) {
+export default function Navbar({ onClick, lightMode}) {
   return (
     <div>
       {/* */}
@@ -33,7 +33,6 @@ export default function Navbar({ onClick, lightMode }) {
                 display: "flex",
               }}
             >
-              {" "}
               <li>
                 <a
                   className="nav-link"

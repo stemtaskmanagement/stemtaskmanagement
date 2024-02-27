@@ -45,16 +45,15 @@ export default function Login({
   //   // console.log(userCredentials);
   // }
 
-  //handles the sign up and create user data
   function handleSignUp(e) {
     e.preventDefault();
     setError("");
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        // Signed up
-        const user = userCredentials.user;
-        console.log(user);
-        console.log("successful signup: " + user.uid);
+      .then((userCredential) => {
+        // Successfully signed up
+        const user = userCredential.user;
+        setUserCredentials(user); // Update userCredentials with the signed up user
+        console.log("Successful signup: " + user.email);
         navigate("/"); // Redirect to home after successful signup
       })
       .catch((error) => {
@@ -62,16 +61,15 @@ export default function Login({
       });
   }
 
-  //sign in or log in with user data
   function handleLogIn(e) {
     e.preventDefault();
     setError("");
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        // Signed in
-        const user = userCredentials.user;
-        console.log("successful login: " + user.uid);
-        navigate("/"); // Redirect to home after successful signup
+      .then((userCredential) => {
+        // Successfully signed in
+        const user = userCredential.user;
+        setUserCredentials(user); // Update userCredentials with the signed in user
+        navigate("/"); // Redirect to home after successful login
       })
       .catch((error) => {
         setError(error.message);

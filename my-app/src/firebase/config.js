@@ -31,29 +31,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// Initialize Realtime Database and get a reference to the service
-// function writeUserData(userId, name, email, imageUrl) {
-//   const db = getDatabase(app);
-//   set(ref(db, "users/" + userId), {
-//     username: name,
-//     email: email,
-//     profile_picture: imageUrl,
-//   })
-//     .then(() => {
-//       console.log("Data written successfully!");
-//     })
-//     .catch((error) => {
-//       console.error("Error writing data:", error);
-//     });
-// }
-
-// writeUserData("fehre", "wion", "wion@mail.com", "myimage");
-
 export function writeUserData(user, id, subject, color, description, date) {
   const db = getDatabase(app);
-  const reference = ref(db, "users/" + user.uid);
+  const reference = ref(db, `users/${user.uid}/task${id}`);
   set(reference, {
-    taskId: id,
     taskSubject: subject,
     taskColor: color,
     taskDesc: description,

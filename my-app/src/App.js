@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import User from "./components/User";
 import Header from "./components/Header";
 import Forms from "./components/Forms";
 import Tasks from "./components/Tasks";
@@ -17,14 +18,34 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 //firebase rt database
 import { writeUserData } from "./firebase/config";
 
 function App() {
   //user states
   const [logInType, setIsLogInType] = useState("login");
-  const [userCredentials, setUserCredentials] = useState([]);
+  const [userCredentials, setUserCredentials] = useState(null);
   const [error, setError] = useState("");
+
+  // // Effect to check user authentication status on component mount
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       // User is signed in
+  //       setUserCredentials(user);
+  //       // Save user data to local storage
+  //       localStorage.setItem("user", JSON.stringify(user));
+  //     } else {
+  //       // No user is signed in
+  //       setUserCredentials(null);
+  //       // Clear user data from local storage
+  //       localStorage.removeItem("user");
+  //     }
+  //   });
+  //   // Clean up function
+  //   return () => unsubscribe();
+  // }, []);
 
   //naglalagay tayo ng default state ng inputs
   const [subject, setSubject] = useState("");
@@ -36,6 +57,7 @@ function App() {
   const [showList, setShowList] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [link, setLink] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
 
@@ -46,7 +68,9 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!description || !subject) {
-      alert("Please fill in all fields.");
+      // alert("please input all fields");
+      setShowModal(true);
+      console.log("");
     } else if (description && toggleSubmit) {
       //scroll down to task after clicking add new task
       document
@@ -155,6 +179,30 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/*User info */}
+        <Route
+          path="/user"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <div className="section container">
+                <div style={{ paddingBottom: "300px" }}>
+                  <User userCredentials={userCredentials} />
+                </div>
+              </div>
+
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
         {/* LOGIN PAGE*/}
         <Route
           path="/login"
@@ -215,6 +263,7 @@ function App() {
               <Navbar onClick={setTheme} lightMode={lightMode} />
               <div className="section">
                 <Header />
+                {/* <h1>Hi, {userCredentials.email}</h1> */}
               </div>
               <hr />
 
@@ -245,6 +294,52 @@ function App() {
                   link={link}
                   setLink={setLink}
                 />
+                {showModal && (
+                  <div
+                    className="modal"
+                    style={{
+                      display: "block",
+                      position: "fixed",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      zIndex: 999,
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    }}
+                  >
+                    <div className="modal-dialog">
+                      <div
+                        className="modal-content"
+                        style={{
+                          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+                          color: lightMode ? "#313638" : "white",
+                        }}
+                      >
+                        <div className="modal-header">
+                          <h5 className="modal-title">Error</h5>
+                          <button
+                            type="button"
+                            className="btn-close"
+                            onClick={() => setShowModal(false)}
+                          ></button>
+                        </div>
+                        <div className="modal-body">
+                          <p>Please input all fields.</p>
+                        </div>
+                        <div className="modal-footer">
+                          <button
+                            type="button"
+                            className="btn btn-danger text-white"
+                            onClick={() => setShowModal(false)}
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               <hr />
 
