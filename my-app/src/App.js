@@ -13,6 +13,8 @@ import Login from "./components/Login";
 import Notifications from "./components/Notifications";
 //firebase
 import { auth } from "./firebase/config";
+import { ref, child, get } from "firebase/database";
+import { getDatabase } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -25,27 +27,9 @@ import { writeUserData } from "./firebase/config";
 function App() {
   //user states
   const [logInType, setIsLogInType] = useState("login");
-  const [userCredentials, setUserCredentials] = useState(null);
+  const [userCredentials, setUserCredentials] = useState([]);
   const [error, setError] = useState("");
-
-  // // Effect to check user authentication status on component mount
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       // User is signed in
-  //       setUserCredentials(user);
-  //       // Save user data to local storage
-  //       localStorage.setItem("user", JSON.stringify(user));
-  //     } else {
-  //       // No user is signed in
-  //       setUserCredentials(null);
-  //       // Clear user data from local storage
-  //       localStorage.removeItem("user");
-  //     }
-  //   });
-  //   // Clean up function
-  //   return () => unsubscribe();
-  // }, []);
+  const [userData, setUserData] = useState(null);
 
   //naglalagay tayo ng default state ng inputs
   const [subject, setSubject] = useState("");
@@ -64,6 +48,39 @@ function App() {
   const [task, setTask] = useState([
     //display empty as a default
   ]);
+
+  useEffect(() => {
+    const database = getDatabase();
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in
+        setUserCredentials(user);
+
+        // Construct the path to the user's data in the database
+        const userRef = ref(database, `users/${user.uid}`);
+
+        try {
+          // Fetch the user's data from the database
+          const snapshot = await get(child(userRef, "/")); // Assuming user data is stored at the root level
+
+          if (snapshot.exists()) {
+            // Update the component's state with the retrieved user data
+            setUserData(snapshot.val());
+          } else {
+            console.log("No data available for this user.");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error.message);
+        }
+      } else {
+        // No user is signed in
+        setUserCredentials(null);
+        setUserData(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
