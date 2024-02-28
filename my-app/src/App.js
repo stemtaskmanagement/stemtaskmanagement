@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Notifications from "./components/Notifications";
 //firebase
 import { auth } from "./firebase/config";
-import { getDatabase, ref, child, get, remove } from "firebase/database";
+import { getDatabase, ref, child, get, remove, set } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -26,7 +26,7 @@ import { writeUserData } from "./firebase/config";
 function App() {
   //user states
   const [logInType, setIsLogInType] = useState("login");
-  const [userCredentials, setUserCredentials] = useState(null);
+  const [userCredentials, setUserCredentials] = useState([]);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState(null);
 
@@ -69,7 +69,7 @@ function App() {
           console.error("Error fetching user tasks:", error.message);
         }
       } else {
-        setUserCredentials(null);
+        setUserCredentials([]);
         setTask([]);
         localStorage.removeItem("userTasks");
       }
@@ -229,10 +229,14 @@ function App() {
                 color: lightMode ? "#28282B" : "#EEEEEE",
               }}
             >
-              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
               <div className="section container">
                 <div style={{ paddingBottom: "300px" }}>
-                  <User userCredentials={userCredentials} />
+                  <User userCredentials={userCredentials} auth={auth} />
                 </div>
               </div>
 
@@ -273,7 +277,11 @@ function App() {
                 color: lightMode ? "#28282B" : "#EEEEEE",
               }}
             >
-              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
               <div className="section container">
                 <div style={{ paddingBottom: "300px" }}>
                   <Notifications />
@@ -297,7 +305,11 @@ function App() {
                 color: lightMode ? "#28282B" : "#EEEEEE",
               }}
             >
-              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
               <div className="section">
                 <Header />
                 {/* <h1>Hi, {userCredentials.email}</h1> */}
@@ -448,7 +460,11 @@ function App() {
                 color: lightMode ? "#28282B" : "#EEEEEE",
               }}
             >
-              <Navbar onClick={setTheme} lightMode={lightMode} />
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
               {/* About the Devs*/}
               <div className="section">
                 <h1

@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export default function Navbar({ onClick, lightMode}) {
+export default function Navbar({ onClick, lightMode, userCredentials }) {
   return (
     <div>
       {/* */}
@@ -33,6 +33,27 @@ export default function Navbar({ onClick, lightMode}) {
                 display: "flex",
               }}
             >
+              {userCredentials == "" ? (
+                <li>
+                  <a
+                    className="nav-link"
+                    href="/login"
+                    style={{ color: lightMode ? "#313638" : "white" }}
+                  >
+                    Log In
+                  </a>
+                </li>
+              ) : (
+                // <li>
+                //   <a
+                //     className="nav-link"
+                //     style={{ color: lightMode ? "#313638" : "white" }}
+                //   >
+                //     Welcome,
+                //   </a>
+                // </li>
+                ""
+              )}
               <li>
                 <a
                   className="nav-link"
@@ -42,15 +63,7 @@ export default function Navbar({ onClick, lightMode}) {
                   User
                 </a>
               </li>
-              <li>
-                <a
-                  className="nav-link"
-                  href="/login"
-                  style={{ color: lightMode ? "#313638" : "white" }}
-                >
-                  Log In
-                </a>
-              </li>
+              {console.log("navbar userCredentials:" + userCredentials)}
               <li style={{ marginRight: "15px" }}>
                 <a
                   className="nav-link"

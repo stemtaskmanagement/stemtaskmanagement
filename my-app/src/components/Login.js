@@ -69,6 +69,7 @@ export default function Login({
         const user = userCredential.user;
         setUserCredentials(user); // Update userCredentials with the signed in user
         navigate("/"); // Redirect to home after successful login
+        console.log("successful login:" + user.email);
       })
       .catch((error) => {
         setError(error.message);
