@@ -25,9 +25,11 @@ export default function User({ userCredentials, auth, lightMode }) {
   }
   return (
     <div
+      className="card"
       style={{
         backgroundColor: lightMode ? "#F9F6EE" : "#313638",
         color: lightMode ? "#313638" : "white",
+        maxWidth: "2000px",
       }}
     >
       {showModal && (
