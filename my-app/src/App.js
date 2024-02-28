@@ -236,7 +236,11 @@ function App() {
               />
               <div className="section container">
                 <div style={{ paddingBottom: "300px" }}>
-                  <User userCredentials={userCredentials} auth={auth} />
+                  <User
+                    userCredentials={userCredentials}
+                    auth={auth}
+                    showModal={showModal}
+                  />
                 </div>
               </div>
 

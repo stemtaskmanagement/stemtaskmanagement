@@ -63,7 +63,6 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   User
                 </a>
               </li>
-              {console.log("navbar userCredentials:" + userCredentials)}
               <li style={{ marginRight: "15px" }}>
                 <a
                   className="nav-link"
