@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { writeUserData } from "../firebase/config";
 import { useState, useEffect } from "react";
 
 export default function Login({

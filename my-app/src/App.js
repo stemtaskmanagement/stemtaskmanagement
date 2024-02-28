@@ -13,8 +13,7 @@ import Login from "./components/Login";
 import Notifications from "./components/Notifications";
 //firebase
 import { auth } from "./firebase/config";
-import { ref, child, get } from "firebase/database";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, child, get, remove } from "firebase/database";
 import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -27,7 +26,7 @@ import { writeUserData } from "./firebase/config";
 function App() {
   //user states
   const [logInType, setIsLogInType] = useState("login");
-  const [userCredentials, setUserCredentials] = useState([]);
+  const [userCredentials, setUserCredentials] = useState(null);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState(null);
 
@@ -53,31 +52,33 @@ function App() {
     const database = getDatabase();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        // User is signed in
         setUserCredentials(user);
-
-        // Construct the path to the user's data in the database
-        const userRef = ref(database, `users/${user.uid}`);
-
+        console.log("User credentials set:", user); // Add this line to check user credentials
+        const userTasksRef = ref(database, `tasks/${user.uid}`);
         try {
-          // Fetch the user's data from the database
-          const snapshot = await get(child(userRef, "/")); // Assuming user data is stored at the root level
-
+          const snapshot = await get(userTasksRef);
           if (snapshot.exists()) {
-            // Update the component's state with the retrieved user data
-            setUserData(snapshot.val());
+            const userTasks = Object.values(snapshot.val());
+            setTask(userTasks);
+            localStorage.setItem("userTasks", JSON.stringify(userTasks));
           } else {
-            console.log("No data available for this user.");
+            setTask([]);
+            localStorage.removeItem("userTasks");
           }
         } catch (error) {
-          console.error("Error fetching user data:", error.message);
+          console.error("Error fetching user tasks:", error.message);
         }
       } else {
-        // No user is signed in
         setUserCredentials(null);
-        setUserData(null);
+        setTask([]);
+        localStorage.removeItem("userTasks");
       }
     });
+
+    const storedTasks = JSON.parse(localStorage.getItem("userTasks"));
+    if (storedTasks !== null) {
+      setTask(storedTasks);
+    }
 
     return () => unsubscribe();
   }, []);
@@ -157,8 +158,27 @@ function App() {
 
   //delete functionality
   function handleDelete(id) {
-    const updatedTasks = task.filter((items) => items.id !== id);
-    setTask(updatedTasks);
+    const updatedTasks = task.filter((item) => item.id !== id);
+    setTask(updatedTasks); // Update the state to remove the task from UI
+
+    // Check if userCredentials is available
+    if (userCredentials) {
+      // Remove the task from the database
+      const database = getDatabase();
+      const userTasksRef = ref(database, `tasks/${userCredentials.uid}/${id}`);
+      remove(userTasksRef)
+        .then(() => {
+          console.log("Task removed from the database successfully.");
+        })
+        .catch((error) => {
+          console.error(
+            "Error removing task from the database:",
+            error.message
+          );
+        });
+    } else {
+      console.error("User credentials not available.");
+    }
   }
 
   //edit functionality
