@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function Login({
   logInType,
@@ -13,9 +15,11 @@ export default function Login({
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   lightMode,
+  getDatabase,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState(""); // Add username state
 
   // useEffect(() => {
   //   // Reset input fields when logInType changes
@@ -44,16 +48,53 @@ export default function Login({
   //   // console.log(userCredentials);
   // }
 
+  // function handleSignUp(e) {
+  //   e.preventDefault();
+  //   setError("");
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // Successfully signed up
+  //       const user = userCredential.user;
+  //       setUserCredentials(user); // Update userCredentials with the signed up user
+  //       console.log("Successful signup: " + user.email);
+  //       navigate("/"); // Redirect to home after successful signup
+  //     })
+  //     .catch((error) => {
+  //       setError(error.message);
+  //     });
+  // }
+
   function handleSignUp(e) {
     e.preventDefault();
     setError("");
+    const auth = getAuth();
+    const db = getDatabase();
+
+    console.log("Username:", username); // Log the value of username before updating displayName
+
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Successfully signed up
+      .then(async (userCredential) => {
         const user = userCredential.user;
-        setUserCredentials(user); // Update userCredentials with the signed up user
+
+        console.log("User before updating profile:", user); // Log the user object before updating profile
+
+        // Set the display name (username) for the user
+        await user.updateProfile({
+          displayName: username,
+        });
+
+        console.log("User after updating profile:", user); // Log the user object after updating profile
+
+        // Create a user profile document in Firestore
+        await addDoc(collection(db, "users"), {
+          uid: user.uid,
+          username: username,
+          email: email,
+        });
+
+        setUserCredentials(user);
         console.log("Successful signup: " + user.email);
-        navigate("/"); // Redirect to home after successful signup
+        navigate("/");
       })
       .catch((error) => {
         setError(error.message);
@@ -69,7 +110,7 @@ export default function Login({
         const user = userCredential.user;
         setUserCredentials(user); // Update userCredentials with the signed in user
         navigate("/"); // Redirect to home after successful login
-        console.log("successful login:" + user.email);
+        console.log("successful login:" + user.username);
       })
       .catch((error) => {
         setError(error.message);
@@ -128,19 +169,19 @@ export default function Login({
             We'll never share your email with anyone else.
           </div>
         </div>
-        {/* <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="exampleInputUsername" className="form-label">
             Username
           </label>
           <input
-            name="username"
             type="text"
+            name="username"
+            value={username}
             className="form-control"
-            onChange={(e) => {
-              handleCredentials(e);
-            }}
+            id="exampleInputUsername"
+            onChange={(e) => setUsername(e.target.value)}
           />
-        </div> */}
+        </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
             Password

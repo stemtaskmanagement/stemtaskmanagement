@@ -125,6 +125,7 @@ export default function User({ userCredentials, auth, lightMode }) {
         </div>
       )}
       <h1>User Account</h1>
+      <h3>Username: {userCredentials.displayName}</h3>
       <h3>
         User Id: {userCredentials == "" ? emptyMessage : userCredentials.uid}
       </h3>

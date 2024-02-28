@@ -264,6 +264,7 @@ function App() {
                 createUserWithEmailAndPassword={createUserWithEmailAndPassword}
                 sendPasswordResetEmail={sendPasswordResetEmail}
                 signInWithEmailAndPassword={signInWithEmailAndPassword}
+                getDatabase={getDatabase}
               />
             </div>
           }
