@@ -70,25 +70,14 @@ export default function Login({
     const auth = getAuth();
     const db = getDatabase();
 
-    console.log("Username:", username); // Log the value of username before updating displayName
-
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-
-        console.log("User before updating profile:", user); // Log the user object before updating profile
-
-        // Set the display name (username) for the user
-        await user.updateProfile({
-          displayName: username,
-        });
-
         console.log("User after updating profile:", user); // Log the user object after updating profile
 
         // Create a user profile document in Firestore
         await addDoc(collection(db, "users"), {
           uid: user.uid,
-          username: username,
           email: email,
         });
 
@@ -110,7 +99,7 @@ export default function Login({
         const user = userCredential.user;
         setUserCredentials(user); // Update userCredentials with the signed in user
         navigate("/"); // Redirect to home after successful login
-        console.log("successful login:" + user.username);
+        console.log("successful login:" + user.email);
       })
       .catch((error) => {
         setError(error.message);
@@ -169,7 +158,7 @@ export default function Login({
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label htmlFor="exampleInputUsername" className="form-label">
             Username
           </label>
@@ -181,7 +170,7 @@ export default function Login({
             id="exampleInputUsername"
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
+        </div> */}
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
             Password

@@ -85,17 +85,17 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    // Check if description and subject are provided
     if (!description || !subject) {
-      // alert("please input all fields");
-      setShowModal(true);
-      console.log("");
-    } else if (description && toggleSubmit) {
-      //scroll down to task after clicking add new task
+      setShowModal(true); // Show modal for missing fields
+    } else {
+      // Scroll to task section
       document
         .getElementById("taskSection")
         .scrollIntoView({ behavior: "smooth" });
-      // Check if it's a new task
-      const allInputData = {
+
+      // Construct new task object
+      const newTask = {
         id: new Date().getTime().toString(),
         description: description,
         subject: subject,
@@ -103,50 +103,34 @@ function App() {
         color: color,
         link: link,
       };
-      writeUserData(
-        userCredentials,
-        new Date().getTime().toString(),
-        subject,
-        color,
-        description,
-        date
-      );
-      setTask([allInputData, ...task]); // Add new task to the list
-      setDescription(""); // Clear input fields after submission
-      setSubject("");
-      setDate("");
-      setColor("#04a4b0");
-      setLink("");
-      // setFile("");
-    } else if (description && subject && !toggleSubmit) {
-      //scroll down to task after clicking add new task
-      document
-        .getElementById("taskSection")
-        .scrollIntoView({ behavior: "smooth" });
-      // Check if it's an edited task
-      setTask(
-        task.map((item) => {
-          if (item.id === isEditTask) {
-            return {
-              ...item,
-              subject: subject,
-              description: description,
-              date: formatDate(date),
-              color: color,
-              link: link,
-            };
-          }
-          return item;
-        })
-      );
-      setToggleSubmit(true); // Reset toggleSubmit to true after editing
-      setIsEditTask(null); // Reset isEditTask to null after editing
-      setDescription(""); // Clear input fields after submission
-      setSubject("");
-      setDate("");
-      setColor("#04a4b0");
-      setLink("");
+
+      // Check if it's a new task or an edited task
+      if (toggleSubmit) {
+        // Add new task to the list
+        setTask([newTask, ...task]);
+      } else {
+        // Update existing task
+        setTask(
+          task.map((item) =>
+            item.id === isEditTask ? { ...item, ...newTask } : item
+          )
+        );
+        setToggleSubmit(true); // Reset toggleSubmit to true after editing
+        setIsEditTask(null); // Reset isEditTask to null after editing
+      }
+
+      // Clear input fields
+      clearInputFields();
     }
+  }
+
+  // Function to clear input fields
+  function clearInputFields() {
+    setDescription("");
+    setSubject("");
+    setDate("");
+    setColor("#04a4b0");
+    setLink("");
   }
 
   //date formatter

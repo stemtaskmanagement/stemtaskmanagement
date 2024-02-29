@@ -24,14 +24,7 @@ export default function User({ userCredentials, auth, lightMode }) {
       });
   }
   return (
-    <div
-      className="card"
-      style={{
-        backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-        color: lightMode ? "#313638" : "white",
-        maxWidth: "2000px",
-      }}
-    >
+    <div>
       {showModal && (
         <div
           className="modal"
@@ -125,7 +118,7 @@ export default function User({ userCredentials, auth, lightMode }) {
         </div>
       )}
       <h1>User Account</h1>
-      <h3>Username: {userCredentials.displayName}</h3>
+      {/* <h3>Username: {userCredentials.displayName}</h3> */}
       <h3>
         User Id: {userCredentials == "" ? emptyMessage : userCredentials.uid}
       </h3>
@@ -134,7 +127,11 @@ export default function User({ userCredentials, auth, lightMode }) {
         {userCredentials == "" ? emptyMessage : userCredentials.email}
       </h3>
       {console.log("userCredentials:" + userCredentials)}
-      <Button onClick={handleSignOut} name="Sign out" color="btn-danger" />
+      {userCredentials == "" ? (
+        ""
+      ) : (
+        <Button onClick={handleSignOut} name="Sign out" color="btn-danger" />
+      )}
     </div>
   );
 }
