@@ -45,61 +45,22 @@ function App() {
   const [lightMode, setLightMode] = useState(true);
   const [link, setLink] = useState("");
   const [showModal, setShowModal] = useState(false);
-
-  //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
-
   const [task, setTask] = useState([]);
 
-  // useEffect(() => {
-  //   const database = getDatabase();
-  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
-  //     if (user) {
-  //       setUserCredentials(user);
-  //       console.log("User credentials set:", user); // Add this line to check user credentials
-  //       const userTasksRef = ref(database, `tasks/${user.uid}`);
-  //       try {
-  //         const snapshot = await get(userTasksRef);
-  //         if (snapshot.exists()) {
-  //           const userTasks = Object.values(snapshot.val());
-  //           setTask(userTasks);
-  //           localStorage.setItem("userTasks", JSON.stringify(userTasks));
-  //         } else {
-  //           setTask([]);
-  //           localStorage.removeItem("userTasks");
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching user tasks:", error.message);
-  //       }
-  //     } else {
-  //       setUserCredentials([]);
-  //       setTask([]);
-  //       localStorage.removeItem("userTasks");
-  //     }
-  //   });
-
-  //   const storedTasks = JSON.parse(localStorage.getItem("userTasks"));
-  //   if (storedTasks !== null) {
-  //     setTask(storedTasks);
-  //   }
-
-  //   return () => unsubscribe();
-  // }, []);
+  // Fetch tasks from the database when the user logs in
   useEffect(() => {
     const database = getDatabase();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserCredentials(user);
-        console.log("User credentials set:", user);
-        const userTasksRef = ref(database, `tasks/${user.uid}`);
+        const userTasksRef = ref(database, `users/${user.uid}/tasks`);
         try {
           const snapshot = await get(userTasksRef);
           if (snapshot.exists()) {
             const userTasks = Object.values(snapshot.val());
             setTask(userTasks);
-            localStorage.setItem("userTasks", JSON.stringify(userTasks));
           } else {
             setTask([]);
-            localStorage.removeItem("userTasks");
           }
         } catch (error) {
           console.error("Error fetching user tasks:", error.message);
@@ -107,18 +68,11 @@ function App() {
       } else {
         setUserCredentials([]);
         setTask([]);
-        localStorage.removeItem("userTasks");
       }
     });
 
-    const storedTasks = JSON.parse(localStorage.getItem("userTasks"));
-    if (storedTasks !== null) {
-      setTask(storedTasks);
-    }
-
     return () => unsubscribe();
   }, []);
-
   async function handleSubmit(e) {
     e.preventDefault();
 
