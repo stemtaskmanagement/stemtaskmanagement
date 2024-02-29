@@ -44,25 +44,16 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               ) : (
-                // <li>
-                //   <a
-                //     className="nav-link"
-                //     style={{ color: lightMode ? "#313638" : "white" }}
-                //   >
-                //     Welcome,
-                //   </a>
-                // </li>
-                ""
+                <li>
+                  <a
+                    className="nav-link"
+                    style={{ color: lightMode ? "#313638" : "white" }}
+                    href="/user"
+                  >
+                    {userCredentials.email}
+                  </a>
+                </li>
               )}
-              <li>
-                <a
-                  className="nav-link"
-                  style={{ color: lightMode ? "#313638" : "white" }}
-                  href="/user"
-                >
-                  User
-                </a>
-              </li>
               <li style={{ marginRight: "15px" }}>
                 <a
                   className="nav-link"

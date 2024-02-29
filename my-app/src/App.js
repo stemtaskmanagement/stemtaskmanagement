@@ -11,6 +11,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Button from "./components/Button";
 import Login from "./components/Login";
 import Notifications from "./components/Notifications";
+import Modal from "./components/Modal";
+import { updateTaskInDatabase } from "./components/updateTaskInDatabase"; // Adjust the import path accordingly
+
 //firebase
 import { auth } from "./firebase/config";
 import { getDatabase, ref, child, get, remove, set } from "firebase/database";
@@ -22,6 +25,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 //firebase rt database
 import { writeUserData } from "./firebase/config";
+import { onSnapshot } from "firebase/firestore";
 
 function App() {
   //user states
@@ -44,16 +48,48 @@ function App() {
 
   //this is the template for tasks and when the forms is inserted this changes the attributes to whatever the input was
 
-  const [task, setTask] = useState([
-    //display empty as a default
-  ]);
+  const [task, setTask] = useState([]);
 
+  // useEffect(() => {
+  //   const database = getDatabase();
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       setUserCredentials(user);
+  //       console.log("User credentials set:", user); // Add this line to check user credentials
+  //       const userTasksRef = ref(database, `tasks/${user.uid}`);
+  //       try {
+  //         const snapshot = await get(userTasksRef);
+  //         if (snapshot.exists()) {
+  //           const userTasks = Object.values(snapshot.val());
+  //           setTask(userTasks);
+  //           localStorage.setItem("userTasks", JSON.stringify(userTasks));
+  //         } else {
+  //           setTask([]);
+  //           localStorage.removeItem("userTasks");
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user tasks:", error.message);
+  //       }
+  //     } else {
+  //       setUserCredentials([]);
+  //       setTask([]);
+  //       localStorage.removeItem("userTasks");
+  //     }
+  //   });
+
+  //   const storedTasks = JSON.parse(localStorage.getItem("userTasks"));
+  //   if (storedTasks !== null) {
+  //     setTask(storedTasks);
+  //   }
+
+  //   return () => unsubscribe();
+  // }, []);
   useEffect(() => {
     const database = getDatabase();
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserCredentials(user);
-        console.log("User credentials set:", user); // Add this line to check user credentials
+        console.log("User credentials set:", user);
         const userTasksRef = ref(database, `tasks/${user.uid}`);
         try {
           const snapshot = await get(userTasksRef);
@@ -83,44 +119,63 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    // Check if description and subject are provided
+
     if (!description || !subject) {
-      setShowModal(true); // Show modal for missing fields
+      setShowModal(true);
     } else {
-      // Scroll to task section
       document
         .getElementById("taskSection")
         .scrollIntoView({ behavior: "smooth" });
 
-      // Construct new task object
-      const newTask = {
-        id: new Date().getTime().toString(),
-        description: description,
-        subject: subject,
-        date: formatDate(date),
-        color: color,
-        link: link,
-      };
-
-      // Check if it's a new task or an edited task
+      let newTask;
       if (toggleSubmit) {
-        // Add new task to the list
+        newTask = {
+          id: task.length === 0 ? 1 : Math.max(...task.map((t) => t.id)) + 1,
+          description: description,
+          subject: subject,
+          date: formatDate(date),
+          color: color,
+          link: link,
+        };
         setTask([newTask, ...task]);
       } else {
-        // Update existing task
-        setTask(
-          task.map((item) =>
-            item.id === isEditTask ? { ...item, ...newTask } : item
-          )
+        newTask = {
+          id: isEditTask,
+          description: description,
+          subject: subject,
+          date: formatDate(date),
+          color: color,
+          link: link,
+        };
+        const updatedTaskList = task.map((item) =>
+          item.id === isEditTask ? { ...item, ...newTask } : item
         );
-        setToggleSubmit(true); // Reset toggleSubmit to true after editing
-        setIsEditTask(null); // Reset isEditTask to null after editing
+        setTask(updatedTaskList);
+        setToggleSubmit(true);
+        setIsEditTask(null);
+        await updateTaskInDatabase(newTask);
       }
 
-      // Clear input fields
       clearInputFields();
+
+      if (userCredentials) {
+        const database = getDatabase();
+        const userTasksRef = ref(
+          database,
+          `users/${userCredentials.uid}/tasks/${newTask.id}`
+        );
+
+        try {
+          await set(userTasksRef, newTask);
+          console.log("Task added to the database successfully.");
+        } catch (error) {
+          console.error("Error adding task to the database:", error.message);
+        }
+      } else {
+        console.error("User credentials not available.");
+      }
     }
   }
 
@@ -248,7 +303,9 @@ function App() {
                 createUserWithEmailAndPassword={createUserWithEmailAndPassword}
                 sendPasswordResetEmail={sendPasswordResetEmail}
                 signInWithEmailAndPassword={signInWithEmailAndPassword}
-                getDatabase={getDatabase}
+                // getDatabase={getDatabase}
+                // set={set}
+                // ref={ref}
               />
             </div>
           }
@@ -332,51 +389,14 @@ function App() {
                   link={link}
                   setLink={setLink}
                 />
+                {/*Show the modal whenever the fields are empty*/}
                 {showModal && (
-                  <div
-                    className="modal"
-                    style={{
-                      display: "block",
-                      position: "fixed",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      zIndex: 999,
-                      backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    }}
-                  >
-                    <div className="modal-dialog">
-                      <div
-                        className="modal-content"
-                        style={{
-                          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-                          color: lightMode ? "#313638" : "white",
-                        }}
-                      >
-                        <div className="modal-header">
-                          <h5 className="modal-title">Error</h5>
-                          <button
-                            type="button"
-                            className="btn-close"
-                            onClick={() => setShowModal(false)}
-                          ></button>
-                        </div>
-                        <div className="modal-body">
-                          <p>Please input all fields.</p>
-                        </div>
-                        <div className="modal-footer">
-                          <button
-                            type="button"
-                            className="btn btn-danger text-white"
-                            onClick={() => setShowModal(false)}
-                          >
-                            Close
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <Modal
+                    lightMode={lightMode}
+                    modalTitle="Error"
+                    modalDescription="Please input all feilds"
+                    setShowModal={setShowModal}
+                  />
                 )}
               </div>
               <hr />

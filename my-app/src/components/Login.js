@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
+import { getDatabase, ref, set } from "firebase/database";
+import { app } from "../firebase/config";
 
 export default function Login({
   logInType,
@@ -15,11 +17,9 @@ export default function Login({
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   lightMode,
-  getDatabase,
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState(""); // Add username state
 
   // useEffect(() => {
   //   // Reset input fields when logInType changes
@@ -42,22 +42,26 @@ export default function Login({
     setPassword("");
   }
 
-  //add the state of users
-  // function handleCredentials(e) {
-  //   setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-  //   // console.log(userCredentials);
-  // }
-
   // function handleSignUp(e) {
   //   e.preventDefault();
   //   setError("");
+  //   const auth = getAuth();
+  //   const db = getDatabase();
+
   //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then((userCredential) => {
-  //       // Successfully signed up
+  //     .then(async (userCredential) => {
   //       const user = userCredential.user;
-  //       setUserCredentials(user); // Update userCredentials with the signed up user
+  //       console.log("User after updating profile:", user); // Log the user object after updating profile
+
+  //       // Create a user profile document in Firestore
+  //       await addDoc(collection(db, "users"), {
+  //         uid: user.uid,
+  //         email: email,
+  //       });
+
+  //       setUserCredentials(user);
   //       console.log("Successful signup: " + user.email);
-  //       navigate("/"); // Redirect to home after successful signup
+  //       navigate("/");
   //     })
   //     .catch((error) => {
   //       setError(error.message);
@@ -67,20 +71,24 @@ export default function Login({
   function handleSignUp(e) {
     e.preventDefault();
     setError("");
-    const auth = getAuth();
-    const db = getDatabase();
+    const auth = getAuth(); // Initialize Firebase Authentication
+    const db = getDatabase(app); // Assuming you have initialized your Realtime Database
 
+    // Create user with email and password
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
-        console.log("User after updating profile:", user); // Log the user object after updating profile
 
-        // Create a user profile document in Firestore
-        await addDoc(collection(db, "users"), {
-          uid: user.uid,
+        // Log the user object after updating profile
+        console.log("User after updating profile:", user);
+
+        // Create a user profile entry in Realtime Database
+        const usersRef = ref(db, "users/" + user.uid);
+        await set(usersRef, {
           email: email,
         });
 
+        // Update userCredentials state
         setUserCredentials(user);
         console.log("Successful signup: " + user.email);
         navigate("/");
@@ -93,6 +101,9 @@ export default function Login({
   function handleLogIn(e) {
     e.preventDefault();
     setError("");
+    const auth = getAuth(); // Initialize Firebase Authentication
+    const db = getDatabase(app); // Assuming you have initialized your Realtime Database
+
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Successfully signed in

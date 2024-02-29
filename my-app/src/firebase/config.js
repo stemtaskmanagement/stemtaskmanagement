@@ -28,18 +28,18 @@ const firebaseConfig = {
 
 // Initialize Firebase
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-export function writeUserData(user, id, subject, color, description, date) {
-  const db = getDatabase(app);
-  const reference = ref(db, `users/${user.uid}/task${id}`);
-  set(reference, {
-    taskSubject: subject,
-    taskColor: color,
-    taskDesc: description,
-    taskDate: date,
-  });
-}
+// export function writeUserData(user, id, subject, color, description, date) {
+//   const db = getDatabase(app);
+//   const reference = ref(db, `users/${user.uid}/task${id}`);
+//   set(reference, {
+//     taskSubject: subject,
+//     taskColor: color,
+//     taskDesc: description,
+//     taskDate: date,
+//   });
+// }
 
 // learn how to database
