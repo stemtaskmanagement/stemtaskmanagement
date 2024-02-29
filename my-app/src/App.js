@@ -260,9 +260,8 @@ function App() {
                 createUserWithEmailAndPassword={createUserWithEmailAndPassword}
                 sendPasswordResetEmail={sendPasswordResetEmail}
                 signInWithEmailAndPassword={signInWithEmailAndPassword}
-                // getDatabase={getDatabase}
-                // set={set}
-                // ref={ref}
+                lightMode={lightMode}
+                onClick={setTheme}
               />
             </div>
           }
