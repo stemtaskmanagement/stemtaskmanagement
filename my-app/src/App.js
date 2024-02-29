@@ -350,7 +350,7 @@ function App() {
                   <Modal
                     lightMode={lightMode}
                     modalTitle="Error"
-                    modalDescription="Please input all feilds"
+                    modalDescription="Please input all fields"
                     setShowModal={setShowModal}
                   />
                 )}
