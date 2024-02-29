@@ -204,7 +204,10 @@ function App() {
     if (userCredentials) {
       // Remove the task from the database
       const database = getDatabase();
-      const userTasksRef = ref(database, `tasks/${userCredentials.uid}/${id}`);
+      const userTasksRef = ref(
+        database,
+        `users/${userCredentials.uid}/tasks/${id}`
+      );
       remove(userTasksRef)
         .then(() => {
           console.log("Task removed from the database successfully.");

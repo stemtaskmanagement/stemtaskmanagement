@@ -15,7 +15,7 @@ export default function Header() {
         STEMTask
       </h1>
       <h3 style={{ paddingBottom: "25px" }}>
-        A Task Management Web App for Grade 12 STEM Students
+        A Task Management Web App for Grade 11 STEM Students
       </h3>
       {/* <hr />
       <p>
