@@ -12,35 +12,7 @@ export default function Tasks({
   lightMode,
   link,
 }) {
-  // const renderFileContent = () => {
-
-  //   if (file) {
-
-  //     if (
-  //       file.endsWith(".png") ||
-  //       file.endsWith(".jpg") ||
-  //       file.endsWith(".jpeg")
-  //     ) {
-  //       return <img src={file} alt="File" width="100%" />;
-  //     } else if (file.endsWith(".pdf")) {
-  //       return (
-  //         <embed
-  //           src={file}
-  //           type="application/pdf"
-  //           width="100%"
-  //           height="600px"
-  //         />
-  //       );
-  //     } else {
-  //       // You can handle other file types here
-  //       return <p>Unsupported file type</p>;
-  //     }
-  //   } else {
-  //     return null; // No file to display
-  //   }
-  // };
-
-  return (
+    return (
     <div
       className="card shadow text-center"
       style={{
@@ -54,13 +26,12 @@ export default function Tasks({
           backgroundColor: color,
           color: "white",
           borderRadius: "7px",
-          height: "60px",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
         {" "}
-        <h6>{subject}</h6>
+        <h6 id="cardSubject">{subject}</h6>
       </div>
       <div className="card-body">
         <h5 className="card-title">

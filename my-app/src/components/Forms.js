@@ -18,14 +18,15 @@ export default function Forms({
 }) {
   //stores the list of subjects
   const subjects = [
-    "General Physics 2",
-    "General Biology 2",
+    "General Chemistry 2 (GenChem 2)",
+    "Basic Calculus (BasCal)",
+    "Practical Research 1 (PR1)",
     "Disaster Readiness and Risk Reduction (DRRR)",
-    "Inquiries, Investigation and Immersion (III)",
-    "Capstone Research",
-    "Health Optimizing Physical Education (HOPE 4)",
-    "Entrepreneurship",
-    "Contemporary Philippine Arts from the Regions (CPAR)",
+    "Statistics and Probability (Stats and Prob)",
+    "Health Optimizing Physical Education (HOPE 2)",
+    "Pagbasa at Pagsusuri sa Iba't ibang Teksto Tungo sa Pananaliksik (PPIITTP)",
+    "Reading and Writing Skills (RWS)",
+    "21st Century Literature from the Philippines and the World (21st CL)",
   ];
 
   //
@@ -56,8 +57,13 @@ export default function Forms({
               onChange={(e) => setSubject(e.target.value)}
             >
               {/* default select subject cannot be taken as a value when edited*/}
-              {!subject && <option value //selected
-              >select subject</option>}
+              {!subject && (
+                <option
+                  value //selected
+                >
+                  select subject
+                </option>
+              )}
               {subjects.map((chosenSubject, index) => {
                 return <option key={index}>{chosenSubject}</option>;
               })}

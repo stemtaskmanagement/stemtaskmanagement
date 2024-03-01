@@ -326,7 +326,7 @@ function App() {
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
-                  className="text-center"
+                  className="text-center animate__animated animate__flipInX"
                 >
                   You can create Tasks:
                 </h1>
@@ -368,7 +368,7 @@ function App() {
                       fontWeight: "bold",
                       paddingBottom: "40px",
                     }}
-                    className="container text-center"
+                    className="container text-center animate__animated animate__flipInX"
                   >
                     Manage your own workload:{" "}
                   </h1>
