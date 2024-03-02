@@ -5,6 +5,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../firebase/config";
 import Button from "./Button";
+import Modal from "./Modal";
 
 export default function Login({
   logInType,
@@ -22,6 +23,108 @@ export default function Login({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const termsAndConditions = (
+    <div>
+      <h1>Terms and Conditions for STEMTASK Task Management Web App</h1>
+      <p>
+        Welcome, <strong>{userCredentials.email}</strong> to STEMTASK! Before
+        you start using our task management web app, please read these Terms and
+        Conditions carefully. By accessing or using STEMTASK, you agree to be
+        bound by these terms. If you do not agree with any part of these terms,
+        you may not access or use our web app.
+      </p>
+      <ol>
+        <li>
+          <p>
+            By accessing or using STEMTASK, including but not limited to
+            browsing our website, creating an account, or using any features
+            provided by our web app, you agree to these Terms and Conditions.
+          </p>
+        </li>
+        <li>
+          <p>
+            These Terms and Conditions apply to all users of STEMTASK, including
+            grade 11 STEM students and any other individuals or entities
+            accessing or using our web app.
+          </p>
+        </li>
+        <li>
+          <p>
+            Users must provide accurate and complete information when creating
+            an account on STEMTASK. It is the user's responsibility to maintain
+            the security of their account credentials and to promptly notify us
+            of any unauthorized use of their account.
+          </p>
+        </li>
+        <li>
+          <p>
+            Users are solely responsible for the content they create, upload, or
+            share on STEMTASK. Users must not upload or share any content that
+            violates the rights of others, including copyright, trademark,
+            privacy, or publicity rights.
+          </p>
+        </li>
+        <li>
+          <p>
+            Users must not engage in any conduct that violates these Terms and
+            Conditions or applicable laws and regulations while using STEMTASK.
+            Prohibited conduct includes, but is not limited to:
+          </p>
+          <ul>
+            <li>
+              {" "}
+              Violating the rights of others, including intellectual property
+              rights.
+            </li>
+            <li>
+              Uploading or sharing any content that is unlawful, defamatory,
+              obscene, or otherwise objectionable.
+            </li>
+            <li>
+              Interfering with or disrupting the operation of STEMTASK or its
+              servers.
+            </li>
+            <li>
+              Accessing or attempting to access accounts, data, or systems
+              without authorization.
+            </li>
+            <li>
+              Engaging in any activity that could harm, damage, or impair
+              STEMTASK or its users.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <p>
+            We reserve the right to terminate or suspend access to STEMTASK at
+            any time and for any reason without prior notice. In case of
+            termination, these Terms and Conditions will continue to apply to
+            any previous use of our web app.
+          </p>
+        </li>
+        <li>
+          <p>
+            We may update or modify these Terms and Conditions from time to time
+            without prior notice. Users are encouraged to review these terms
+            periodically for any changes. Continued use of STEMTASK after any
+            modifications indicates acceptance of the updated terms.
+          </p>
+        </li>
+        <li>
+          <p>
+            If you have any questions or concerns about these Terms and
+            Conditions, please contact us at stemtaskmanagement@gmail.com.
+          </p>
+        </li>
+      </ol>
+      <p>
+        By accessing or using STEMTASK, you acknowledge that you have read,
+        understood, and agreed to these Terms and Conditions. Thank you for
+        using our task management web app!
+      </p>
+    </div>
+  );
 
   // useEffect(() => {
   //   // Reset input fields when logInType changes
@@ -44,33 +147,8 @@ export default function Login({
     setPassword("");
   }
 
-  // function handleSignUp(e) {
-  //   e.preventDefault();
-  //   setError("");
-  //   const auth = getAuth();
-  //   const db = getDatabase();
-
-  //   createUserWithEmailAndPassword(auth, email, password)
-  //     .then(async (userCredential) => {
-  //       const user = userCredential.user;
-  //       console.log("User after updating profile:", user); // Log the user object after updating profile
-
-  //       // Create a user profile document in Firestore
-  //       await addDoc(collection(db, "users"), {
-  //         uid: user.uid,
-  //         email: email,
-  //       });
-
-  //       setUserCredentials(user);
-  //       console.log("Successful signup: " + user.email);
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       setError(error.message);
-  //     });
-  // }
-
   function handleSignUp(e) {
+    setShowModal(true);
     e.preventDefault();
     setError("");
     const auth = getAuth(); // Initialize Firebase Authentication
@@ -93,7 +171,6 @@ export default function Login({
         // Update userCredentials state
         setUserCredentials(user);
         console.log("Successful signup: " + user.email);
-        navigate("/");
       })
       .catch((error) => {
         setError(error.message);
@@ -187,6 +264,17 @@ export default function Login({
           paddingBottom: "200px",
         }}
       >
+        {showModal && (
+          <Modal
+            lightMode={lightMode}
+            modalTitle="Terms and Conditions"
+            modalDescription={termsAndConditions}
+            setShowModal={setShowModal}
+            text="I agree with the terms and conditions."
+            color="btn-success"
+            navigation="/"
+          />
+        )}
         <h3>Welcome to</h3>
         <h1
           style={{ fontSize: "75px", fontWeight: "bold" }}
@@ -221,19 +309,7 @@ export default function Login({
               We'll never share your email with anyone else.
             </div>
           </div>
-          {/* <div className="mb-3">
-          <label htmlFor="exampleInputUsername" className="form-label">
-            Username
-          </label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            className="form-control"
-            id="exampleInputUsername"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div> */}
+
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
               Password

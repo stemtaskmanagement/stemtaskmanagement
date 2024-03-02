@@ -34,7 +34,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
               }}
             >
               {userCredentials == "" ? (
-                <li>
+                <li style={{ marginRight: "15px" }}>
                   <a
                     className="nav-link"
                     href="/login"
@@ -44,7 +44,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               ) : (
-                <li>
+                <li style={{ marginRight: "15px" }}>
                   <a
                     className="nav-link"
                     style={{ color: lightMode ? "#313638" : "white" }}
@@ -54,7 +54,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               )}
-              <li style={{ marginRight: "15px" }}>
+              {/* <li style={{ marginRight: "15px" }}>
                 <a
                   className="nav-link"
                   href="/about"
@@ -62,7 +62,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                 >
                   About Us
                 </a>
-              </li>
+              </li> */}
               <li>
                 <Button
                   icon={

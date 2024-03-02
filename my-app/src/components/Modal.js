@@ -3,6 +3,9 @@ export default function Modal({
   modalTitle,
   modalDescription,
   setShowModal,
+  text,
+  color,
+  navigation,
 }) {
   return (
     <div
@@ -28,11 +31,11 @@ export default function Modal({
         >
           <div className="modal-header">
             <h5 className="modal-title">{modalTitle}</h5>
-            <button
+            {/* <button
               type="button"
               className="btn-close"
               onClick={() => setShowModal(false)}
-            ></button>
+            ></button> */}
           </div>
           <div className="modal-body">
             <p>{modalDescription}</p>
@@ -40,10 +43,19 @@ export default function Modal({
           <div className="modal-footer">
             <button
               type="button"
-              className="btn btn-danger text-white"
+              className={`btn ${color ? color : "btn-danger"} text-white`}
               onClick={() => setShowModal(false)}
             >
-              Close
+              {text ? (
+                <a
+                  href={navigation}
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {text}
+                </a>
+              ) : (
+                "Close"
+              )}
             </button>
           </div>
         </div>

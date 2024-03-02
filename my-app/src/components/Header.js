@@ -10,7 +10,7 @@ export default function Header() {
       />
       <h1
         style={{ fontSize: "75px", fontWeight: "bold" }}
-        className="text-primary animate__animated animate__flipInX"
+        className="text-primary wow animate__animated animate__fadeIn"
       >
         STEMTask
       </h1>
