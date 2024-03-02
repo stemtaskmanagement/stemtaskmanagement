@@ -38,7 +38,9 @@ export default function Modal({
             ></button> */}
           </div>
           <div className="modal-body">
-            <p>{modalDescription}</p>
+            <p style={{ padding: "20px" }} id="Terms">
+              {modalDescription}
+            </p>
           </div>
           <div className="modal-footer">
             <button

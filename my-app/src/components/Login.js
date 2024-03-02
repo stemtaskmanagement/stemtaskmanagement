@@ -24,6 +24,7 @@ export default function Login({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const termsAndConditions = (
     <div>
       <h1>Terms and Conditions for STEMTASK Task Management Web App</h1>
@@ -196,6 +197,11 @@ export default function Login({
       });
   }
 
+  // Function to toggle password visibility
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
+
   //handles the password reset
   function handlePasswordReset() {
     const email = prompt("Please enter your email");
@@ -316,7 +322,7 @@ export default function Login({
             </label>
             <input
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               className="form-control"
               id="exampleInputPassword1"
@@ -324,11 +330,19 @@ export default function Login({
                 setPassword(e.target.value);
               }}
             />
+            <button
+              // className="btn btn-outline-secondary"
+              type="button"
+              onClick={() => togglePasswordVisibility()} // Toggle password visibility on button click
+            >
+              {showPassword ? "Hide" : "Show"}{" "}
+              {/* Change button label based on password visibility */}
+            </button>
           </div>
           {/*submit the forms */}
           {logInType === "login" ? (
             <button
-              className="btn-primary"
+              className="btn btn-primary"
               onClick={(e) => {
                 handleLogIn(e);
               }}
@@ -338,7 +352,7 @@ export default function Login({
             </button>
           ) : (
             <button
-              className="btn-primary"
+              className="btn btn-primary"
               onClick={(e) => {
                 handleSignUp(e);
               }}
@@ -355,11 +369,13 @@ export default function Login({
         </form>
         {/*change the form type */}
         {logInType === "login" ? (
-          <button onClick={changeToSignUp}>Sign Up</button>
+          <button onClick={changeToSignUp}>Create an Account</button>
         ) : (
           <button onClick={changeToLogIn}>Log In</button>
         )}
-        <button onClick={handlePasswordReset}>Forgot Password?</button>
+        {logInType == "login" && (
+          <button onClick={handlePasswordReset}>Forgot Password?</button>
+        )}
       </div>
     </div>
   );

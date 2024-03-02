@@ -344,6 +344,7 @@ function App() {
                   lightMode={lightMode}
                   link={link}
                   setLink={setLink}
+                  userCredentials={userCredentials}
                 />
                 {/*Show the modal whenever the fields are empty*/}
                 {showModal && (

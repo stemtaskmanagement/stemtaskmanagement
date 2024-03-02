@@ -47,6 +47,11 @@ code {
   height: 200px;
   overflow-y: scroll;
 }
+/*scrollable terms and conditions*/
+#Terms {
+  height: 500px;
+    overflow-y: scroll;
+}
 /*scrollable description*/
 #cardSubject {
   height: 50px;

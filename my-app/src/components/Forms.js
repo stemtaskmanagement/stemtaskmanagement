@@ -1,5 +1,6 @@
 import Button from "./Button";
 import { useState } from "react";
+import { app } from "../firebase/config";
 
 export default function Forms({
   subject,
@@ -15,6 +16,7 @@ export default function Forms({
   lightMode,
   link,
   setLink,
+  userCredentials,
 }) {
   //stores the list of subjects
   const subjects = [
