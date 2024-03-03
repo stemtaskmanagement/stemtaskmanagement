@@ -236,6 +236,7 @@ function App() {
                     userCredentials={userCredentials}
                     auth={auth}
                     showModal={showModal}
+                    task={task}
                   />
                 </div>
               </div>

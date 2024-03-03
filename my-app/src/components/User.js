@@ -4,7 +4,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import { set } from "firebase/database";
 
-export default function User({ userCredentials, auth, lightMode }) {
+export default function User({ userCredentials, auth, lightMode, task }) {
   const [showModal, setShowModal] = useState(false);
 
   const emptyMessage = "Please log in to view this content";
@@ -38,7 +38,7 @@ export default function User({ userCredentials, auth, lightMode }) {
         User Email:{" "}
         {userCredentials == "" ? emptyMessage : userCredentials.email}
       </h3>
-      {console.log("userCredentials:" + userCredentials)}
+      <h3>Number of Task: {task.length}</h3>
       {userCredentials == "" ? (
         <Button
           onClick={handleSignOut}
