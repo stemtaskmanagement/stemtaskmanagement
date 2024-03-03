@@ -1,3 +1,5 @@
+// Import the sendEmailNotification function
+import { sendNotification } from "./components/sendNotification";
 import Navbar from "./components/Navbar";
 import User from "./components/User";
 import Header from "./components/Header";
@@ -73,6 +75,55 @@ function App() {
 
     return () => unsubscribe();
   }, []);
+
+  // useEffect(() => {
+  //   const database = getDatabase();
+  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
+  //     if (user) {
+  //       setUserCredentials(user);
+  //       const userTasksRef = ref(database, `users/${user.uid}/tasks`);
+  //       try {
+  //         const snapshot = await get(userTasksRef);
+  //         if (snapshot.exists()) {
+  //           const userTasks = Object.values(snapshot.val());
+  //           setTask(userTasks);
+  //         } else {
+  //           setTask([]);
+  //         }
+  //       } catch (error) {
+  //         console.error("Error fetching user tasks:", error.message);
+  //       }
+  //     } else {
+  //       setUserCredentials([]);
+  //       setTask([]);
+  //     }
+  //   });
+
+  //   return () => unsubscribe();
+  // }, []);
+
+  // // Function to handle sending email notification
+  // const sendEmailNotification = (task) => {
+  //   const dueDate = new Date(task.date);
+  //   const currentDate = new Date();
+
+  //   // Check if the task is due
+  //   if (dueDate <= currentDate) {
+  //     const subject = "Task Reminder";
+  //     const body = `Hi there, ${userCredentials.email}!\n\nJust a reminder that your task on "${task.subject}" is due today.\n\nTask Subject: ${task.subject}\n\nTask Description: ${task.description}\n\nTask Deadline: ${task.date}\n\nRegards,\nThe STEMTask Team`;
+
+  //     // Generate a mailto link with pre-filled subject and body
+  //     const mailtoLink = `mailto:${
+  //       userCredentials.email
+  //     }?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+  //       body
+  //     )}`;
+
+  //     // Open the default email client with the pre-filled email
+  //     window.open(mailtoLink);
+  //   }
+  // };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -209,6 +260,18 @@ function App() {
     }
   }, []);
 
+  // Function to send email notification when task is due
+  function sendEmailNotification() {
+    const currentDate = new Date();
+    const dueDate = new Date(task.date);
+
+    if (dueDate <= currentDate) {
+      sendNotification(task, userCredentials); // Call sendEmailNotification
+    }
+  }
+
+  sendEmailNotification({ task, userCredentials });
+
   return (
     <Router>
       <Routes>
@@ -264,34 +327,6 @@ function App() {
                 lightMode={lightMode}
                 onClick={setTheme}
               />
-            </div>
-          }
-        />
-        {/* NOTIFICATION PAGE*/}
-        <Route
-          path="/notifications"
-          element={
-            <div
-              className=""
-              style={{
-                fontSmooth: "always",
-                overflow: "hidden",
-                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
-                color: lightMode ? "#28282B" : "#EEEEEE",
-              }}
-            >
-              <Navbar
-                onClick={setTheme}
-                lightMode={lightMode}
-                userCredentials={userCredentials}
-              />
-              <div className="section container">
-                <div style={{ paddingBottom: "300px" }}>
-                  <Notifications />
-                </div>
-              </div>
-
-              <Footer lightMode={lightMode} />
             </div>
           }
         />

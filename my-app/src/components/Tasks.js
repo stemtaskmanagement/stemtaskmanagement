@@ -11,7 +11,10 @@ export default function Tasks({
   color,
   lightMode,
   link,
+  // sendEmailNotification,
 }) {
+  // sendEmailNotification({ id, subject, date, description });
+
   return (
     <div
       className="cardTask shadow"

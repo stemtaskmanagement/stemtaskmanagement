@@ -10,3 +10,5 @@ Duty:
 -add the token for messenger for communication(NEGLECTED)
 -add a separate component like Bookmark for storing resources links of their study (NEGLECTED)
 -add a user notif when task is due (ONGOING)
+
+
