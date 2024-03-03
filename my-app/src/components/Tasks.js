@@ -57,7 +57,7 @@ export default function Tasks({
           {description}
         </p>
       </div>
-      <div className="row text-center">
+      <div className="row text-center p-2">
         <div className="col" style={{ marginLeft: "10px" }}>
           <Button
             icon={<i className="fa-solid fa-check"></i>}

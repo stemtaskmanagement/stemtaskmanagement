@@ -35,7 +35,7 @@ code {
   margin: 0 auto;
   /* Center the container */
   padding: 20px;
-  height: 500px;
+  max-height: 550px;
 }
 
 .card {
@@ -54,7 +54,7 @@ code {
 
 /*scrollable description*/
 #cardDescription {
-  max-height: 300px;
+  height: 300px;
   overflow-y: auto;
 }
 /*scrollable terms and conditions*/
