@@ -263,9 +263,10 @@ export default function Login({
       <div
         className="text-center"
         style={{
-          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-          border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-          color: lightMode ? "#313638" : "#F9F6EE",
+          fontSmooth: "always",
+          overflow: "hidden",
+          backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+          color: lightMode ? "#28282B" : "#EEEEEE",
           paddingTop: "100px",
           paddingBottom: "200px",
         }}
@@ -292,7 +293,7 @@ export default function Login({
         <form
           className="card"
           style={{
-            backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
             color: lightMode ? "#313638" : "white",
           }}
         >
@@ -311,8 +312,17 @@ export default function Login({
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
+              style={{
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#313638" : "#F9F6EE",
+                border: lightMode ? "2px solid #e0ddd5" : "2px solid #313638",
+              }}
             />
-            <div id="emailHelp" className="form-text">
+            <div
+              id="emailHelp"
+              className="form-text"
+              style={{ color: lightMode ? "#313638" : "#F9F6EE" }}
+            >
               We'll never share your email with anyone else.
             </div>
           </div>
@@ -329,6 +339,11 @@ export default function Login({
               id="exampleInputPassword1"
               onChange={(e) => {
                 setPassword(e.target.value);
+              }}
+              style={{
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#313638" : "#F9F6EE",
+                border: lightMode ? "2px solid #e0ddd5" : "2px solid #313638",
               }}
             />
             <button

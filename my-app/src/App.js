@@ -375,7 +375,7 @@ function App() {
                   </h1>
                   {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
                   <div
-                    className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-1"
+                    className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-1"
                     style={{ overflow: "hidden" }}
                   >
                     {" "}
@@ -397,13 +397,16 @@ function App() {
                         );
                       })
                     ) : (
-                      <h3 className="text-center">
-                        Congrats! You currently have no task <br />
-                        <img
-                          src={require("./components/assets/notask.gif")}
-                          style={{ maxWidth: "150px" }}
-                        />
-                      </h3>
+                      <div className="container d-flex justify-content-center align-items-center">
+                        <div className="text-center">
+                          <h3>Congrats! You currently have no tasks</h3>
+                          <img
+                            src={require("./components/assets/notask.gif")}
+                            style={{ maxWidth: "150px" }}
+                            alt="No tasks"
+                          />
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>

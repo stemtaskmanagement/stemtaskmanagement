@@ -54,6 +54,7 @@ export default function Forms({
                 backgroundColor: lightMode ? "#F9F6EE" : "#313638",
                 border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
                 color: lightMode ? "#313638" : "#F9F6EE",
+                fontFamily: "inherit", // Add this line to inherit font from parent
               }}
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
@@ -61,13 +62,25 @@ export default function Forms({
               {/* default select subject cannot be taken as a value when edited*/}
               {!subject && (
                 <option
-                  value //selected
+                  value="" //selected
+                  style={{
+                    fontFamily: "inherit", // Inherit font from parent
+                  }}
                 >
                   select subject
                 </option>
               )}
               {subjects.map((chosenSubject, index) => {
-                return <option key={index}>{chosenSubject}</option>;
+                return (
+                  <option
+                    key={index}
+                    style={{
+                      fontFamily: "inherit", // Inherit font from parent
+                    }}
+                  >
+                    {chosenSubject}
+                  </option>
+                );
               })}
             </select>
           </div>

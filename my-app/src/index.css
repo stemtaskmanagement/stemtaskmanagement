@@ -1,6 +1,6 @@
 @font-face {
   font-family: myFont;
-  src: url("./fonts/ProductSans-Regular.ttf");
+  src: url("./fonts/static/Nunito-Regular.ttf");
 }
 
 * {
@@ -29,12 +29,22 @@ code {
   /* Full width within the container */
 }
 
-.card {
-  max-width: 300px;
+.cardTask {
+  max-width: 400px;
   /* Adjust as needed */
   margin: 0 auto;
   /* Center the container */
   padding: 20px;
+  height: 500px;
+}
+
+.card {
+  max-width: 400px;
+  /* Adjust as needed */
+  margin: 0 auto;
+  /* Center the container */
+  padding: 20px;
+  max-height: 500px;
 }
 
 .custom-padding {
@@ -44,8 +54,8 @@ code {
 
 /*scrollable description*/
 #cardDescription {
-  height: 200px;
-  overflow-y: scroll;
+  max-height: 300px;
+  overflow-y: auto;
 }
 /*scrollable terms and conditions*/
 #Terms {
@@ -53,12 +63,7 @@ code {
     overflow-y: scroll;
 }
 /*scrollable description*/
-#cardSubject {
-  height: 50px;
-  /* overflow-y: scroll; */
-  padding-left: 10px;
-  padding-right: 10px;
-}
+
 .section {
   /* background-color: aqua; */
   padding-top: 130px;
@@ -76,7 +81,6 @@ code {
   text-align: center;
 }
 .masterDev {
-  color: #fff;
   animation: glow 1s ease-in-out infinite alternate;
 }
 
