@@ -314,7 +314,6 @@ function App() {
               />
               <div className="section">
                 <Header />
-                {/* <h1>Hi, {userCredentials.email}</h1> */}
               </div>
               <hr />
 
