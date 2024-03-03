@@ -34,7 +34,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
               }}
             >
               {userCredentials == "" ? (
-                <li style={{ marginRight: "15px" }}>
+                <li>
                   <a
                     className="nav-link"
                     href="/login"
@@ -44,7 +44,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               ) : (
-                <li style={{ marginRight: "15px" }}>
+                <li>
                   <a
                     className="nav-link"
                     style={{ color: lightMode ? "#313638" : "white" }}
@@ -54,15 +54,15 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               )}
-              {/* <li style={{ marginRight: "15px" }}>
+              <li style={{ marginRight: "15px" }}>
                 <a
-                  className="nav-link"
-                  href="/about"
+                  href="/#taskSection"
                   style={{ color: lightMode ? "#313638" : "white" }}
+                  className="nav-link"
                 >
-                  About Us
+                  My Task
                 </a>
-              </li> */}
+              </li>
               <li>
                 <Button
                   icon={

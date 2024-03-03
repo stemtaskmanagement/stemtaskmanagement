@@ -52,7 +52,7 @@ export default function Tasks({
             padding: "0 10px",
             // Adjust padding here
           }}
-          onClick={() => alert("success")}
+          // onClick={() => alert("success")}
         >
           {description}
         </p>
