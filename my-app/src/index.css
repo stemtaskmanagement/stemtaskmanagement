@@ -63,6 +63,9 @@ code {
     overflow-y: scroll;
 }
 /*scrollable description*/
+#cardSubject {
+  padding: 10px;
+}
 
 .section {
   /* background-color: aqua; */
