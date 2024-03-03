@@ -6,6 +6,7 @@ export default function Modal({
   text,
   color,
   navigation,
+  id
 }) {
   return (
     <div
@@ -38,7 +39,7 @@ export default function Modal({
             ></button> */}
           </div>
           <div className="modal-body">
-            <p style={{ padding: "20px" }} id="Terms">
+            <p style={{ padding: "20px" }} id={id}>
               {modalDescription}
             </p>
           </div>

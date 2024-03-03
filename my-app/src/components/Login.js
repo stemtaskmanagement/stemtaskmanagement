@@ -279,6 +279,7 @@ export default function Login({
             text="I agree with the terms and conditions."
             color="btn-success"
             navigation="/"
+            id="Terms"
           />
         )}
         <h3>Welcome to</h3>
@@ -337,6 +338,11 @@ export default function Login({
             >
               {showPassword ? "Hide" : "Show"}{" "}
               {/* Change button label based on password visibility */}
+              {showPassword ? (
+                <i class="fa-regular fa-eye-slash"></i>
+              ) : (
+                <i class="fa-regular fa-eye"></i>
+              )}
             </button>
           </div>
           {/*submit the forms */}
