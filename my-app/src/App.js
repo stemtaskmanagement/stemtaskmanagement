@@ -103,7 +103,7 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  // Function to sort tasks by priority
+  /// Function to sort tasks by priority
   const sortByPriority = () => {
     const priorityOrder = [
       "High Priority",
@@ -117,7 +117,7 @@ function App() {
         priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority)
       );
     });
-    setTask(sortedTasks);
+    setTask(sortedTasks); // Update the task state directly
   };
 
   // Function to sort tasks by due date
@@ -125,7 +125,7 @@ function App() {
     const sortedTasks = [...task].sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
-    setTask(sortedTasks);
+    setTask(sortedTasks); // Update the task state directly
   };
 
   // Function to sort tasks by subject
@@ -133,7 +133,7 @@ function App() {
     const sortedTasks = [...task].sort((a, b) => {
       return a.subject.localeCompare(b.subject);
     });
-    setTask(sortedTasks);
+    setTask(sortedTasks); // Update the task state directly
   };
 
   // async function handleSubmit(e) {
