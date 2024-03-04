@@ -297,7 +297,7 @@ export default function Login({
             color: lightMode ? "#313638" : "white",
           }}
         >
-          <h1> {logInType === "login" ? "Log In" : "Sign Up"}</h1>
+          <h1> {logInType === "login" ? "Log In" : "Create an Account"}</h1>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -390,12 +390,27 @@ export default function Login({
         </form>
         {/*change the form type */}
         {logInType === "login" ? (
-          <button onClick={changeToSignUp}>Create an Account</button>
+          <button
+            onClick={changeToSignUp}
+            className="text-white btn btn-success m-1"
+          >
+            Create an Account
+          </button>
         ) : (
-          <button onClick={changeToLogIn}>Log In</button>
+          <button
+            onClick={changeToLogIn}
+            className="text-white btn btn-success m-1"
+          >
+            Already have an Account?
+          </button>
         )}
         {logInType == "login" && (
-          <button onClick={handlePasswordReset}>Forgot Password?</button>
+          <button
+            onClick={handlePasswordReset}
+            className="text-white btn btn-danger m-1"
+          >
+            Forgot Password?
+          </button>
         )}
       </div>
     </div>
