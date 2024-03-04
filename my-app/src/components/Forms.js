@@ -17,6 +17,8 @@ export default function Forms({
   link,
   setLink,
   userCredentials,
+  priority,
+  setPriority,
 }) {
   //stores the list of subjects
   const subjects = [
@@ -29,6 +31,14 @@ export default function Forms({
     "Pagbasa at Pagsusuri sa Iba't ibang Teksto Tungo sa Pananaliksik (PPIITTP)",
     "Reading and Writing Skills (RWS)",
     "21st Century Literature from the Philippines and the World (21st CL)",
+  ];
+
+  const priorityLevels = [
+    "High Priority",
+    "Medium Priority",
+    "Low Priority",
+    "Normal Priority",
+    "Optional",
   ];
 
   // Placeholder color based on lightMode
@@ -94,7 +104,25 @@ export default function Forms({
           autoCorrect="on"
         ></textarea>
       </div>
-
+      <div className="mb-3">
+        <select
+          className="form-select"
+          aria-label="Default select example"
+          style={{
+            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+            color: lightMode ? "#313638" : "#F9F6EE",
+            fontFamily: "inherit",
+          }}
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          {!priority && <option value="">Select Priority Level</option>}
+          {priorityLevels.map((chosenPriority, index) => (
+            <option key={index}>{chosenPriority}</option>
+          ))}
+        </select>
+      </div>
       <div className="row">
         <div className="col-md-6">
           <div className="mb-3">

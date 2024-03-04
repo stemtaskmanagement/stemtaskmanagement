@@ -47,6 +47,7 @@ function App() {
   const [showList, setShowList] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [link, setLink] = useState("");
+  const [priority, setPriority] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [task, setTask] = useState([]);
 
@@ -128,7 +129,7 @@ function App() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!description || !subject) {
+    if (!description || !subject || !priority) {
       setShowModal(true);
     } else {
       document
@@ -144,6 +145,7 @@ function App() {
           date: formatDate(date),
           color: color,
           link: link,
+          priority: priority,
         };
         setTask([newTask, ...task]);
       } else {
@@ -154,6 +156,7 @@ function App() {
           date: formatDate(date),
           color: color,
           link: link,
+          priority: priority,
         };
         const updatedTaskList = task.map((item) =>
           item.id === isEditTask ? { ...item, ...newTask } : item
@@ -192,6 +195,7 @@ function App() {
     setDate("");
     setColor("#04a4b0");
     setLink("");
+    setPriority("");
   }
 
   //date formatter
@@ -241,6 +245,7 @@ function App() {
     setLink(newEditTask.link);
     setColor(newEditTask.color);
     setIsEditTask(id);
+    setPriority(newEditTask.priority);
     console.log(newEditTask);
   }
 
@@ -409,13 +414,15 @@ function App() {
                   link={link}
                   setLink={setLink}
                   userCredentials={userCredentials}
+                  priority={priority}
+                  setPriority={setPriority}
                 />
                 {/*Show the modal whenever the fields are empty*/}
                 {showModal && (
                   <Modal
                     lightMode={lightMode}
                     modalTitle="Error"
-                    modalDescription="Please input all fields"
+                    modalDescription={`Please input all necessary fields. (subject, description, and priority)`}
                     setShowModal={setShowModal}
                   />
                 )}

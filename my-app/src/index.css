@@ -134,4 +134,7 @@ code {
   transition: all 0.2s ease;
 }
 
-
+/* .navbar-nav .nav-link:hover:before {
+  visibility: visible;
+  transform: translateY(0);
+} */

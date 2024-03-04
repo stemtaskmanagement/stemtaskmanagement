@@ -11,10 +11,27 @@ export default function Tasks({
   color,
   lightMode,
   link,
+  priority,
   // sendEmailNotification,
 }) {
-  // sendEmailNotification({ id, subject, date, description });
-
+  let badgeColor;
+  switch (priority) {
+    case "High Priority":
+      badgeColor = "text-bg-danger";
+      break;
+    case "Medium Priority":
+      badgeColor = "text-bg-warning";
+      break;
+    case "Low Priority":
+      badgeColor = "text-bg-info";
+      break;
+    case "Normal Priority":
+      badgeColor = "text-bg-primary";
+      break;
+    case "Optional":
+      badgeColor = "text-bg-light";
+      break;
+  }
   return (
     <div
       className="cardTask shadow"
@@ -24,7 +41,7 @@ export default function Tasks({
       }}
     >
       <div
-        className={`card-header shadow`}
+        className={`card-header shadow position-relative`}
         style={{
           backgroundColor: color,
           color: "white",
@@ -32,30 +49,29 @@ export default function Tasks({
           justifyContent: "center",
         }}
       >
-        {" "}
         <h6
           id="cardSubject"
           style={{ fontSize: "20px" }}
           className="text-center"
         >
-          {subject}
+          {subject}{" "}
+          <span
+            className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor}`}
+            style={{ fontSize: "10px" }}
+          >
+            {priority}
+          </span>
         </h6>
       </div>
       <div className="card-body">
         <h6 className="card-title text-center">
-          {/* <i class="fa-regular fa-calendar-days"></i>:{" "} */}
           {date === "Invalid Date" ? "Undated" : "Due on " + date}
         </h6>
         <hr />
         <p
           className="card-text"
           id="cardDescription"
-          style={{
-            // textAlign: "justify",
-            padding: "0 10px",
-            // Adjust padding here
-          }}
-          // onClick={() => alert("success")}
+          style={{ padding: "0 10px" }}
         >
           {description}
         </p>
@@ -72,7 +88,7 @@ export default function Tasks({
           <div className="col" style={{ marginLeft: "10px" }}>
             <Button
               link={link}
-              icon={<i class="fa-solid fa-link"></i>}
+              icon={<i className="fa-solid fa-link"></i>}
               color="btn-success"
             />
           </div>
