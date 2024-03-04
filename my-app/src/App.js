@@ -51,6 +51,12 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [task, setTask] = useState([]);
 
+  const sortingOptions = [
+    { label: "Priority", value: "priority" },
+    { label: "Due Date", value: "dueDate" },
+    { label: "Subject", value: "subject" },
+  ];
+
   // Fetch tasks from the database when the user logs in
   useEffect(() => {
     const database = getDatabase();
@@ -126,6 +132,39 @@ function App() {
   //   }
   // };
 
+  // Function to sort tasks by priority
+  const sortByPriority = () => {
+    const priorityOrder = [
+      "High Priority",
+      "Medium Priority",
+      "Low Priority",
+      "Normal Priority",
+      "Optional",
+    ];
+    const sortedTasks = [...task].sort((a, b) => {
+      return (
+        priorityOrder.indexOf(a.priority) - priorityOrder.indexOf(b.priority)
+      );
+    });
+    setTask(sortedTasks);
+  };
+
+  // Function to sort tasks by due date
+  const sortByDueDate = () => {
+    const sortedTasks = [...task].sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
+    setTask(sortedTasks);
+  };
+
+  // Function to sort tasks by subject
+  const sortBySubject = () => {
+    const sortedTasks = [...task].sort((a, b) => {
+      return a.subject.localeCompare(b.subject);
+    });
+    setTask(sortedTasks);
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -185,6 +224,24 @@ function App() {
       } else {
         console.error("User credentials not available.");
       }
+    }
+  }
+
+  //handles the sorting choices
+  function handleSortChange(event) {
+    const selectedSort = event.target.value;
+    switch (selectedSort) {
+      case "priority":
+        sortByPriority();
+        break;
+      case "dueDate":
+        sortByDueDate();
+        break;
+      case "subject":
+        sortBySubject();
+        break;
+      default:
+        break;
     }
   }
 
@@ -444,6 +501,34 @@ function App() {
                   >
                     Manage your own workload:{" "}
                   </h1>
+                  {task.length > 0 && (
+                    <div className="p-3">
+                      <div className="mb-3 d-flex align-items-center">
+                        <span style={{ marginRight: "10px" }}>Sort by:</span>
+                        <select
+                          className="form-select"
+                          aria-label="Default select example"
+                          style={{
+                            width: "150px", // Adjust the width as needed
+                            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+                            border: lightMode
+                              ? "2px solid #F9F6EE"
+                              : "2px solid #313638",
+                            color: lightMode ? "#313638" : "#F9F6EE",
+                            fontFamily: "inherit",
+                          }}
+                          onChange={handleSortChange}
+                        >
+                          <option value="">Select</option>
+                          {sortingOptions.map((option, index) => (
+                            <option key={index} value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  )}
                   {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
                   <div
                     className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-1"
