@@ -311,7 +311,7 @@ export default function Login({
           STEMTask
         </h1>
         <form
-          className="card"
+          className="card container"
           style={{
             backgroundColor: lightMode ? "#E4E3E0" : "#313638",
             color: lightMode ? "#313638" : "white",
