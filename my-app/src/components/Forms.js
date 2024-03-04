@@ -156,7 +156,7 @@ export default function Forms({
                 margin: "10px",
                 border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
               }}
-              placeholder="yyyy-mm-dd"
+              placeholder="Enter your Deadline"
             />
           </div>
         </div>
