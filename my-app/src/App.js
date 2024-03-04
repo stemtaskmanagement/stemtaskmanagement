@@ -1,5 +1,6 @@
-// Import the sendEmailNotification function
-import { sendNotification } from "./components/sendNotification";
+// // Import the sendEmailNotification function
+// import { sendNotification } from "./components/sendNotification";
+import Intro from "./components/Intro";
 import Navbar from "./components/Navbar";
 import User from "./components/User";
 import Header from "./components/Header";
@@ -260,17 +261,17 @@ function App() {
     }
   }, []);
 
-  // Function to send email notification when task is due
-  function sendEmailNotification() {
-    const currentDate = new Date();
-    const dueDate = new Date(task.date);
+  // // Function to send email notification when task is due
+  // function sendEmailNotification() {
+  //   const currentDate = new Date();
+  //   const dueDate = new Date(task.date);
 
-    if (dueDate <= currentDate) {
-      sendNotification(task, userCredentials); // Call sendEmailNotification
-    }
-  }
+  //   if (dueDate <= currentDate) {
+  //     sendNotification(task, userCredentials); // Call sendEmailNotification
+  //   }
+  // }
 
-  sendEmailNotification({ task, userCredentials });
+  // sendEmailNotification({ task, userCredentials });
 
   return (
     <Router>
@@ -327,6 +328,34 @@ function App() {
                 lightMode={lightMode}
                 onClick={setTheme}
               />
+            </div>
+          }
+        />
+        {/* Intro PAGE*/}
+        <Route
+          path="/intro"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
+              <div className="section container">
+                <div style={{ paddingBottom: "300px" }}>
+                  <Intro />
+                </div>
+              </div>
+
+              <Footer lightMode={lightMode} />
             </div>
           }
         />

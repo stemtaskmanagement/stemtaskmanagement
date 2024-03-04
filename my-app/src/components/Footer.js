@@ -12,6 +12,9 @@ export default function Footer({ lightMode }) {
         <a href="/about">
           <p className="footerText">About the Developers</p>
         </a>
+        <a href="/intro">
+          <p className="footerText">FAQs</p>
+        </a>
         {/* <p className="footerText">
           Illustration by{" "}
           <a href="https://icons8.com/illustrations/author/N3YOxdn12Kox">

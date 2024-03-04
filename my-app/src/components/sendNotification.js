@@ -1,38 +1,38 @@
 const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.KEY);
-// export function sendNotification(task, userCredentials) {
-//   const msg = {
-//     to: userCredentials.email,
-//     from: "stemtaskmanagement@gmail.com",
-//     subject: "Task Reminder:" + task.subject + "is due today.",
-//     text:
-//       "Your task, " +
-//       task.description +
-//       ", is due on " +
-//       task.date +
-//       ". Visit STEMTask to complete your task",
-//   };
-//   sgMail
-//     .send(msg)
-//     .then(() => console.log("Email sent successfully"))
-//     .catch((error) => console.error("Error sending email:", error));
-// }
-const msg = {
-    to: "qmw9849@gmail.com",
+function sendNotification(task, userCredentials) {
+  const msg = {
+    to: userCredentials.email,
     from: "stemtaskmanagement@gmail.com",
-    subject: "Task Reminder:is due today.",
+    subject: "Task Reminder:" + task.subject + "is due today.",
     text:
       "Your task, " +
-     
+      task.description +
       ", is due on " +
-     
+      task.date +
       ". Visit STEMTask to complete your task",
   };
   sgMail
     .send(msg)
     .then(() => console.log("Email sent successfully"))
     .catch((error) => console.error("Error sending email:", error));
+}
 
+// const msg = {
+//     to: "qmw9849@gmail.com",
+//     from: "stemtaskmanagement@gmail.com",
+//     subject: "Task Reminder:is due today.",
+//     text:
+//       "Your task, " +
+
+//       ", is due on " +
+
+//       ". Visit STEMTask to complete your task",
+//   };
+//   sgMail
+//     .send(msg)
+//     .then(() => console.log("Email sent successfully"))
+//     .catch((error) => console.error("Error sending email:", error));
 
 // // Import necessary modules
 // import sgMail from "@sendgrid/mail";

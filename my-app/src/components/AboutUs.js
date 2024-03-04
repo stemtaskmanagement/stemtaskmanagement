@@ -21,13 +21,13 @@ export default function AboutUs({ lightMode }) {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
-                Wion Quintela{" "}
+                Wion M. Quintela{" "}
                 <h6 className="card-subtitle masterDev">
                   Master Developer and Lead Proponent
                 </h6>
               </h5>
 
-              <ul className="list-inline p-2">
+              {/* <ul className="list-inline p-2">
                 <li className="list-inline-item">
                   <a href="/">
                     <i className="fa-brands fa-facebook fa-2xl"></i>
@@ -41,7 +41,7 @@ export default function AboutUs({ lightMode }) {
                 <li className="list-inline-item">
                   <a href="/"></a>
                 </li>
-              </ul>
+              </ul> */}
 
               <p className="card-text">
                 <small className="text-body-secondary"></small>
@@ -70,10 +70,10 @@ export default function AboutUs({ lightMode }) {
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
-                David Charles De Guzman{" "}
+                David Charles F. De Guzman{" "}
                 <h6 className="card-subtitle">Main Editor and Documentarian</h6>
               </h5>
-              <ul className="list-inline p-2">
+              {/* <ul className="list-inline p-2">
                 <li className="list-inline-item">
                   <a href="/">
                     <i className="fa-brands fa-facebook fa-2xl"></i>
@@ -87,7 +87,7 @@ export default function AboutUs({ lightMode }) {
                 <li className="list-inline-item">
                   <a href="/"></a>
                 </li>
-              </ul>
+              </ul> */}
 
               <p className="card-text"></p>
             </div>
@@ -113,11 +113,11 @@ export default function AboutUs({ lightMode }) {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">Gabriel Eli Mañacap </h5>
+              <h5 className="card-title">Gabriel Eli B. Mañacap </h5>
               <h6 className="card-subtitle">
                 Resource Coordinator and Junior Developer
               </h6>
-              <ul className="list-inline p-2">
+              {/* <ul className="list-inline p-2">
                 <li className="list-inline-item">
                   <a href="/">
                     <i className="fa-brands fa-facebook fa-2xl"></i>
@@ -131,7 +131,7 @@ export default function AboutUs({ lightMode }) {
                 <li className="list-inline-item">
                   <a href="/"></a>
                 </li>
-              </ul>
+              </ul> */}
 
               <p className="card-text"></p>
             </div>

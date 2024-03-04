@@ -1,6 +1,17 @@
+import { useState } from "react";
 import Button from "./Button";
 
 export default function Navbar({ onClick, lightMode, userCredentials }) {
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+
+  const handleNavbarToggle = () => {
+    setIsNavbarOpen(!isNavbarOpen);
+  };
+
+  const handleNavbarItemClick = () => {
+    setIsNavbarOpen(false); // Close the navbar when an item is clicked
+  };
+
   return (
     <div>
       {/* */}
@@ -14,15 +25,14 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
           <button
             className="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+            onClick={handleNavbarToggle}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div
+            className={`collapse navbar-collapse ${isNavbarOpen ? "show" : ""}`}
+            id="navbarNav"
+          >
             <a className="navbar-brand text-primary" href="/">
               STEMTask
             </a>
@@ -33,8 +43,8 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                 display: "flex",
               }}
             >
-              {userCredentials == "" ? (
-                <li>
+              {userCredentials === "" ? (
+                <li onClick={handleNavbarItemClick}>
                   <a
                     className="nav-link"
                     href="/login"
@@ -44,7 +54,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               ) : (
-                <li>
+                <li onClick={handleNavbarItemClick}>
                   <a
                     className="nav-link"
                     style={{ color: lightMode ? "#313638" : "white" }}
@@ -54,7 +64,10 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               )}
-              <li style={{ marginRight: "15px" }}>
+              <li
+                style={{ marginRight: "15px" }}
+                onClick={handleNavbarItemClick}
+              >
                 <a
                   href="/#taskSection"
                   style={{ color: lightMode ? "#313638" : "white" }}
@@ -63,7 +76,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   My Task
                 </a>
               </li>
-              <li>
+              <li onClick={handleNavbarItemClick}>
                 <Button
                   icon={
                     lightMode ? (
