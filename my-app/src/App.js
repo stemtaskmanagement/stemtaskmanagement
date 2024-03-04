@@ -460,13 +460,13 @@ function App() {
                 lightMode={lightMode}
                 userCredentials={userCredentials}
               />
-              <div className="section">
+              <div className="section container">
                 <div
-                  style={{
-                    paddingRight: "200px",
-                    paddingLeft: "200px",
-                    paddingBottom: "100px",
-                  }}
+                // style={{
+                //   paddingRight: "200px",
+                //   paddingLeft: "200px",
+                //   paddingBottom: "100px",
+                // }}
                 >
                   <Intro />
                 </div>

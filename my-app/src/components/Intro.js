@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Intro({ lightMode }) {
   return (
-    <div className="container">
+    <div>
       <h1
         style={{ fontSize: "75px", fontWeight: "bold" }}
         className="text-primary wow animate__animated animate__fadeIn"
