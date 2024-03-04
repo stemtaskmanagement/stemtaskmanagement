@@ -22,7 +22,7 @@ export default function AboutUs({ lightMode }) {
             <div className="card-body">
               <h5 className="card-title">
                 Wion M. Quintela{" "}
-                <h6 className="card-subtitle masterDev">
+                <h6 className="card-subtitle">
                   Master Developer and Lead Proponent
                 </h6>
               </h5>
