@@ -406,7 +406,7 @@ function App() {
                 userCredentials={userCredentials}
               />
               <div className="section container">
-                <div style={{ paddingBottom: "300px" }}>
+                <div style={{ paddingBottom: "300px", paddingRight: "20p" }}>
                   <User
                     userCredentials={userCredentials}
                     auth={auth}
@@ -463,9 +463,8 @@ function App() {
               <div className="section container">
                 <div
                 // style={{
-                //   paddingRight: "200px",
-                //   paddingLeft: "200px",
-                //   paddingBottom: "100px",
+                //   paddingRight: "20px",
+                //   paddingLeft: "20px",
                 // }}
                 >
                   <Intro />

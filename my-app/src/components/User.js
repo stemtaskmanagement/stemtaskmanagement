@@ -31,9 +31,9 @@ export default function User({ userCredentials, auth, lightMode, task }) {
       )}
       <h1>User Profile</h1>
       {/* <h3>Username: {userCredentials.displayName}</h3> */}
-      <h3>
+      {/* <h3>
         User Id: {userCredentials == "" ? emptyMessage : userCredentials.uid}
-      </h3>
+      </h3> */}
       <h3>
         User Email:{" "}
         {userCredentials == "" ? emptyMessage : userCredentials.email}
