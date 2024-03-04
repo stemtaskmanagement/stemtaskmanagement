@@ -60,19 +60,19 @@ function App() {
   ];
 
   // Use the useTransition hook to animate tasks
-  const enteringTransitions = useTransition(task, {
+  // const enteringTransitions = useTransition(task, {
+  //   keys: (item) => item.id,
+  //   from: { opacity: 0, transform: "scale(0)" },
+  //   enter: { opacity: 1, transform: "scale(1)" },
+  //   leave: { opacity: 0, transform: "scale(0)" },
+  //   config: { tension: 400, friction: 25 },
+  // });
+  // Use the useTransition hook to animate tasks for sorting
+  const sortingTransitions = useTransition(task, {
     keys: (item) => item.id,
-    from: { opacity: 0, transform: "scale(0)" },
-    enter: { opacity: 1, transform: "scale(1)" },
-    leave: { opacity: 0, transform: "scale(0)" },
-    config: { tension: 400, friction: 25 },
-  });
-
-  const leavingTransitions = useTransition(task, {
-    keys: (item) => item.id,
-    from: { opacity: 1, transform: "scale(1)" },
-    enter: { opacity: 0, transform: "scale(0)" },
-    leave: { opacity: 0, transform: "scale(0)" },
+    from: { opacity: 0, transform: "scale(0.8)" }, // Start slightly smaller
+    enter: { opacity: 1, transform: "scale(1)" }, // Grow to normal size
+    leave: { opacity: 0, transform: "scale(0.8)" }, // Shrink slightly before disappearing
     config: { tension: 400, friction: 25 },
   });
 
@@ -590,7 +590,7 @@ function App() {
                       className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-1"
                       style={{ overflow: "hidden" }}
                     >
-                      {enteringTransitions((props, item) => (
+                      {sortingTransitions((props, item) => (
                         <animated.div style={props} key={item.id}>
                           <div className="col mb-5">
                             <Tasks
