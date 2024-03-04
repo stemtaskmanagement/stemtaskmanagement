@@ -29,7 +29,15 @@ export default function User({ userCredentials, auth, lightMode, task }) {
           setShowModal={setShowModal}
         />
       )}
-      <h1>User Profile</h1>
+      <h1
+        style={{
+          fontSize: "65px",
+          fontWeight: "bold",
+          paddingBottom: "40px",
+        }}
+      >
+        User Profile
+      </h1>
       {/* <h3>Username: {userCredentials.displayName}</h3> */}
       {/* <h3>
         User Id: {userCredentials == "" ? emptyMessage : userCredentials.uid}

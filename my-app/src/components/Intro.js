@@ -4,7 +4,7 @@ export default function Intro({ lightMode }) {
   return (
     <div>
       <h1
-        style={{ fontSize: "75px", fontWeight: "bold" }}
+        style={{ fontSize: "65px", fontWeight: "bold" }}
         className="text-primary wow animate__animated animate__fadeIn"
       >
         FAQs - STEMTask

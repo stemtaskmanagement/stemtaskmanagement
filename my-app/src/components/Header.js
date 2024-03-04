@@ -9,7 +9,7 @@ export default function Header() {
         draggable="false"
       />
       <h1
-        style={{ fontSize: "75px", fontWeight: "bold" }}
+        style={{ fontSize: "65px", fontWeight: "bold" }}
         className="text-primary wow animate__animated animate__fadeIn"
       >
         STEMTask
