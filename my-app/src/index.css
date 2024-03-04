@@ -88,6 +88,31 @@ code {
   animation: glow 1s ease-in-out infinite alternate;
 }
 
+.footerLink {
+  text-decoration: none;
+  font-size: 13px;
+  /* Remove underline */
+  color: inherit;
+  /* Inherit color from parent */
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+.credits {
+  text-decoration: none;
+  font-size: 9px;
+  /* Remove underline */
+  color: inherit;
+  /* Inherit color from parent */
+}
+
+.creditLink {
+  font-size: 9px;
+  text-decoration: none;
+    color: inherit;
+}
+
 @keyframes glow {
   from {
     text-shadow:

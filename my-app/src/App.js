@@ -32,7 +32,7 @@ import { onSnapshot } from "firebase/firestore";
 
 function App() {
   //user states
-  const [logInType, setIsLogInType] = useState("signup");
+  const [logInType, setIsLogInType] = useState("login");
   const [userCredentials, setUserCredentials] = useState([]);
   const [error, setError] = useState("");
   const [userData, setUserData] = useState(null);

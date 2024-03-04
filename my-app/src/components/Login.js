@@ -126,6 +126,20 @@ export default function Login({
       </p>
     </div>
   );
+  const errorMessages = {
+    "auth/user-not-found":
+      "User not found. Please check your email or sign up for an account.",
+    "auth/wrong-password": "Incorrect password. Please try again.",
+    "auth/email-already-in-use":
+      "Email is already in use. Please use a different email or log in with your existing account.",
+    "auth/weak-password":
+      "Password is too weak. Please use a stronger password.",
+    "auth/invalid-email":
+      "Invalid email format. Please enter a valid email address.",
+    "auth/network-request-failed":
+      "Network error. Please check your internet connection and try again.",
+    // Add more error messages as needed
+  };
 
   // useEffect(() => {
   //   // Reset input fields when logInType changes
@@ -149,7 +163,6 @@ export default function Login({
   }
 
   function handleSignUp(e) {
-    setShowModal(true);
     e.preventDefault();
     setError("");
     const auth = getAuth(); // Initialize Firebase Authentication
@@ -172,9 +185,13 @@ export default function Login({
         // Update userCredentials state
         setUserCredentials(user);
         console.log("Successful signup: " + user.email);
+        setShowModal(true);
       })
       .catch((error) => {
-        setError(error.message);
+        setError(
+          errorMessages[error.code] ||
+            "An error occurred. Please try again later."
+        );
       });
   }
 
@@ -193,7 +210,10 @@ export default function Login({
         console.log("successful login:" + user.email);
       })
       .catch((error) => {
-        setError(error.message);
+        setError(
+          errorMessages[error.code] ||
+            "An error occurred. Please try again later."
+        );
       });
   }
 

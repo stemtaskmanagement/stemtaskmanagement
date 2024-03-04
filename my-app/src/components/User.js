@@ -38,7 +38,9 @@ export default function User({ userCredentials, auth, lightMode, task }) {
         User Email:{" "}
         {userCredentials == "" ? emptyMessage : userCredentials.email}
       </h3>
-      <h3>Number of Task: {task.length}</h3>
+      <h3>
+        Number of Task: {userCredentials == "" ? emptyMessage : task.length}
+      </h3>
       {userCredentials == "" ? (
         <Button name="Sign in" color="btn-success" href="/login" />
       ) : (
