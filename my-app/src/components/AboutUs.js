@@ -20,16 +20,31 @@ export default function AboutUs({ lightMode }) {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title masterDev">Wion Quintela</h5>
+              <h5 className="card-title">
+                Wion M. Quintela{" "}
+                <h6 className="card-subtitle masterDev">
+                  Master Developer and Lead Proponent
+                </h6>
+              </h5>
+
+              {/* <ul className="list-inline p-2">
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-facebook fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-instagram fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/"></a>
+                </li>
+              </ul> */}
+
               <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  Last updated 3 mins ago
-                </small>
+                <small className="text-body-secondary"></small>
               </p>
             </div>
           </div>
@@ -54,17 +69,27 @@ export default function AboutUs({ lightMode }) {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">David Charles De Guzman </h5>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  Last updated 3 mins ago
-                </small>
-              </p>
+              <h5 className="card-title">
+                David Charles F. De Guzman{" "}
+                <h6 className="card-subtitle">Main Editor and Documentarian</h6>
+              </h5>
+              {/* <ul className="list-inline p-2">
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-facebook fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-instagram fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/"></a>
+                </li>
+              </ul> */}
+
+              <p className="card-text"></p>
             </div>
           </div>
         </div>
@@ -88,17 +113,27 @@ export default function AboutUs({ lightMode }) {
           </div>
           <div className="col-md-8">
             <div className="card-body">
-              <h5 className="card-title">Gabriel Eli Mañacap </h5>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">
-                <small className="text-body-secondary">
-                  Last updated 3 mins ago
-                </small>
-              </p>
+              <h5 className="card-title">Gabriel Eli B. Mañacap </h5>
+              <h6 className="card-subtitle">
+                Resource Coordinator and Junior Developer
+              </h6>
+              {/* <ul className="list-inline p-2">
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-facebook fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/">
+                    <i className="fa-brands fa-instagram fa-2xl"></i>
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a href="/"></a>
+                </li>
+              </ul> */}
+
+              <p className="card-text"></p>
             </div>
           </div>
         </div>

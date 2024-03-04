@@ -11,90 +11,95 @@ export default function Tasks({
   color,
   lightMode,
   link,
+  priority,
+  // sendEmailNotification,
 }) {
-  // const renderFileContent = () => {
-
-  //   if (file) {
-
-  //     if (
-  //       file.endsWith(".png") ||
-  //       file.endsWith(".jpg") ||
-  //       file.endsWith(".jpeg")
-  //     ) {
-  //       return <img src={file} alt="File" width="100%" />;
-  //     } else if (file.endsWith(".pdf")) {
-  //       return (
-  //         <embed
-  //           src={file}
-  //           type="application/pdf"
-  //           width="100%"
-  //           height="600px"
-  //         />
-  //       );
-  //     } else {
-  //       // You can handle other file types here
-  //       return <p>Unsupported file type</p>;
-  //     }
-  //   } else {
-  //     return null; // No file to display
-  //   }
-  // };
-
+  let badgeColor;
+  switch (priority) {
+    case "High Priority":
+      badgeColor = "text-bg-danger";
+      break;
+    case "Medium Priority":
+      badgeColor = "text-bg-warning";
+      break;
+    case "Low Priority":
+      badgeColor = "text-bg-info";
+      break;
+    case "Normal Priority":
+      badgeColor = "text-bg-primary";
+      break;
+    case "Optional":
+      badgeColor = "text-bg-light";
+      break;
+  }
   return (
     <div
-      className="card shadow text-center"
+      className="cardTask shadow"
       style={{
         backgroundColor: lightMode ? "#F9F6EE" : "#313638",
         color: lightMode ? "#313638" : "white",
       }}
     >
       <div
-        className={`card-header`}
+        className={`card-header shadow position-relative`}
         style={{
           backgroundColor: color,
           color: "white",
           borderRadius: "7px",
-          height: "60px",
           justifyContent: "center",
-          alignItems: "center",
         }}
       >
-        {" "}
-        <h6>{subject}</h6>
+        <h6
+          id="cardSubject"
+          style={{ fontSize: "20px" }}
+          className="text-center"
+        >
+          {subject}{" "}
+          <span
+            className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor}`}
+            style={{ fontSize: "10px" }}
+          >
+            {priority}
+          </span>
+        </h6>
       </div>
       <div className="card-body">
-        <h5 className="card-title">
-          Deadline: {date === "Invalid Date" ? "Undated" : date}
-        </h5>
-        <p className="card-text" id="cardDescription">
+        <h6 className="card-title text-center">
+          {date === "Invalid Date" ? "Undated" : "Due on " + date}
+        </h6>
+        <hr />
+        <p
+          className="card-text"
+          id="cardDescription"
+          style={{ padding: "0 10px" }}
+        >
           {description}
         </p>
-
-        <div className="row">
+      </div>
+      <div className="row text-center p-2">
+        <div className="col" style={{ marginLeft: "10px" }}>
+          <Button
+            icon={<i className="fa-solid fa-check"></i>}
+            onClick={onDelete}
+            color="btn-primary"
+          />
+        </div>
+        {link && (
           <div className="col" style={{ marginLeft: "10px" }}>
             <Button
-              icon={<i className="fa-solid fa-check"></i>}
-              onClick={onDelete}
-              color="btn-primary"
+              link={link}
+              icon={<i className="fa-solid fa-link"></i>}
+              color="btn-success"
             />
           </div>
-          {link && (
-            <div className="col" style={{ marginLeft: "10px" }}>
-              <Button
-                link={link}
-                icon={<i class="fa-solid fa-link"></i>}
-                color="btn-success"
-              />
-            </div>
-          )}
-          <div className="col" style={{ marginLeft: "10px" }}>
-            <Button
-              icon={<i className="fa-solid fa-pen-to-square"></i>}
-              onClick={onEdit}
-              href="#formsSection"
-              color="btn-danger"
-            />
-          </div>
+        )}
+        <div className="col" style={{ marginLeft: "10px" }}>
+          <Button
+            icon={<i className="fa-solid fa-pen-to-square"></i>}
+            onClick={onEdit}
+            href="#formsSection"
+            color="btn-danger"
+          />
         </div>
       </div>
     </div>
