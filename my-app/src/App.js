@@ -323,18 +323,6 @@ function App() {
     }
   }, []);
 
-  // // Function to send email notification when task is due
-  // function sendEmailNotification() {
-  //   const currentDate = new Date();
-  //   const dueDate = new Date(task.date);
-
-  //   if (dueDate <= currentDate) {
-  //     sendNotification(task, userCredentials); // Call sendEmailNotification
-  //   }
-  // }
-
-  // sendEmailNotification({ task, userCredentials });
-
   return (
     <Router>
       <Routes>
@@ -411,8 +399,14 @@ function App() {
                 lightMode={lightMode}
                 userCredentials={userCredentials}
               />
-              <div className="section container">
-                <div style={{ paddingBottom: "300px" }}>
+              <div className="section">
+                <div
+                  style={{
+                    paddingRight: "200px",
+                    paddingLeft: "200px",
+                    paddingBottom: "100px",
+                  }}
+                >
                   <Intro />
                 </div>
               </div>

@@ -29,7 +29,7 @@ export default function User({ userCredentials, auth, lightMode, task }) {
           setShowModal={setShowModal}
         />
       )}
-      <h1>User Account</h1>
+      <h1>User Profile</h1>
       {/* <h3>Username: {userCredentials.displayName}</h3> */}
       <h3>
         User Id: {userCredentials == "" ? emptyMessage : userCredentials.uid}
@@ -40,12 +40,7 @@ export default function User({ userCredentials, auth, lightMode, task }) {
       </h3>
       <h3>Number of Task: {task.length}</h3>
       {userCredentials == "" ? (
-        <Button
-          onClick={handleSignOut}
-          name="Sign in"
-          color="btn-success"
-          href="/login"
-        />
+        <Button name="Sign in" color="btn-success" href="/login" />
       ) : (
         <Button onClick={handleSignOut} name="Sign out" color="btn-danger" />
       )}

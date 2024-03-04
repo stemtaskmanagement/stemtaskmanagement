@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Intro({ lightMode }) {
   return (
     <div className="container">
@@ -12,7 +14,11 @@ export default function Intro({ lightMode }) {
       <p>
         STEMTask is a task management web application designed specifically for
         Grade 11 STEM students. It helps students organize, prioritize, and
-        track their academic tasks efficiently.
+        track their academic tasks efficiently. STEMTask is a project conceived
+        and developed by Group 9 of Grade 12 STEM students as part of their
+        capstone project. This innovative task management web application is the
+        culmination of their academic journey, reflecting their dedication,
+        creativity, and problem-solving skills.
       </p>
 
       <h3>2. How does STEMTask benefit Grade 11 STEM students?</h3>
@@ -26,9 +32,8 @@ export default function Intro({ lightMode }) {
       <h3>3. What features does STEMTask offer?</h3>
       <p>
         STEMTask offers a range of features tailored to the needs of Grade 11
-        STEM students, including task organization, deadline
-        setting, reminders, categorization by subject, progress tracking, and
-        collaboration options.
+        STEM students, including task organization, deadline setting,
+        categorization by subject, and progress tracking.
       </p>
 
       <h3>4. Is STEMTask easy to use?</h3>
@@ -55,14 +60,13 @@ export default function Intro({ lightMode }) {
       <h3>7. Can I customize STEMTask to fit my needs?</h3>
       <p>
         While STEMTask is specifically tailored for Grade 11 STEM students,
-        users can customize certain features such as task categories, label colors, and deadlines to suit their individual preferences and
+        users can customize certain features such as task categories, label
+        colors, and deadlines to suit their individual preferences and
         requirements.
       </p>
 
       <h3>8. Is STEMTask free to use?</h3>
-      <p>
-        STEMTask offers a free version for all of its users.
-      </p>
+      <p>STEMTask offers a free version for all of its users.</p>
 
       <h3>9. How can I get started with STEMTask?</h3>
       <p>

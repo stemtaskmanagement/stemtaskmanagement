@@ -43,7 +43,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                 display: "flex",
               }}
             >
-              {userCredentials === "" ? (
+              {userCredentials.length === 0 ? (
                 <li onClick={handleNavbarItemClick}>
                   <a
                     className="nav-link"
@@ -64,6 +64,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
                   </a>
                 </li>
               )}
+
               <li
                 style={{ marginRight: "15px" }}
                 onClick={handleNavbarItemClick}
