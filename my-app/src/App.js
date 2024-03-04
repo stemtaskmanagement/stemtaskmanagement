@@ -29,6 +29,8 @@ import { onAuthStateChanged } from "firebase/auth";
 //firebase rt database
 import { writeUserData } from "./firebase/config";
 import { onSnapshot } from "firebase/firestore";
+//reactSpring animation
+import { useTransition, animated } from "react-spring";
 
 function App() {
   //user states
@@ -57,6 +59,23 @@ function App() {
     { label: "Subject", value: "subject" },
   ];
 
+  // Use the useTransition hook to animate tasks
+  const enteringTransitions = useTransition(task, {
+    keys: (item) => item.id,
+    from: { opacity: 0, transform: "scale(0)" },
+    enter: { opacity: 1, transform: "scale(1)" },
+    leave: { opacity: 0, transform: "scale(0)" },
+    config: { tension: 400, friction: 25 },
+  });
+
+  const leavingTransitions = useTransition(task, {
+    keys: (item) => item.id,
+    from: { opacity: 1, transform: "scale(1)" },
+    enter: { opacity: 0, transform: "scale(0)" },
+    leave: { opacity: 0, transform: "scale(0)" },
+    config: { tension: 400, friction: 25 },
+  });
+
   // Fetch tasks from the database when the user logs in
   useEffect(() => {
     const database = getDatabase();
@@ -83,54 +102,6 @@ function App() {
 
     return () => unsubscribe();
   }, []);
-
-  // useEffect(() => {
-  //   const database = getDatabase();
-  //   const unsubscribe = onAuthStateChanged(auth, async (user) => {
-  //     if (user) {
-  //       setUserCredentials(user);
-  //       const userTasksRef = ref(database, `users/${user.uid}/tasks`);
-  //       try {
-  //         const snapshot = await get(userTasksRef);
-  //         if (snapshot.exists()) {
-  //           const userTasks = Object.values(snapshot.val());
-  //           setTask(userTasks);
-  //         } else {
-  //           setTask([]);
-  //         }
-  //       } catch (error) {
-  //         console.error("Error fetching user tasks:", error.message);
-  //       }
-  //     } else {
-  //       setUserCredentials([]);
-  //       setTask([]);
-  //     }
-  //   });
-
-  //   return () => unsubscribe();
-  // }, []);
-
-  // // Function to handle sending email notification
-  // const sendEmailNotification = (task) => {
-  //   const dueDate = new Date(task.date);
-  //   const currentDate = new Date();
-
-  //   // Check if the task is due
-  //   if (dueDate <= currentDate) {
-  //     const subject = "Task Reminder";
-  //     const body = `Hi there, ${userCredentials.email}!\n\nJust a reminder that your task on "${task.subject}" is due today.\n\nTask Subject: ${task.subject}\n\nTask Description: ${task.description}\n\nTask Deadline: ${task.date}\n\nRegards,\nThe STEMTask Team`;
-
-  //     // Generate a mailto link with pre-filled subject and body
-  //     const mailtoLink = `mailto:${
-  //       userCredentials.email
-  //     }?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-  //       body
-  //     )}`;
-
-  //     // Open the default email client with the pre-filled email
-  //     window.open(mailtoLink);
-  //   }
-  // };
 
   // Function to sort tasks by priority
   const sortByPriority = () => {
@@ -164,6 +135,68 @@ function App() {
     });
     setTask(sortedTasks);
   };
+
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
+
+  //   if (!description || !subject || !priority) {
+  //     setShowModal(true);
+  //   } else {
+  //     document
+  //       .getElementById("taskSection")
+  //       .scrollIntoView({ behavior: "smooth" });
+
+  //     let newTask;
+  //     if (toggleSubmit) {
+  //       newTask = {
+  //         id: task.length === 0 ? 1 : Math.max(...task.map((t) => t.id)) + 1,
+  //         description: description,
+  //         subject: subject,
+  //         date: formatDate(date),
+  //         color: color,
+  //         link: link,
+  //         priority: priority,
+  //       };
+  //       setTask([newTask, ...task]);
+  //     } else {
+  //       newTask = {
+  //         id: isEditTask,
+  //         description: description,
+  //         subject: subject,
+  //         date: formatDate(date),
+  //         color: color,
+  //         link: link,
+  //         priority: priority,
+  //       };
+  //       const updatedTaskList = task.map((item) =>
+  //         item.id === isEditTask ? { ...item, ...newTask } : item
+  //       );
+  //       setTask(updatedTaskList);
+  //       setToggleSubmit(true);
+  //       setIsEditTask(null);
+  //       await updateTaskInDatabase(newTask);
+  //     }
+
+  //     clearInputFields();
+
+  //     if (userCredentials) {
+  //       const database = getDatabase();
+  //       const userTasksRef = ref(
+  //         database,
+  //         `users/${userCredentials.uid}/tasks/${newTask.id}`
+  //       );
+
+  //       try {
+  //         await set(userTasksRef, newTask);
+  //         console.log("Task added to the database successfully.");
+  //       } catch (error) {
+  //         console.error("Error adding task to the database:", error.message);
+  //       }
+  //     } else {
+  //       console.error("User credentials not available.");
+  //     }
+  //   }
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -224,6 +257,34 @@ function App() {
       } else {
         console.error("User credentials not available.");
       }
+    }
+  }
+
+  // Function to handle deletion of tasks
+  function handleDelete(id) {
+    const updatedTasks = task.filter((item) => item.id !== id);
+    setTask(updatedTasks); // Update the state to remove the task from UI
+
+    // Check if userCredentials is available
+    if (userCredentials) {
+      // Remove the task from the database
+      const database = getDatabase();
+      const userTasksRef = ref(
+        database,
+        `users/${userCredentials.uid}/tasks/${id}`
+      );
+      remove(userTasksRef)
+        .then(() => {
+          console.log("Task removed from the database successfully.");
+        })
+        .catch((error) => {
+          console.error(
+            "Error removing task from the database:",
+            error.message
+          );
+        });
+    } else {
+      console.error("User credentials not available.");
     }
   }
 
@@ -495,7 +556,7 @@ function App() {
                   >
                     Manage your own workload:{" "}
                   </h1>
-                  {task.length > 0 && (
+                  {task.length > 1 && (
                     <div className="p-3">
                       <div className="mb-3 d-flex align-items-center">
                         <span style={{ marginRight: "10px" }}>Sort by:</span>
@@ -524,41 +585,37 @@ function App() {
                     </div>
                   )}
                   {/*dinidisplay yung mga tasks kapag sinimulan natin mag input*/}
-                  <div
-                    className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-1"
-                    style={{ overflow: "hidden" }}
-                  >
-                    {" "}
-                    {task.length > 0 ? (
-                      task.map((items) => {
-                        return (
-                          <div
-                            className="col mb-5"
-                            // className=" border col-lg-3 col-md-6 col-sm-12 mb-3"
-                          >
+                  {task.length > 0 ? (
+                    <div
+                      className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-1"
+                      style={{ overflow: "hidden" }}
+                    >
+                      {enteringTransitions((props, item) => (
+                        <animated.div style={props} key={item.id}>
+                          <div className="col mb-5">
                             <Tasks
-                              id={items.id}
-                              {...items}
-                              onDelete={() => handleDelete(items.id)}
-                              onEdit={() => handleEdit(items.id)}
+                              id={item.id}
+                              {...item}
+                              onDelete={() => handleDelete(item.id)}
+                              onEdit={() => handleEdit(item.id)}
                               lightMode={lightMode}
                             />
                           </div>
-                        );
-                      })
-                    ) : (
-                      <div className="container d-flex justify-content-center align-items-center">
-                        <div className="text-center">
-                          <h3>Congrats! You currently have no tasks</h3>
-                          <img
-                            src={require("./components/assets/notask.gif")}
-                            style={{ maxWidth: "150px" }}
-                            alt="No tasks"
-                          />
-                        </div>
+                        </animated.div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="container d-flex justify-content-center align-items-center">
+                      <div className="text-center">
+                        <h3>Congrats! You currently have no tasks</h3>
+                        <img
+                          src={require("./components/assets/notask.gif")}
+                          style={{ maxWidth: "150px" }}
+                          alt="No tasks"
+                        />
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                 </div>
               </div>
 

@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { useSpring, animated } from "react-spring";
 
 export default function Tasks({
   description,
@@ -12,7 +13,6 @@ export default function Tasks({
   lightMode,
   link,
   priority,
-  // sendEmailNotification,
 }) {
   let badgeColor;
   switch (priority) {
@@ -32,76 +32,85 @@ export default function Tasks({
       badgeColor = "text-bg-light";
       break;
   }
+
+  const props = useSpring({
+    opacity: 1,
+    transform: "scale(1)",
+    from: { opacity: 0, transform: "scale(0)" },
+  });
+
   return (
-    <div
-      className="cardTask shadow"
-      style={{
-        backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-        color: lightMode ? "#313638" : "white",
-      }}
-    >
+    <animated.div style={props}>
       <div
-        className={`card-header shadow position-relative`}
+        className="cardTask shadow"
         style={{
-          backgroundColor: color,
-          color: "white",
-          borderRadius: "7px",
-          justifyContent: "center",
+          backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          color: lightMode ? "#313638" : "white",
         }}
       >
-        <h6
-          id="cardSubject"
-          style={{ fontSize: "20px" }}
-          className="text-center"
+        <div
+          className={`card-header shadow position-relative`}
+          style={{
+            backgroundColor: color,
+            color: "white",
+            borderRadius: "7px",
+            justifyContent: "center",
+          }}
         >
-          {subject}{" "}
-          <span
-            className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor}`}
-            style={{ fontSize: "10px" }}
+          <h6
+            id="cardSubject"
+            style={{ fontSize: "20px" }}
+            className="text-center"
           >
-            {priority}
-          </span>
-        </h6>
-      </div>
-      <div className="card-body">
-        <h6 className="card-title text-center">
-          {date === "Invalid Date" ? "Undated" : "Due on " + date}
-        </h6>
-        <hr />
-        <p
-          className="card-text"
-          id="cardDescription"
-          style={{ padding: "0 10px" }}
-        >
-          {description}
-        </p>
-      </div>
-      <div className="row text-center p-2">
-        <div className="col" style={{ marginLeft: "10px" }}>
-          <Button
-            icon={<i className="fa-solid fa-check"></i>}
-            onClick={onDelete}
-            color="btn-primary"
-          />
+            {subject}{" "}
+            <span
+              className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor}`}
+              style={{ fontSize: "10px" }}
+            >
+              {priority}
+            </span>
+          </h6>
         </div>
-        {link && (
+        <div className="card-body">
+          <h6 className="card-title text-center">
+            {date === "Invalid Date" ? "Undated" : "Due on " + date}
+          </h6>
+          <hr />
+          <p
+            className="card-text"
+            id="cardDescription"
+            style={{ padding: "0 10px" }}
+          >
+            {description}
+          </p>
+        </div>
+        <div className="row text-center p-2">
           <div className="col" style={{ marginLeft: "10px" }}>
             <Button
-              link={link}
-              icon={<i className="fa-solid fa-link"></i>}
-              color="btn-success"
+              icon={<i className="fa-solid fa-check"></i>}
+              onClick={onDelete}
+              color="btn-primary"
             />
           </div>
-        )}
-        <div className="col" style={{ marginLeft: "10px" }}>
-          <Button
-            icon={<i className="fa-solid fa-pen-to-square"></i>}
-            onClick={onEdit}
-            href="#formsSection"
-            color="btn-danger"
-          />
+          {link && (
+            <div className="col" style={{ marginLeft: "10px" }}>
+              <Button
+                link={link}
+                icon={<i className="fa-solid fa-link"></i>}
+                color="btn-success"
+              />
+            </div>
+          )}
+          <div className="col" style={{ marginLeft: "10px" }}>
+            <Button
+              icon={<i className="fa-solid fa-pen-to-square"></i>}
+              onClick={onEdit}
+              href="#formsSection"
+              color="btn-danger"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }
