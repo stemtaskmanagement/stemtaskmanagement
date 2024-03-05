@@ -308,8 +308,9 @@ export default function Login({
           style={{ fontSize: "75px", fontWeight: "bold" }}
           className="text-primary"
         >
-          STEMTask
+          STEMTask <h4>Beta</h4>
         </h1>
+
         <form
           className="card container"
           style={{
@@ -409,7 +410,7 @@ export default function Login({
           )}
         </form>
         {/*change the form type */}
-        {logInType === "login" ? (
+        {/* {logInType === "login" ? (
           <button
             onClick={changeToSignUp}
             className="text-white btn btn-success m-1"
@@ -423,7 +424,7 @@ export default function Login({
           >
             Already have an Account?
           </button>
-        )}
+        )} */}
         {logInType == "login" && (
           <button
             onClick={handlePasswordReset}
