@@ -46,6 +46,7 @@ export default function Tasks({
         style={{
           backgroundColor: lightMode ? "#F9F6EE" : "#313638",
           color: lightMode ? "#313638" : "white",
+          borderRadius: "7px",
         }}
       >
         <div
