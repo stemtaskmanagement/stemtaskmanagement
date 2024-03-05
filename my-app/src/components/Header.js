@@ -5,7 +5,7 @@ export default function Header() {
     <div className="container text-center">
       <img
         src={require("./assets/robot.png")}
-        style={{ maxWidth: "300px" }}
+        style={{ maxWidth: "200px", minWidth: "100px" }}
         draggable="false"
       />
       <h1
