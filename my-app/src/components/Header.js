@@ -5,9 +5,11 @@ export default function Header() {
     <div className="container text-center">
       <img
         src={require("./assets/robot.png")}
+        className="img-fluid"
         style={{ maxWidth: "200px", minWidth: "100px" }}
         draggable="false"
       />
+
       <h1
         style={{ fontSize: "65px", fontWeight: "bold" }}
         className="text-primary wow animate__animated animate__fadeIn"

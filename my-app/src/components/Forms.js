@@ -1,6 +1,8 @@
 import Button from "./Button";
 import { useState } from "react";
 import { app } from "../firebase/config";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Forms({
   subject,
@@ -44,130 +46,117 @@ export default function Forms({
   // Placeholder color based on lightMode
   const placeholderColor = lightMode ? "#313638" : "white";
 
-  //
   return (
-    <div className="formContainer text-center container">
+    <div className="formContainer container">
       <div className="row">
-        <div className="col-md-6">
-          <div className="mb-3">
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              style={{
-                backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-                color: lightMode ? "#313638" : "#F9F6EE",
-                fontFamily: "inherit",
-              }}
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-            >
-              {!subject && <option value="">Select subject</option>}
-              {subjects.map((chosenSubject, index) => (
-                <option key={index}>{chosenSubject}</option>
-              ))}
-            </select>
-          </div>
+        <div className="col-md-6 mb-3">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            style={{
+              backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+              color: lightMode ? "#313638" : "white",
+              border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+            }}
+          >
+            {!subject && <option value="">Select subject</option>}
+            {subjects.map((chosenSubject, index) => (
+              <option key={index}>{chosenSubject}</option>
+            ))}
+          </select>
         </div>
-        <div className="col-md-6">
-          <div className="mb-3">
-            <input
-              type="color"
-              className="form-control form-control-color"
-              id="exampleColorInput"
-              value={color}
-              style={{
-                backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-                borderRadius: "9px",
-                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-                color: lightMode ? "#313638" : "#F9F6EE",
-              }}
-              onChange={(e) => setColor(e.target.value)}
-            />
-          </div>
+        <div className="col-md-6 mb-3">
+          <input
+            type="color"
+            className="form-control form-control-color"
+            value={color}
+            onChange={(e) => setColor(e.target.value)}
+            style={{
+              backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+              color: lightMode ? "#313638" : "white",
+              border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+            }}
+          />
         </div>
       </div>
 
       <div className="mb-3">
         <textarea
           className="form-control"
-          id="exampleFormControlTextarea1"
           rows="3"
           placeholder="Enter the description of your task."
-          style={{
-            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-            color: lightMode ? "#313638" : "#F9F6EE",
-            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-          }}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           autoCorrect="on"
-        ></textarea>
-      </div>
-      <div className="mb-3">
-        <select
-          className="form-select"
-          aria-label="Default select example"
           style={{
             backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+            color: lightMode ? "#313638" : "white",
             border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-            color: lightMode ? "#313638" : "#F9F6EE",
-            fontFamily: "inherit",
           }}
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-        >
-          {!priority && <option value="">Select Priority Level</option>}
-          {priorityLevels.map((chosenPriority, index) => (
-            <option key={index}>{chosenPriority}</option>
-          ))}
-        </select>
+        ></textarea>
       </div>
+
       <div className="row">
-        <div className="col-md-6">
-          <div className="mb-3">
-            <input
-              className="form-control"
-              type="url"
-              value={link}
-              onChange={(e) => setLink(e.target.value)}
-              placeholder="Enter your link"
-              style={{
-                backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-                color: lightMode ? "#313638" : "white",
-                margin: "10px",
-                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-              }}
-            />
-          </div>
+        <div className="col-md-6 mb-3">
+          <select
+            className="form-select"
+            aria-label="Default select example"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+            style={{
+              backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+              color: lightMode ? "#313638" : "white",
+              border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+            }}
+          >
+            {!priority && <option value="">Select Priority Level</option>}
+            {priorityLevels.map((chosenPriority, index) => (
+              <option key={index}>{chosenPriority}</option>
+            ))}
+          </select>
         </div>
-
-        <div className="col-md-6">
-          <div className="mb-3">
-            <input
-              type="date"
-              className="form-control"
-              id="dateInput"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              style={{
-                backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-                color: lightMode ? "#313638" : "white",
-                margin: "10px",
-                border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
-              }}
-              placeholder="Enter your Deadline"
-            />
-          </div>
+        <div className="col-md-6 mb-3">
+          <input
+            type="date"
+            className="form-control"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            placeholder="Enter your Deadline"
+            style={{
+              backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+              color: lightMode ? "#313638" : "white",
+              border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+            }}
+          />
         </div>
       </div>
 
-      <Button
-        name={toggleSubmit ? "Add new Task" : "Save Task"}
-        onClick={handleSubmit}
-        href="#taskSection"
-        color="btn-primary"
-      />
+      <div className="mb-3">
+        <input
+          className="form-control"
+          type="url"
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          placeholder="Enter your link"
+          style={{
+            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+            color: lightMode ? "#313638" : "white",
+            border: lightMode ? "2px solid #F9F6EE" : "2px solid #313638",
+          }}
+        />
+      </div>
+
+      <div className="text-center">
+        {" "}
+        <Button
+          name={toggleSubmit ? "Add new Task" : "Save Task"}
+          onClick={handleSubmit}
+          href="#taskSection"
+          color="btn-primary"
+        />
+      </div>
     </div>
   );
 }
