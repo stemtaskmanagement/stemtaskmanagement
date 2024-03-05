@@ -16,12 +16,15 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
     <div>
       {/* */}
       <nav
-        className="navbar navbar-expand-lg"
+        className={` ${isNavbarOpen && "text-center"} navbar navbar-expand-lg`}
         style={{
           backgroundColor: lightMode ? "#E4E3E0" : "#313638",
         }}
       >
         <div className="container-fluid">
+          <a className="navbar-brand text-primary" href="/">
+            STEMTask
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,9 +36,6 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
             className={`collapse navbar-collapse ${isNavbarOpen ? "show" : ""}`}
             id="navbarNav"
           >
-            <a className="navbar-brand text-primary" href="/">
-              STEMTask
-            </a>
             <ul
               className="navbar-nav ms-auto"
               style={{
@@ -66,7 +66,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
               )}
 
               <li
-                style={{ marginRight: "15px" }}
+                // style={{ marginRight: "15px" }}
                 onClick={handleNavbarItemClick}
               >
                 <a
