@@ -493,16 +493,16 @@ function App() {
                 lightMode={lightMode}
                 userCredentials={userCredentials}
               />
-              <div className="section">
+              <div className="headerSection">
                 <Header />
               </div>
               <hr />
 
               {/*the form input*/}
-              <div className="section" id="formsSection">
+              <div className="formsSection" id="formsSection">
                 <h1
                   style={{
-                    fontSize: "65px",
+                    fontSize: "55px",
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
@@ -541,7 +541,7 @@ function App() {
               <hr />
 
               {/*ito yung mga task cards*/}
-              <div className="section container" id="taskSection">
+              <div className="formsSection container" id="taskSection">
                 <div
                 // style={{ paddingTop: "100px" }}
                 >
