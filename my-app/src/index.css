@@ -69,6 +69,14 @@ code {
   padding: 10px;
 }
 
+.headerSection {
+  /* background-color: aqua; */
+  padding-top: 100px;
+  padding-bottom: 150px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .section {
   /* background-color: aqua; */
   padding-top: 100px;
@@ -79,7 +87,7 @@ code {
 
 .formsSection {
   /* background-color: aqua; */
-  padding-top: 70px;
+  padding-top: 30px;
   padding-bottom: 100px;
   padding-left: 30px;
   padding-right: 30px;

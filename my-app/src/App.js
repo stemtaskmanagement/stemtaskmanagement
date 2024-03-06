@@ -493,7 +493,7 @@ function App() {
                 lightMode={lightMode}
                 userCredentials={userCredentials}
               />
-              <div className="section">
+              <div className="headerSection">
                 <Header />
               </div>
               <hr />
