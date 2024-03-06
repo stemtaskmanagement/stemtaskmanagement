@@ -541,7 +541,7 @@ function App() {
               <hr />
 
               {/*ito yung mga task cards*/}
-              <div className="section container" id="taskSection">
+              <div className="formsSection container" id="taskSection">
                 <div
                 // style={{ paddingTop: "100px" }}
                 >
