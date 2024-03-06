@@ -84,7 +84,45 @@ export default function Intro({ lightMode }) {
         <a href="mailto:stemtaskmanagement@gmail.com">
           stemtaskmanagement@gmail.com
         </a>
-        .
+        <h3>11. How is my data protected on STEMTask?</h3>
+        <p>
+          Protecting your privacy and data security is a top priority for us. We
+          take several measures to ensure the confidentiality and integrity of
+          your data:
+        </p>
+        <ul>
+          <li>
+            <strong>Access Controls:</strong> Your data is accessed only by
+            authorized personnel who need it for legitimate purposes, such as
+            improving and maintaining the service. We strictly control access
+            and adhere to comprehensive security protocols to prevent
+            unauthorized access or misuse.
+          </li>
+          <li>
+            <strong>Confidentiality:</strong> We treat your data with the utmost
+            confidentiality and respect. Your information is stored securely and
+            is never shared with third parties without your consent, except as
+            required by law or outlined in our Privacy Policy.
+          </li>
+          <li>
+            <strong>Transparency:</strong> We are committed to transparency in
+            our data handling practices. We clearly communicate how your data is
+            collected, used, and protected, and we provide avenues for you to
+            review and manage your data preferences.
+          </li>
+        </ul>
+        <p>
+          Additionally, developers working on STEMTask have access to users'
+          task data solely for the purpose of improving and maintaining the
+          service. This access is tightly controlled and subject to rigorous
+          security measures to safeguard your data. We are dedicated to
+          respecting your privacy and maintaining your trust. If you have any
+          questions or concerns about your data privacy, please don't hesitate
+          to contact us at{" "}
+          <a href="mailto:stemtaskmanagement@gmail.com">
+            stemtaskmanagement@gmail.com
+          </a>
+        </p>
       </p>
     </div>
   );

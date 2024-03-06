@@ -29,12 +29,17 @@ export default function Login({
     <div>
       <h1>Terms and Conditions for STEMTASK Task Management Web App</h1>
       <p>
-        Welcome, <strong>{userCredentials.email}</strong> to STEMTASK! Before
-        you start using our task management web app, please read these Terms and
-        Conditions carefully. By accessing or using STEMTASK, you agree to be
-        bound by these terms. If you do not agree with any part of these terms,
-        you may not access or use our web app.
+        Welcome to STEMTASK! Before you start using our task management web app,
+        please read these Terms and Conditions carefully. By accessing or using
+        STEMTASK, you agree to be bound by these terms. If you do not agree with
+        any part of these terms, you may not access or use our web app.
       </p>
+      <p>
+        Your privacy and the security of your data are of utmost importance to
+        us. We are committed to being transparent about how your data is
+        collected, used, and protected.
+      </p>
+      <p>By using STEMTASK, you acknowledge and consent to the following:</p>
       <ol>
         <li>
           <p>
@@ -95,6 +100,14 @@ export default function Login({
               STEMTASK or its users.
             </li>
           </ul>
+        </li>
+        <li>
+          <p>
+            Developers working on STEMTASK may have access to users' task data
+            solely for the purpose of improving and maintaining the service.
+            This access is strictly limited to authorized personnel and is
+            subject to stringent security measures to protect your data.
+          </p>
         </li>
         <li>
           <p>
