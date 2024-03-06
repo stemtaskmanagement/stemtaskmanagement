@@ -502,7 +502,7 @@ function App() {
               <div className="section" id="formsSection">
                 <h1
                   style={{
-                    fontSize: "65px",
+                    fontSize: "55px",
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
