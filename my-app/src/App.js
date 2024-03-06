@@ -499,7 +499,7 @@ function App() {
               <hr />
 
               {/*the form input*/}
-              <div className="section" id="formsSection">
+              <div className="formsSection" id="formsSection">
                 <h1
                   style={{
                     fontSize: "55px",

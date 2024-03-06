@@ -77,6 +77,14 @@ code {
   padding-right: 30px;
 }
 
+.formsSection {
+  /* background-color: aqua; */
+  padding-top: 70px;
+  padding-bottom: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .flexItem {
   padding-left: 20px;
 }
