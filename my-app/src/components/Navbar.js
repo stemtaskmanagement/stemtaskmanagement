@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "./Button";
 
 export default function Navbar({ onClick, lightMode, userCredentials, home }) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleNavbarToggle = () => {
-    setIsNavbarOpen(!isNavbarOpen);
-  };
+  // const handleNavbarToggle = () => {
+  //   setIsNavbarOpen(!isNavbarOpen);
+  // };
 
-  const handleNavbarItemClick = () => {
-    setIsNavbarOpen(false); // Close the navbar when an item is clicked
-  };
+  // const handleNavbarItemClick = () => {
+  //   setIsNavbarOpen(false); // Close the navbar when an item is clicked
+  // };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div>
@@ -25,15 +36,15 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
           <a className="navbar-brand text-primary" href="/">
             {home ? "STEMTask" : "Home"}
           </a>
-          <button
+          {/* <button
             className="navbar-toggler"
             type="button"
             onClick={handleNavbarToggle}
           >
             <span className="navbar-toggler-icon"></span>
-          </button>
+          </button> */}
           <div
-            className={`collapse navbar-collapse ${isNavbarOpen ? "show" : ""}`}
+            // className={`collapse navbar-collapse ${isNavbarOpen ? "show" : ""}`}
             id="navbarNav"
           >
             <ul
@@ -41,10 +52,11 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
               style={{
                 listStyleType: "none",
                 display: "flex",
+                flexDirection: "row",
               }}
             >
               {userCredentials.length === 0 ? (
-                <li onClick={handleNavbarItemClick}>
+                <li>
                   <a
                     className="nav-link"
                     href="/login"
@@ -54,41 +66,81 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
                   </a>
                 </li>
               ) : (
-                <li onClick={handleNavbarItemClick}>
-                  <a
-                    className="nav-link"
-                    style={{ color: lightMode ? "#313638" : "white" }}
-                    href="/user"
-                  >
-                    {userCredentials.email}
-                  </a>
+                <li>
+                  {windowWidth <= 768 ? (
+                    <a
+                      style={{
+                        color: lightMode ? "#313638" : "white",
+                        paddingRight: "10px",
+                      }}
+                      className="nav-link"
+                      href="/user"
+                    >
+                      <Button
+                        icon={<i class="fa-solid fa-user"></i>}
+                        color="btn-secondary"
+                      />
+                    </a>
+                  ) : (
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: lightMode ? "#313638" : "white",
+                        marginRight: "10px",
+                      }}
+                      href="/user"
+                    >
+                      {userCredentials.email}
+                    </a>
+                  )}
                 </li>
               )}
 
-              <li
-                // style={{ marginRight: "15px" }}
-                onClick={handleNavbarItemClick}
-              >
+              <li>
+                {windowWidth <= 768 ? (
+                  <a
+                    href="/#taskSection"
+                    style={{
+                      color: lightMode ? "#313638" : "white",
+                      marginRight: "10px",
+                    }}
+                    className="nav-link"
+                  >
+                    <Button
+                      icon={<i class="fa-solid fa-list-check"></i>}
+                      color="btn-secondary"
+                    />{" "}
+                  </a>
+                ) : (
+                  <a
+                    href="/#taskSection"
+                    style={{ color: lightMode ? "#313638" : "white" }}
+                    className="nav-link"
+                  >
+                    My Task
+                  </a>
+                )}
+              </li>
+              <li>
                 <a
-                  href="/#taskSection"
-                  style={{ color: lightMode ? "#313638" : "white" }}
+                  style={{
+                    color: lightMode ? "#313638" : "white",
+                    marginRight: "10px",
+                  }}
                   className="nav-link"
                 >
-                  My Task
+                  <Button
+                    icon={
+                      lightMode ? (
+                        <i className="fa-solid fa-moon"></i>
+                      ) : (
+                        <i className="fa-solid fa-sun"></i>
+                      )
+                    }
+                    onClick={onClick}
+                    color="btn-secondary"
+                  />
                 </a>
-              </li>
-              <li onClick={handleNavbarItemClick}>
-                <Button
-                  icon={
-                    lightMode ? (
-                      <i className="fa-solid fa-moon"></i>
-                    ) : (
-                      <i className="fa-solid fa-sun"></i>
-                    )
-                  }
-                  onClick={onClick}
-                  color="btn-secondary"
-                />
               </li>
             </ul>
           </div>
