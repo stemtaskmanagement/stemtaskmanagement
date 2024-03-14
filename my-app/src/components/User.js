@@ -74,7 +74,12 @@ export default function User({ userCredentials, auth, lightMode, task }) {
           paddingBottom: "40px",
         }}
       >
-        User Profile
+        User Profile{" "}
+        <Button
+          icon={<i class="fa-solid fa-house"></i>}
+          href="/"
+          color="btn-success"
+        />
       </h1>
       {/* <h3>Username: {userCredentials.displayName}</h3> */}
       {/* <h3>

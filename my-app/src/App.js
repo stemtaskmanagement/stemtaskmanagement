@@ -430,6 +430,7 @@ function App() {
                 onClick={setTheme}
                 lightMode={lightMode}
                 userCredentials={userCredentials}
+                home="true"
               />
               <div className="headerSection">
                 <Header userCredentials={userCredentials} />

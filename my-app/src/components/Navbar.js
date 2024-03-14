@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./Button";
 
-export default function Navbar({ onClick, lightMode, userCredentials }) {
+export default function Navbar({ onClick, lightMode, userCredentials, home }) {
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   const handleNavbarToggle = () => {
@@ -23,7 +23,7 @@ export default function Navbar({ onClick, lightMode, userCredentials }) {
       >
         <div className="container-fluid">
           <a className="navbar-brand text-primary" href="/">
-            STEMTask
+            {home ? "STEMTask" : "Home"}
           </a>
           <button
             className="navbar-toggler"
