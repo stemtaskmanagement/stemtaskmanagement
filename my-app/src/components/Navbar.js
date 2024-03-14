@@ -87,7 +87,7 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
                     )
                   }
                   onClick={onClick}
-                  color="btn-primary"
+                  color="btn-secondary"
                 />
               </li>
             </ul>
