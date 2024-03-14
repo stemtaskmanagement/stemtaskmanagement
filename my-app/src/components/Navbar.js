@@ -57,13 +57,29 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
             >
               {userCredentials.length === 0 ? (
                 <li>
-                  <a
-                    className="nav-link"
-                    href="/login"
-                    style={{ color: lightMode ? "#313638" : "white" }}
-                  >
-                    Log In
-                  </a>
+                  {windowWidth <= 768 ? (
+                    <a
+                      style={{
+                        color: lightMode ? "#313638" : "white",
+                        paddingRight: "10px",
+                      }}
+                      className="nav-link"
+                      href="/user"
+                    >
+                      <Button name="login" color="btn-secondary" />
+                    </a>
+                  ) : (
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: lightMode ? "#313638" : "white",
+                        marginRight: "10px",
+                      }}
+                      href="/login"
+                    >
+                      Login
+                    </a>
+                  )}
                 </li>
               ) : (
                 <li>
