@@ -263,7 +263,7 @@ export default function Login({
             style={{ fontSize: "75px", fontWeight: "bold" }}
             className="text-primary"
           >
-            STEMTask <h4>Beta</h4>
+            STEMTask
           </h1>
 
           <form
