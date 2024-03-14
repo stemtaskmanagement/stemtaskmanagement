@@ -1,6 +1,8 @@
 import Button from "./Button";
 
-export default function Header() {
+export default function Header({ userCredentials }) {
+  console.log("userCredentials:", userCredentials); // Add this line to check the value of userCredentials
+
   return (
     <div className="container text-center">
       <img
@@ -19,13 +21,15 @@ export default function Header() {
       <h3 style={{ paddingBottom: "25px" }}>
         A Task Management Web App for Grade 11 STEM Students
       </h3>
-      {/* <hr />
-      <p>
-        STEMTask is a web-based task management application designed to help
-        Senior High School STEM students in CCBHS organize their daily tasks
-        efficiently.
-      </p> */}
-      <Button name="Get Started" href="#formsSection" color="btn-primary" />
+      {userCredentials.length == undefined ? (
+        <Button
+          name="Start Creating Tasks"
+          href="#formsSection"
+          color="btn-primary"
+        />
+      ) : (
+        <Button name="Get Started" href="/login" color="btn-primary" />
+      )}
     </div>
   );
 }

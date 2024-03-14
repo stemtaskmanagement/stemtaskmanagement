@@ -267,7 +267,7 @@ export default function Login({
           </h1>
 
           <form
-            className="card container"
+            className="loginCard container"
             style={{
               backgroundColor: lightMode ? "#E4E3E0" : "#313638",
               color: lightMode ? "#313638" : "white",

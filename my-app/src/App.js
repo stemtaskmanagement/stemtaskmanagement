@@ -136,68 +136,6 @@ function App() {
     setTask(sortedTasks); // Update the task state directly
   };
 
-  // async function handleSubmit(e) {
-  //   e.preventDefault();
-
-  //   if (!description || !subject || !priority) {
-  //     setShowModal(true);
-  //   } else {
-  //     document
-  //       .getElementById("taskSection")
-  //       .scrollIntoView({ behavior: "smooth" });
-
-  //     let newTask;
-  //     if (toggleSubmit) {
-  //       newTask = {
-  //         id: task.length === 0 ? 1 : Math.max(...task.map((t) => t.id)) + 1,
-  //         description: description,
-  //         subject: subject,
-  //         date: formatDate(date),
-  //         color: color,
-  //         link: link,
-  //         priority: priority,
-  //       };
-  //       setTask([newTask, ...task]);
-  //     } else {
-  //       newTask = {
-  //         id: isEditTask,
-  //         description: description,
-  //         subject: subject,
-  //         date: formatDate(date),
-  //         color: color,
-  //         link: link,
-  //         priority: priority,
-  //       };
-  //       const updatedTaskList = task.map((item) =>
-  //         item.id === isEditTask ? { ...item, ...newTask } : item
-  //       );
-  //       setTask(updatedTaskList);
-  //       setToggleSubmit(true);
-  //       setIsEditTask(null);
-  //       await updateTaskInDatabase(newTask);
-  //     }
-
-  //     clearInputFields();
-
-  //     if (userCredentials) {
-  //       const database = getDatabase();
-  //       const userTasksRef = ref(
-  //         database,
-  //         `users/${userCredentials.uid}/tasks/${newTask.id}`
-  //       );
-
-  //       try {
-  //         await set(userTasksRef, newTask);
-  //         console.log("Task added to the database successfully.");
-  //       } catch (error) {
-  //         console.error("Error adding task to the database:", error.message);
-  //       }
-  //     } else {
-  //       console.error("User credentials not available.");
-  //     }
-  //   }
-  // }
-
   async function handleSubmit(e) {
     e.preventDefault();
 
@@ -494,7 +432,7 @@ function App() {
                 userCredentials={userCredentials}
               />
               <div className="headerSection">
-                <Header />
+                <Header userCredentials={userCredentials} />
               </div>
               <hr />
 
