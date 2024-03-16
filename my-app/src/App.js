@@ -417,39 +417,6 @@ function App() {
             </div>
           }
         />
-        {/*easter egg*/}
-        <Route
-          path="/wizzy"
-          element={
-            <div
-              className=""
-              style={{
-                fontSmooth: "always",
-                overflow: "hidden",
-                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
-                color: lightMode ? "#28282B" : "#EEEEEE",
-              }}
-            >
-              <Navbar
-                onClick={setTheme}
-                lightMode={lightMode}
-                userCredentials={userCredentials}
-              />
-              <div className="section container">
-                <div
-                // style={{
-                //   paddingRight: "20px",
-                //   paddingLeft: "20px",
-                // }}
-                >
-                  YoYoYo Congrats! You found the Easter Egg!
-                </div>
-              </div>
-
-              <Footer lightMode={lightMode} />
-            </div>
-          }
-        />
         {/* HOME PAGE*/}
         <Route
           path="/"
@@ -626,7 +593,7 @@ function App() {
                   }}
                   className="container text-center wow animate__animated animate__fadeIn"
                 >
-                  About the Developers of this app
+                  About the Developers
                 </h1>
                 <AboutUs lightMode={lightMode} />
               </div>

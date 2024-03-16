@@ -2,14 +2,7 @@ import React from "react";
 
 export default function FAQ({ lightMode }) {
   return (
-    <div>
-      <h1
-        style={{ fontSize: "65px", fontWeight: "bold" }}
-        className="text-primary wow animate__animated animate__fadeIn"
-      >
-        Frequently Asked Questions (FAQ) about STEMTask
-      </h1>
-
+    <div className="container">
       <h3>1. What is STEMTask?</h3>
       <p>
         STEMTask is a task management web application designed specifically for
