@@ -11,13 +11,13 @@ export default function AboutUs({ lightMode }) {
         }}
       >
         <div className="row g-0">
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <img
               src={require("./assets/wion.jpg")}
               className="img-fluid rounded-start"
               alt="..."
             />
-          </div>
+          </div> */}
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
@@ -60,13 +60,13 @@ export default function AboutUs({ lightMode }) {
         }}
       >
         <div className="row g-0">
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <img
               src={require("./assets/david.jpg")}
               className="img-fluid rounded-start"
               alt="..."
             />
-          </div>
+          </div> */}
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">
@@ -104,13 +104,13 @@ export default function AboutUs({ lightMode }) {
         }}
       >
         <div className="row g-0">
-          <div className="col-md-4">
+          {/* <div className="col-md-4">
             <img
               src={require("./assets/gab.jpg")}
               className="img-fluid rounded-start"
               alt="..."
             />
-          </div>
+          </div> */}
           <div className="col-md-8">
             <div className="card-body">
               <h5 className="card-title">Gabriel Eli B. Mañacap </h5>
