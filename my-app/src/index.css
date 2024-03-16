@@ -45,7 +45,7 @@ code {
   margin: 0 auto;
   /* Center the container */
   padding: 20px;
-  height: 400px;
+  max-height: 600px;
 }
 
 .loginCard {

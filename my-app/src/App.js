@@ -1,6 +1,6 @@
 // // Import the sendEmailNotification function
 // import { sendNotification } from "./components/sendNotification";
-import Intro from "./components/Intro";
+import FAQ from "./components/FAQ";
 import Navbar from "./components/Navbar";
 import User from "./components/User";
 import Header from "./components/Header";
@@ -380,9 +380,42 @@ function App() {
             </div>
           }
         />
-        {/* Intro PAGE*/}
+        {/* FAQ PAGE*/}
         <Route
-          path="/intro"
+          path="/faq"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
+              <div className="headerSection container">
+                <div
+                // style={{
+                //   paddingRight: "20px",
+                //   paddingLeft: "20px",
+                // }}
+                >
+                  <FAQ />
+                </div>
+              </div>
+
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
+        {/*easter egg*/}
+        <Route
+          path="/wizzy"
           element={
             <div
               className=""
@@ -405,7 +438,7 @@ function App() {
                 //   paddingLeft: "20px",
                 // }}
                 >
-                  <Intro />
+                  YoYoYo Congrats! You found the Easter Egg!
                 </div>
               </div>
 
@@ -580,7 +613,7 @@ function App() {
                 userCredentials={userCredentials}
               />
               {/* About the Devs*/}
-              <div className="section">
+              <div className="headerSection container">
                 <h1
                   style={{
                     fontSize: "65px",

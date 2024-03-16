@@ -1,13 +1,13 @@
 import React from "react";
 
-export default function Intro({ lightMode }) {
+export default function FAQ({ lightMode }) {
   return (
     <div>
       <h1
         style={{ fontSize: "65px", fontWeight: "bold" }}
         className="text-primary wow animate__animated animate__fadeIn"
       >
-        FAQs - STEMTask
+        Frequently Asked Questions (FAQ) about STEMTask
       </h1>
 
       <h3>1. What is STEMTask?</h3>

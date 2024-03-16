@@ -12,7 +12,7 @@ export default function Footer({ lightMode }) {
         <a href="/about" className="footerLink">
           <p className="footerText">About the Developers</p>
         </a>
-        <a href="/intro" className="footerLink">
+        <a href="/faq" className="footerLink">
           <p className="footerText">FAQs</p>
         </a>
         <p className="credits">
