@@ -399,14 +399,18 @@ function App() {
                 userCredentials={userCredentials}
               />
               <div className="headerSection container">
-                <div
-                // style={{
-                //   paddingRight: "20px",
-                //   paddingLeft: "20px",
-                // }}
+                <h1
+                  style={{
+                    fontSize: "65px",
+                    fontWeight: "bold",
+                    paddingBottom: "40px",
+                  }}
+                  className="container text-center wow animate__animated animate__fadeIn"
                 >
-                  <FAQ />
-                </div>
+                  Frequently Asked Questions
+                </h1>
+
+                <FAQ />
               </div>
 
               <Footer lightMode={lightMode} />
@@ -620,9 +624,9 @@ function App() {
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
-                  className="text-center"
+                  className="container text-center wow animate__animated animate__fadeIn"
                 >
-                  About the Developers
+                  About the Developers of this app
                 </h1>
                 <AboutUs lightMode={lightMode} />
               </div>
