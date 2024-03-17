@@ -66,7 +66,10 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
                       className="nav-link"
                       href="/user"
                     >
-                      <Button name="login" color="btn-secondary" />
+                      <Button
+                        icon={<i class="fa-solid fa-user"></i>}
+                        color="btn-secondary"
+                      />
                     </a>
                   ) : (
                     <a

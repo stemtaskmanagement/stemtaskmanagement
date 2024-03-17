@@ -42,7 +42,7 @@ function App() {
   //naglalagay tayo ng default state ng inputs
   const [subject, setSubject] = useState("");
   const [description, setDescription] = useState("");
-  const [color, setColor] = useState("#04a4b0");
+  const [color, setColor] = useState("#43AA8B");
   const [date, setDate] = useState("");
   const [isEditTask, setIsEditTask] = useState(null);
   const [toggleSubmit, setToggleSubmit] = useState(true);
@@ -75,6 +75,21 @@ function App() {
     leave: { opacity: 0, transform: "scale(0.8)" }, // Shrink slightly before disappearing
     config: { tension: 400, friction: 25 },
   });
+  // Function to handle date parsing
+  function parseDate(dateString) {
+    if (dateString && dateString !== "") {
+      const parsedDate = new Date(dateString);
+      // Check if the parsed date is a valid date object
+      if (!isNaN(parsedDate.getTime())) {
+        return parsedDate;
+      } else {
+        console.error("Invalid date string:", dateString);
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
 
   // Fetch tasks from the database when the user logs in
   useEffect(() => {
@@ -86,7 +101,10 @@ function App() {
         try {
           const snapshot = await get(userTasksRef);
           if (snapshot.exists()) {
-            const userTasks = Object.values(snapshot.val());
+            const userTasks = Object.values(snapshot.val()).map((task) => ({
+              ...task,
+              date: parseDate(task.date), // Parse date string into date object
+            }));
             setTask(userTasks);
           } else {
             setTask([]);
@@ -256,9 +274,13 @@ function App() {
 
   //date formatter
   function formatDate(dateString) {
-    const dateObj = new Date(dateString);
-    const options = { month: "long", day: "numeric", year: "numeric" };
-    return dateObj.toLocaleDateString("en-US", options);
+    if (dateString && dateString !== "") {
+      const dateObj = new Date(dateString);
+      const options = { month: "long", day: "numeric", year: "numeric" };
+      return dateObj.toLocaleDateString("en-US", options);
+    } else {
+      return ""; // Return an empty string if dateString is empty
+    }
   }
 
   //delete functionality

@@ -14,24 +14,24 @@ export default function Tasks({
   link,
   priority,
 }) {
-  let badgeColor;
-  switch (priority) {
-    case "High Priority":
-      badgeColor = "text-bg-danger";
-      break;
-    case "Medium Priority":
-      badgeColor = "text-bg-warning";
-      break;
-    case "Low Priority":
-      badgeColor = "text-bg-info";
-      break;
-    case "Normal Priority":
-      badgeColor = "text-bg-primary";
-      break;
-    case "Optional":
-      badgeColor = "text-bg-light";
-      break;
-  }
+  const priorityToBadgeColor = {
+    "High Priority": "text-bg-danger",
+    "Medium Priority": "text-bg-warning",
+    "Low Priority": "text-bg-info",
+    "Normal Priority": "text-bg-primary",
+    Optional: "text-bg-light",
+  };
+
+  const priorityToBadgeFontWeight = {
+    "High Priority": "font-weight-light",
+    "Medium Priority": "font-weight-light",
+    "Low Priority": "font-weight-light",
+    "Normal Priority": "font-weight-light",
+    Optional: "font-weight-light",
+  };
+
+  const badgeColor = priorityToBadgeColor[priority];
+  const badgeFontWeight = priorityToBadgeFontWeight[priority];
 
   const props = useSpring({
     opacity: 1,
@@ -65,7 +65,7 @@ export default function Tasks({
           >
             {subject}{" "}
             <span
-              className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor}`}
+              className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor} ${badgeFontWeight}`}
               style={{ fontSize: "10px" }}
             >
               {priority}
@@ -74,7 +74,7 @@ export default function Tasks({
         </div>
         <div className="card-body">
           <h6 className="card-title text-center">
-            {date === "Invalid Date" ? "Undated" : "Due on " + date}
+            {date === "" ? "Undated" : "Due on " + date}
           </h6>
           <hr />
           <p
