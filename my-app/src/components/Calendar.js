@@ -1,5 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // Mapping object for subjects and their acronyms
 const subjectAcronyms = {
@@ -17,8 +19,8 @@ const subjectAcronyms = {
 };
 
 export default function Calendar({ lightMode, task, setShowCalendar }) {
+  const nav = useNavigate();
   // Filter out tasks with undefined properties
-  console.log("Tasks:", task); // Add this line to check the task data
   const events = task
     .filter((task) => task.id && task.subject && task.date && task.color)
     .map((task) => ({
@@ -27,6 +29,12 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
       start: task.date,
       color: task.color,
     }));
+
+  const handleEventClick = (clickInfo) => {
+    const eventId = clickInfo.event.id; // Get the clicked event's id
+    // Navigate to the homepage with the task ID as a URL parameter
+    nav(`/?taskId=${eventId}`);
+  };
 
   // Function to customize event rendering
   const renderEventContent = (eventInfo) => {
@@ -37,12 +45,29 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
         style={{
           backgroundColor: eventInfo.event.backgroundColor,
           padding: "5px",
+          borderRadius: "5px",
         }}
       >
         {eventInfo.event.title}
       </div>
     );
   };
+
+  // Scroll to the target element with the provided ID
+  const scrollToTargetElement = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const taskId = urlParams.get("taskId");
+    if (taskId) {
+      const targetElement = document.getElementById(taskId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  useEffect(() => {
+    scrollToTargetElement();
+  }, []);
 
   return (
     <div
@@ -78,6 +103,7 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
                 initialView="dayGridMonth"
                 events={events}
                 eventContent={renderEventContent}
+                eventClick={handleEventClick}
                 height="auto"
                 themeSystem={lightMode ? "standard" : "bootstrap"} // Adjust the theme based on lightMode
               />

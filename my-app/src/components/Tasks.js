@@ -1,5 +1,7 @@
 import Button from "./Button";
 import { useSpring, animated } from "react-spring";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Tasks({
   description,
@@ -40,8 +42,31 @@ export default function Tasks({
     from: { opacity: 0, transform: "scale(0)" },
   });
 
+  const location = useLocation();
+  const taskId = new URLSearchParams(location.search).get("taskId");
+
+  useEffect(() => {
+    const scrollToTargetElement = () => {
+      if (taskId) {
+        const targetElement = document.getElementById(taskId);
+        if (targetElement) {
+          // Scroll to the top of the target element
+          targetElement.scrollIntoView({ behavior: "smooth" });
+
+          // Scroll further up by the height of the task card
+          const taskCardHeight = targetElement.offsetHeight;
+          window.scrollBy(0, -taskCardHeight);
+
+          // Scroll back down to the top of the target element
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    scrollToTargetElement();
+  }, [taskId]);
+
   return (
-    <animated.div style={props}>
+    <animated.div style={props} id={id}>
       <div
         className="cardTask shadow"
         style={{
@@ -49,7 +74,6 @@ export default function Tasks({
           color: lightMode ? "#313638" : "white",
           borderRadius: "7px",
         }}
-        id={task.id}
       >
         <div
           className={`card-header shadow position-relative`}
@@ -65,7 +89,7 @@ export default function Tasks({
             style={{ fontSize: "20px" }}
             className="text-center"
           >
-            {subject}{" "}
+            {subject}
             <span
               className={`position-absolute top-0 end-0 translate-middle badge rounded-pill ${badgeColor} ${badgeFontWeight}`}
               style={{ fontSize: "10px" }}
@@ -76,7 +100,7 @@ export default function Tasks({
         </div>
         <div className="card-body">
           <h6 className="card-title text-center">
-            {date === "" ? "Undated" : "Due on " + date}
+            {date === null ? "Undated" : "Due on " + date}
           </h6>
           <hr />
           <p

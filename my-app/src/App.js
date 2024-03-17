@@ -472,7 +472,7 @@ function App() {
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
-                  className="text-center wow animate__animated animate__fadeIn"
+                  className="text-center "
                 >
                   You can create Tasks:
                 </h1>
@@ -517,7 +517,7 @@ function App() {
                       fontWeight: "bold",
                       paddingBottom: "40px",
                     }}
-                    className="container text-center wow animate__animated animate__fadeIn"
+                    className="container text-center "
                   >
                     Manage your own workload:{" "}
                   </h1>
