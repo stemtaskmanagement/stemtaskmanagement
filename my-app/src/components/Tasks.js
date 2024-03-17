@@ -13,6 +13,7 @@ export default function Tasks({
   lightMode,
   link,
   priority,
+  task,
 }) {
   const priorityToBadgeColor = {
     "High Priority": "text-bg-danger",
@@ -48,6 +49,7 @@ export default function Tasks({
           color: lightMode ? "#313638" : "white",
           borderRadius: "7px",
         }}
+        id={task.id}
       >
         <div
           className={`card-header shadow position-relative`}

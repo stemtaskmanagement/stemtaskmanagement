@@ -273,6 +273,7 @@ function App() {
   }
 
   //date formatter
+  // Function to format date in "Month Day, Year" format
   function formatDate(dateString) {
     if (dateString && dateString !== "") {
       const dateObj = new Date(dateString);

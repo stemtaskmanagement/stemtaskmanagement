@@ -5,11 +5,12 @@ import Modal from "./Modal";
 import { set, ref, getDatabase, remove } from "firebase/database";
 import { deleteUser } from "firebase/auth";
 import { app } from "../firebase/config";
+import Calendar from "./Calendar";
 
 export default function User({ userCredentials, auth, lightMode, task }) {
   const [showModal, setShowModal] = useState(false);
   const [deletedAccount, setDeletedAccount] = useState(false);
-
+  const [showCalendar, setShowCalendar] = useState(false);
   const emptyMessage = "Please log in to view this content";
   function handleSignOut() {
     signOut(auth)
@@ -21,6 +22,10 @@ export default function User({ userCredentials, auth, lightMode, task }) {
       .catch((error) => {
         console.error("Error signing out user:", error.message);
       });
+  }
+
+  function handleShowCalendar() {
+    setShowCalendar(true);
   }
 
   //deletes user from database
@@ -67,6 +72,14 @@ export default function User({ userCredentials, auth, lightMode, task }) {
           setShowModal={setDeletedAccount}
         />
       )}
+      {showCalendar && (
+        <Calendar
+          task={task}
+          lightMode={lightMode}
+          setShowCalendar={setShowCalendar}
+        />
+      )}
+
       <h1
         style={{
           fontSize: "65px",
@@ -107,9 +120,18 @@ export default function User({ userCredentials, auth, lightMode, task }) {
                 color="btn-danger"
               />
             </div>
+            <div className="col " style={{ maxWidth: "180px" }}>
+              {" "}
+              <Button
+                onClick={handleShowCalendar}
+                name="Show Calendar"
+                color="btn-primary"
+              />
+            </div>
           </div>
         </div>
       )}
+      <div></div>
     </div>
   );
 }
