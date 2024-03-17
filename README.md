@@ -1,6 +1,6 @@
 # STEMTask :books:
 ## STEMTask :books:, a web-based task management application tailored for Senior High School STEM Students for them to manage their daily task.
-##Developed by:
+## Developed by:
 ### :man_technologist: master developer: Wion M. Quintela
 ### other members:
 ### Gabriel Eli B. Mañacap
