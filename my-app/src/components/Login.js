@@ -26,6 +26,7 @@ export default function Login({
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showAgreeButton, setShowAgreeButton] = useState(false);
   const termsAndConditions = <Terms email={email} />;
   const errorMessages = {
     "auth/user-not-found":
@@ -41,15 +42,6 @@ export default function Login({
       "Network error. Please check your internet connection and try again.",
     // Add more error messages as needed
   };
-
-  // useEffect(() => {
-  //   // Reset input fields when logInType changes
-  //   setEmail("");
-  //   setPassword("");
-  // }, [logInType]);
-
-  const navigate = useNavigate(); // Initialize useNavigate hook
-
   //changes the UI to sign up page
   function changeToSignUp() {
     setIsLogInType("signup");
@@ -61,6 +53,19 @@ export default function Login({
     setIsLogInType("login");
     setEmail("");
     setPassword("");
+  }
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
+  // Toggle password visibility
+  function togglePasswordVisibility() {
+    setShowPassword(!showPassword);
+  }
+
+  //handles the password reset
+  function handlePasswordReset() {
+    const email = prompt("Please enter your email");
+    sendPasswordResetEmail(auth, email);
+    alert("email sent! check your inbox for password reset instruction");
   }
 
   function handleSignUp(e) {
@@ -118,69 +123,54 @@ export default function Login({
       });
   }
 
-  // Function to toggle password visibility
-  function togglePasswordVisibility() {
-    setShowPassword(!showPassword);
-  }
-
-  //handles the password reset
-  function handlePasswordReset() {
-    const email = prompt("Please enter your email");
-    sendPasswordResetEmail(auth, email);
-    alert("email sent! check your inbox for password reset instruction");
-  }
-
   return (
     <div>
-      <div>
-        {/* */}
-        <nav
-          className="navbar navbar-expand-lg"
-          style={{
-            backgroundColor: lightMode ? "#E4E3E0" : "#313638",
-          }}
-        >
-          <div className="container-fluid">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
+      <nav
+        className="navbar navbar-expand-lg"
+        style={{
+          backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+        }}
+      >
+        <div className="container-fluid">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <a className="navbar-brand text-primary" href="/">
+              STEMTask
+            </a>
+            <ul
+              className="navbar-nav ms-auto"
+              style={{
+                listStyleType: "none",
+                display: "flex",
+              }}
             >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <a className="navbar-brand text-primary" href="/">
-                STEMTask
-              </a>
-              <ul
-                className="navbar-nav ms-auto"
-                style={{
-                  listStyleType: "none",
-                  display: "flex",
-                }}
-              >
-                <li>
-                  <Button
-                    icon={
-                      lightMode ? (
-                        <i className="fa-solid fa-moon"></i>
-                      ) : (
-                        <i className="fa-solid fa-sun"></i>
-                      )
-                    }
-                    onClick={onClick}
-                    color="btn-primary"
-                  />
-                </li>
-              </ul>
-            </div>
+              <li>
+                <Button
+                  icon={
+                    lightMode ? (
+                      <i className="fa-solid fa-moon"></i>
+                    ) : (
+                      <i className="fa-solid fa-sun"></i>
+                    )
+                  }
+                  onClick={onClick}
+                  color="btn-primary"
+                />
+              </li>
+            </ul>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
       <div
         style={{
           fontSmooth: "always",
@@ -192,14 +182,22 @@ export default function Login({
         }}
       >
         {showModal && (
-          <Modal
+          // <Modal
+          //   lightMode={lightMode}
+          //   modalTitle="Terms and Conditions"
+          //   modalDescription={termsAndConditions}
+          //   setShowModal={setShowModal}
+          //   text="I agree with the terms and conditions."
+          //   color="btn-success"
+          //   navigation="/"
+          //   id="Terms"
+          // />
+          <Terms
             lightMode={lightMode}
             modalTitle="Terms and Conditions"
-            modalDescription={termsAndConditions}
             setShowModal={setShowModal}
-            text="I agree with the terms and conditions."
             color="btn-success"
-            navigation="/"
+            navigation={"/"}
             id="Terms"
           />
         )}
@@ -269,16 +267,15 @@ export default function Login({
                 }}
               />
               <button
-                // className="btn btn-outline-secondary"
                 type="button"
-                onClick={() => togglePasswordVisibility()} // Toggle password visibility on button click
+                onClick={togglePasswordVisibility}
+                style={{ marginLeft: "10px" }}
               >
                 {showPassword ? "Hide" : "Show"}{" "}
-                {/* Change button label based on password visibility */}
                 {showPassword ? (
-                  <i class="fa-regular fa-eye-slash"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
-                  <i class="fa-regular fa-eye"></i>
+                  <i className="fa-regular fa-eye"></i>
                 )}
               </button>
             </div>
@@ -290,7 +287,6 @@ export default function Login({
                   handleLogIn(e);
                 }}
               >
-                {/* <Link to={link}>Login</Link> */}
                 Login
               </button>
             ) : (
@@ -300,7 +296,6 @@ export default function Login({
                   handleSignUp(e);
                 }}
               >
-                {/* <Link to={link}>Sign up</Link> */}
                 Signup
               </button>
             )}
@@ -336,6 +331,15 @@ export default function Login({
           )}
         </div>
       </div>
+      {showAgreeButton && (
+        <button
+          className="btn btn-success"
+          onClick={() => setShowModal(true)}
+          style={{ position: "fixed", bottom: "20px", right: "20px" }}
+        >
+          I agree to the terms and conditions
+        </button>
+      )}
     </div>
   );
 }
