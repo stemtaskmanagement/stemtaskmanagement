@@ -1,7 +1,7 @@
-import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import FullCalendar from "@fullcalendar/react";
 
 // Mapping object for subjects and their acronyms
 const subjectAcronyms = {
@@ -45,7 +45,8 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
         style={{
           backgroundColor: eventInfo.event.backgroundColor,
           padding: "5px",
-          borderRadius: "5px",
+          cursor: "pointer",
+          width: "100%",
         }}
       >
         {eventInfo.event.title}
@@ -69,6 +70,11 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
     scrollToTargetElement();
   }, []);
 
+  // Inside the Calendar component
+  useEffect(() => {
+    console.log("lightMode:", lightMode);
+  }, [lightMode]);
+
   return (
     <div
       className="modal"
@@ -87,7 +93,7 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
     >
       <div
         className="modal-dialog"
-        style={{ width: "100%", maxWidth: "100%" }} // Adjust width styles
+        style={{ maxWidth: "100%", maxHeight: "100%" }} // Adjust width styles
       >
         <div
           className="modal-content"
@@ -96,7 +102,14 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
             color: lightMode ? "#313638" : "white",
           }}
         >
-          <div className="modal-body" style={{ padding: "20px" }}>
+          <div
+            className="modal-body"
+            style={{
+              padding: "20px",
+              // backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+              color: lightMode ? "#313638" : "white",
+            }}
+          >
             <div className="calendar-container">
               <FullCalendar
                 plugins={[dayGridPlugin]}
@@ -105,7 +118,49 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
                 eventContent={renderEventContent}
                 eventClick={handleEventClick}
                 height="auto"
-                themeSystem={lightMode ? "standard" : "bootstrap"} // Adjust the theme based on lightMode
+                themeSystem={"bootstrap5"}
+                dayCellContent={(arg) => {
+                  // Customize the appearance of each day cell
+                  return (
+                    <div
+                      className="fc-daygrid-day-number"
+                      style={{
+                        color: lightMode ? "#313638" : "white",
+                        width: "25px",
+                        height: "25px",
+                      }}
+                    >
+                      {arg.dayNumberText}
+                    </div>
+                  );
+                }}
+                dayHeaderContent={(arg) => {
+                  // Customize the appearance of each day header
+                  return (
+                    <div
+                      className="fc-day-header"
+                      style={{
+                        color: "#313638",
+                        textDecoration: "none",
+                        width: "100%", // Set the width to 100%
+                        padding: "10px", // Add padding for better appearance
+                      }}
+                    >
+                      {arg.text}
+                    </div>
+                  );
+                }}
+                // Set fixed aspect ratio for each cell
+                dayCellContentDidMount={(arg) => {
+                  arg.el.style.paddingBottom = "100%"; // Aspect ratio 1:1 (square)
+                }}
+                // Customize the header toolbar to center the title
+                headerToolbar={{
+                  start: "prev,next today",
+                  center: "title",
+                  end: "dayGridMonth,timeGridWeek,timeGridDay",
+                }}
+                // Add more customization options as needed
               />
             </div>
           </div>
@@ -116,6 +171,7 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
           >
             Close
           </button>
+          {console.log(lightMode)}
         </div>
       </div>
     </div>

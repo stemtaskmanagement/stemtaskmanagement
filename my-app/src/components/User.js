@@ -75,7 +75,7 @@ export default function User({ userCredentials, auth, lightMode, task }) {
       {showCalendar && (
         <Calendar
           task={task}
-          lightMode={lightMode}
+          lightMode={lightMode} // Pass lightMode prop here
           setShowCalendar={setShowCalendar}
         />
       )}
