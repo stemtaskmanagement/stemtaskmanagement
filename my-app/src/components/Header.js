@@ -14,7 +14,7 @@ export default function Header({ userCredentials }) {
 
       <h1
         style={{ fontSize: "65px", fontWeight: "bold" }}
-        className="text-primary wow animate__animated animate__fadeIn"
+        className="text-primary"
       >
         STEMTask
       </h1>

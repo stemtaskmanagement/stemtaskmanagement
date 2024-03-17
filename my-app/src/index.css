@@ -70,7 +70,27 @@ code {
   padding: 20px;
   max-height: 700px;
 }
-
+.event-content {
+  color: #fff;
+  padding: 3px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.fc-daygrid-day-number {
+  text-decoration: none !important;
+}
+.fc-dayGrid-view .fc-day-header.fc-widget-header {
+  text-decoration: none !important;
+}
+/* Media query for mobile devices */
+@media only screen and (max-width: 600px) {
+  .event-content {
+    font-size: 10px;
+    /* Adjust font size for mobile */
+    padding: 2px;
+    /* Adjust padding for mobile */
+  }
+}
 
 .custom-padding {
   padding-left: 0 !important;
