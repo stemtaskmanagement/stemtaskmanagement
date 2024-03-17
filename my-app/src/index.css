@@ -75,6 +75,11 @@ code {
   padding: 3px;
   border-radius: 5px;
   font-size: 20px;
+  border: none;
+  text-decoration: none;
+}
+.fc-day-header {
+  text-decoration: none;
 }
 .fc-daygrid-day-number {
   text-decoration: none !important;
