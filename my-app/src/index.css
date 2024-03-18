@@ -90,7 +90,7 @@ code {
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .event-content {
-    font-size: 10px;
+    font-size: 5px;
     /* Adjust font size for mobile */
     padding: 2px;
     /* Adjust padding for mobile */
