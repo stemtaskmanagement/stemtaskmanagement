@@ -21,6 +21,7 @@ export default function Header({ userCredentials }) {
       <h3 style={{ paddingBottom: "25px" }}>
         A Task Management Web App for Grade 11 STEM Students
       </h3>
+      {console.log(userCredentials.length)}
       {userCredentials.length == undefined ? (
         <Button
           name="Start Creating Tasks"
@@ -28,7 +29,7 @@ export default function Header({ userCredentials }) {
           color="btn-primary"
         />
       ) : (
-        <Button name="Log in" href="/login" color="btn-primary" />
+        <Button name="Get Started" href="/login" color="btn-primary" />
       )}
     </div>
   );

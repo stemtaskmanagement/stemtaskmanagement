@@ -47,6 +47,8 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
           padding: "5px",
           cursor: "pointer",
           width: "100%",
+          wordWrap: "break-word", // Changed from breakWord to break-word
+        whiteSpace: "normal", // Allow wrapping of long words
         }}
       >
         {eventInfo.event.title}
