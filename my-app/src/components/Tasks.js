@@ -73,6 +73,7 @@ export default function Tasks({
           backgroundColor: lightMode ? "#F9F6EE" : "#313638",
           color: lightMode ? "#313638" : "white",
           borderRadius: "7px",
+          border: "2px solid gray",
         }}
       >
         <div

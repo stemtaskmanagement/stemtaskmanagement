@@ -55,105 +55,66 @@ export default function Navbar({ onClick, lightMode, userCredentials, home }) {
                 flexDirection: "row",
               }}
             >
-              {userCredentials.length === 0 ? (
-                <li>
-                  {windowWidth <= 768 ? (
-                    <a
-                      style={{
-                        color: lightMode ? "#313638" : "white",
-                        paddingRight: "10px",
-                      }}
-                      className="nav-link"
-                      href="/user"
-                    >
-                      <Button
-                        icon={<i class="fa-solid fa-user"></i>}
-                        color="btn-secondary"
-                      />
-                    </a>
-                  ) : (
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: lightMode ? "#313638" : "white",
-                        marginRight: "10px",
-                      }}
-                      href="/login"
-                    >
-                      Login
-                    </a>
-                  )}
-                </li>
-              ) : (
-                <li>
-                  {windowWidth <= 768 ? (
-                    <a
-                      style={{
-                        color: lightMode ? "#313638" : "white",
-                        paddingRight: "10px",
-                      }}
-                      className="nav-link"
-                      href="/user"
-                    >
-                      <Button
-                        icon={<i class="fa-solid fa-user"></i>}
-                        color="btn-secondary"
-                      />
-                    </a>
-                  ) : (
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: lightMode ? "#313638" : "white",
-                        marginRight: "10px",
-                      }}
-                      href="/user"
-                    >
-                      {userCredentials.email}
-                    </a>
-                  )}
-                </li>
-              )}
-
               <li>
-                {windowWidth <= 768 ? (
-                  <a
-                    href="/#taskSection"
-                    style={{
-                      color: lightMode ? "#313638" : "white",
-                      marginRight: "10px",
-                    }}
-                    className="nav-link"
-                  >
-                    <Button
-                      icon={<i class="fa-solid fa-list-check"></i>}
-                      color="btn-secondary"
-                    />{" "}
-                  </a>
-                ) : (
-                  <a
-                    href="/#taskSection"
-                    style={{ color: lightMode ? "#313638" : "white" }}
-                    className="nav-link"
-                  >
-                    My Task
-                  </a>
-                )}
+                <a
+                  style={{
+                    color: lightMode ? "#313638" : "white",
+                    marginRight: "5px",
+                  }}
+                  className="nav-link"
+                  href="/notifications"
+                >
+                  <Button
+                    icon={<i class="fa-solid fa-bell fa-sm"></i>}
+                    color="btn-secondary"
+                  />
+                </a>
               </li>
               <li>
                 <a
                   style={{
                     color: lightMode ? "#313638" : "white",
-                    marginRight: "10px",
+                    marginRight: "5px",
+                  }}
+                  className="nav-link"
+                  href="/user"
+                >
+                  <Button
+                    icon={<i class="fa-solid fa-user fa-sm"></i>}
+                    color="btn-secondary"
+                  />
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/#taskSection"
+                  style={{
+                    color: lightMode ? "#313638" : "white",
+                    marginRight: "5px",
+                  }}
+                  className="nav-link"
+                >
+                  <Button
+                    icon={<i class="fa-solid fa-list-check fa-sm"></i>}
+                    color="btn-secondary"
+                  />{" "}
+                </a>
+              </li>
+              <li>
+                <a
+                  style={{
+                    color: lightMode ? "#313638" : "white",
+                    marginRight: "5px",
                   }}
                   className="nav-link"
                 >
                   <Button
                     icon={
                       lightMode ? (
-                        <i className="fa-solid fa-moon"></i>
+                        <i className="fa-solid fa-moon fa-sm"></i>
                       ) : (
-                        <i className="fa-solid fa-sun"></i>
+                        <i className="fa-solid fa-sun fa-sm"></i>
                       )
                     }
                     onClick={onClick}

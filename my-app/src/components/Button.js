@@ -15,7 +15,7 @@ export default function Button({
         className={`btn ${color} ${className}`}
         onClick={onClick}
         type={type}
-        style={{ borderRadius: "200px", paddingLeft: { paddingLeft } }}
+        style={{ borderRadius: "10px", paddingLeft: { paddingLeft } }}
       >
         <a
           style={{
