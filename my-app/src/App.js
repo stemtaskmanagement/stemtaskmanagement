@@ -1,5 +1,4 @@
-// // Import the sendEmailNotification function
-// import { sendNotification } from "./components/sendNotification";
+import Select from "react-select";
 import FAQ from "./components/FAQ";
 import Navbar from "./components/Navbar";
 import User from "./components/User";
@@ -34,6 +33,7 @@ import { useTransition, animated } from "react-spring";
 
 function App() {
   //user states
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [logInType, setIsLogInType] = useState("login");
   const [userCredentials, setUserCredentials] = useState([]);
   const [error, setError] = useState("");
@@ -59,14 +59,19 @@ function App() {
     { label: "Subject", value: "subject" },
   ];
 
-  // Use the useTransition hook to animate tasks
-  // const enteringTransitions = useTransition(task, {
-  //   keys: (item) => item.id,
-  //   from: { opacity: 0, transform: "scale(0)" },
-  //   enter: { opacity: 1, transform: "scale(1)" },
-  //   leave: { opacity: 0, transform: "scale(0)" },
-  //   config: { tension: 400, friction: 25 },
-  // });
+  //mobile responsiveness
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   // Use the useTransition hook to animate tasks for sorting
   const sortingTransitions = useTransition(task, {
     keys: (item) => item.id,
@@ -440,6 +445,43 @@ function App() {
             </div>
           }
         />
+        {/*NOTIFICATION PAGE*/}
+        <Route
+          path="/notifications"
+          element={
+            <div
+              className=""
+              style={{
+                fontSmooth: "always",
+                overflow: "hidden",
+                backgroundColor: lightMode ? "#EEEEEE" : "#28282B",
+                color: lightMode ? "#28282B" : "#EEEEEE",
+              }}
+            >
+              <Navbar
+                onClick={setTheme}
+                lightMode={lightMode}
+                userCredentials={userCredentials}
+              />
+              <div className="headerSection container">
+                <h1
+                  style={{
+                    fontSize: isMobile ? "40px" : "65px",
+                    fontWeight: "bold",
+                    paddingBottom: "40px",
+                  }}
+                  className="container text-center wow animate__animated animate__fadeIn"
+                >
+                  from Devs
+                </h1>
+
+                <Notifications />
+              </div>
+
+              <Footer lightMode={lightMode} />
+            </div>
+          }
+        />
         {/* HOME PAGE*/}
         <Route
           path="/"
@@ -458,6 +500,7 @@ function App() {
                 lightMode={lightMode}
                 userCredentials={userCredentials}
                 home="true"
+                isMobile={isMobile}
               />
               <div className="headerSection">
                 <Header userCredentials={userCredentials} />
@@ -468,13 +511,13 @@ function App() {
               <div className="formsSection" id="formsSection">
                 <h1
                   style={{
-                    fontSize: "55px",
+                    fontSize: isMobile ? "40px" : "55px",
                     fontWeight: "bold",
                     paddingBottom: "40px",
                   }}
                   className="text-center "
                 >
-                  You can create Tasks:
+                  Task Creation:
                 </h1>
                 <Forms
                   subject={subject}
@@ -513,13 +556,13 @@ function App() {
                 >
                   <h1
                     style={{
-                      fontSize: "65px",
+                      fontSize: isMobile ? "40px" : "55px",
                       fontWeight: "bold",
                       paddingBottom: "40px",
                     }}
                     className="container text-center "
                   >
-                    Manage your own workload:{" "}
+                    My Tasks:
                   </h1>
                   {task.length > 1 && (
                     <div className="p-3">

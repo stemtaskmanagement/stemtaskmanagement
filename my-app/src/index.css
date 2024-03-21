@@ -104,7 +104,8 @@ code {
 
 /*scrollable description*/
 #cardDescription {
-  height: 300px;
+  min-height: 150px;
+  max-height: 300px;
   overflow-y: auto;
 }
 /*scrollable terms and conditions*/
@@ -112,6 +113,7 @@ code {
   height: 500px;
     overflow-y: scroll;
 }
+
 /*scrollable description*/
 #cardSubject {
   padding: 10px;

@@ -28,7 +28,7 @@ export default function Header({ userCredentials }) {
           color="btn-primary"
         />
       ) : (
-        <Button name="Get Started" href="/login" color="btn-primary" />
+        <Button name="Log in" href="/login" color="btn-primary" />
       )}
     </div>
   );
