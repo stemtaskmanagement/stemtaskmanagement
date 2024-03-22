@@ -48,7 +48,7 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
           cursor: "pointer",
           width: "100%",
           wordWrap: "break-word", // Changed from breakWord to break-word
-        whiteSpace: "normal", // Allow wrapping of long words
+          whiteSpace: "normal", // Allow wrapping of long words
         }}
       >
         {eventInfo.event.title}
@@ -99,18 +99,18 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
       >
         <div
           className="modal-content"
-          style={{
-            backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-            color: lightMode ? "#313638" : "white",
-          }}
+          // style={{
+          //   backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+          //   color: lightMode ? "#313638" : "white",
+          // }}
         >
           <div
             className="modal-body"
-            style={{
-              padding: "20px",
-              // backgroundColor: lightMode ? "#F9F6EE" : "#313638",
-              color: lightMode ? "#313638" : "white",
-            }}
+            // style={{
+            //   padding: "20px",
+            //   // backgroundColor: lightMode ? "#F9F6EE" : "#313638",
+            //   color: lightMode ? "#313638" : "white",
+            // }}
           >
             <div className="calendar-container">
               <FullCalendar
@@ -119,7 +119,7 @@ export default function Calendar({ lightMode, task, setShowCalendar }) {
                 events={events}
                 eventContent={renderEventContent}
                 eventClick={handleEventClick}
-                height="auto"
+                height="500px"
                 themeSystem={"bootstrap5"}
                 dayCellContent={(arg) => {
                   // Customize the appearance of each day cell

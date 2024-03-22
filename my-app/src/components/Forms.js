@@ -178,7 +178,7 @@ export default function Forms({
           />
         </div>
       </div>
-      {/* <div className="mb-3">
+      <div className="mb-3">
         {file && typeof file === "object" && (
           <div className="file-preview">
             <img
@@ -193,6 +193,7 @@ export default function Forms({
           className="form-control"
           type="file"
           onChange={handleFileChange}
+          placeholder={file ? null : "Select priority level"}
           style={{
             backgroundColor: lightMode ? "#E4E3E0" : "#313638",
             color: lightMode ? "#313638" : "white",
@@ -201,7 +202,7 @@ export default function Forms({
             padding: "8px",
           }}
         />
-      </div> */}
+      </div>
 
       <div className="mb-3">
         <input

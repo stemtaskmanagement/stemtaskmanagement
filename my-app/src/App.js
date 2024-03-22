@@ -49,6 +49,7 @@ function App() {
   const [showList, setShowList] = useState(true);
   const [lightMode, setLightMode] = useState(true);
   const [link, setLink] = useState("");
+  const [file, setFile] = useState("");
   const [priority, setPriority] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [task, setTask] = useState([]);
@@ -179,6 +180,7 @@ function App() {
           color: color,
           link: link,
           priority: priority,
+          file: file,
         };
         setTask([newTask, ...task]);
       } else {
@@ -190,6 +192,7 @@ function App() {
           color: color,
           link: link,
           priority: priority,
+          file: file,
         };
         const updatedTaskList = task.map((item) =>
           item.id === isEditTask ? { ...item, ...newTask } : item
@@ -275,6 +278,7 @@ function App() {
     setColor("#04a4b0");
     setLink("");
     setPriority("");
+    setFile("");
   }
 
   //date formatter
@@ -286,34 +290,6 @@ function App() {
       return dateObj.toLocaleDateString("en-US", options);
     } else {
       return ""; // Return an empty string if dateString is empty
-    }
-  }
-
-  //delete functionality
-  function handleDelete(id) {
-    const updatedTasks = task.filter((item) => item.id !== id);
-    setTask(updatedTasks); // Update the state to remove the task from UI
-
-    // Check if userCredentials is available
-    if (userCredentials) {
-      // Remove the task from the database
-      const database = getDatabase();
-      const userTasksRef = ref(
-        database,
-        `users/${userCredentials.uid}/tasks/${id}`
-      );
-      remove(userTasksRef)
-        .then(() => {
-          console.log("Task removed from the database successfully.");
-        })
-        .catch((error) => {
-          console.error(
-            "Error removing task from the database:",
-            error.message
-          );
-        });
-    } else {
-      console.error("User credentials not available.");
     }
   }
 
@@ -536,6 +512,8 @@ function App() {
                   userCredentials={userCredentials}
                   priority={priority}
                   setPriority={setPriority}
+                  file={file}
+                  setFile={setFile}
                 />
                 {/*Show the modal whenever the fields are empty*/}
                 {showModal && (

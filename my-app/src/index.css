@@ -50,7 +50,7 @@ code {
   margin: 0 auto;
   /* Center the container */
   padding: 20px;
-  max-height: 550px;
+  max-height: 1000px;
 }
 
 .card {
@@ -59,7 +59,7 @@ code {
   margin: 0 auto;
   /* Center the container */
   padding: 20px;
-  max-height: 600px;
+  max-height: 1000px;
 }
 
 .loginCard {
@@ -90,7 +90,7 @@ code {
 /* Media query for mobile devices */
 @media only screen and (max-width: 600px) {
   .event-content {
-    font-size: 5px;
+    font-size: 10px;
     /* Adjust font size for mobile */
     padding: 2px;
     /* Adjust padding for mobile */

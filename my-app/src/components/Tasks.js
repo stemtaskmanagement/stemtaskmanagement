@@ -2,6 +2,8 @@ import Button from "./Button";
 import { useSpring, animated } from "react-spring";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useState } from "react";
+import Accordion from "react-bootstrap/Accordion";
 
 export default function Tasks({
   description,
@@ -16,6 +18,7 @@ export default function Tasks({
   link,
   priority,
   task,
+  file,
 }) {
   const priorityToBadgeColor = {
     "High Priority": "text-bg-danger",
@@ -44,6 +47,23 @@ export default function Tasks({
 
   const location = useLocation();
   const taskId = new URLSearchParams(location.search).get("taskId");
+
+  // Use React state to store the loaded status of the image
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // useEffect to handle image load
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      console.log("Image loaded successfully");
+      setImageLoaded(true);
+    };
+    img.onerror = () => {
+      console.error("Error loading image");
+      setImageLoaded(false);
+    };
+    img.src = file;
+  }, [file]);
 
   useEffect(() => {
     const scrollToTargetElement = () => {
@@ -100,17 +120,87 @@ export default function Tasks({
           </h6>
         </div>
         <div className="card-body">
-          <h6 className="card-title text-center">
-            {date === null ? "Undated" : "Due on " + date}
+          <h6 className="card-title text-center p-2">
+            {date === "" ? "Undated" : "Due on " + date}
           </h6>
-          <hr />
-          <p
-            className="card-text"
-            id="cardDescription"
-            style={{ padding: "0 10px" }}
-          >
-            {description}
-          </p>
+          {/* <hr /> */}
+
+          <div>
+            <Accordion defaultActiveKey="0" alwaysOpen>
+              <Accordion.Item eventKey="0">
+                <Accordion.Button
+                  style={{
+                    backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+                    color: lightMode ? "#313638" : "white",
+                    border: lightMode
+                      ? "2px solid #F9F6EE"
+                      : "2px solid #313638",
+                    borderRadius: "5px",
+                    padding: "8px",
+                  }}
+                >
+                  Description
+                </Accordion.Button>
+
+                <Accordion.Body
+                  style={{
+                    backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+                    color: lightMode ? "#313638" : "white",
+                    border: lightMode
+                      ? "2px solid #F9F6EE"
+                      : "2px solid #313638",
+                    borderRadius: "5px",
+                    padding: "8px",
+                  }}
+                >
+                  <p
+                    className="card-text"
+                    id="cardDescription"
+                    style={{ padding: "0 10px" }}
+                  >
+                    {description}
+                  </p>
+                </Accordion.Body>
+              </Accordion.Item>
+              {file && (
+                <Accordion.Item eventKey="1">
+                  <Accordion.Button
+                    style={{
+                      backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+                      color: lightMode ? "#313638" : "white",
+                      border: lightMode
+                        ? "2px solid #F9F6EE"
+                        : "2px solid #313638",
+                      borderRadius: "5px",
+                      padding: "8px",
+                    }}
+                  >
+                    File Image
+                  </Accordion.Button>
+
+                  <Accordion.Body
+                    className="text-center"
+                    style={{
+                      backgroundColor: lightMode ? "#E4E3E0" : "#313638",
+                      color: lightMode ? "#313638" : "white",
+                      border: lightMode
+                        ? "2px solid #F9F6EE"
+                        : "2px solid #313638",
+                      borderRadius: "5px",
+                      padding: "8px",
+                    }}
+                  >
+                    <img
+                      src={URL.createObjectURL(file)}
+                      alt="Task Image"
+                      style={{ maxWidth: "100px" }}
+                      onClick={() => alert("clicked")}
+                    />
+                  </Accordion.Body>
+                </Accordion.Item>
+              )}
+            </Accordion>
+          </div>
         </div>
         <div className="row text-center p-2">
           <div className="col" style={{ marginLeft: "10px" }}>
