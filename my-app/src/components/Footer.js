@@ -8,7 +8,7 @@ export default function Footer({ lightMode }) {
       }}
     >
       <div className="p-5">
-        <p className="footerText">@2024 STEMTASK. All Rights Reserved.</p>
+        <p className="footerText">@2025 STEMTASK. All Rights Reserved.</p>
         <a href="/about" className="footerLink">
           <p className="footerText">About the Developers</p>
         </a>
